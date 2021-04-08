@@ -20,58 +20,25 @@
 }
 
 /*--------------------------------------------------------------
-# Scroll Bar
---------------------------------------------------------------*/
-// firefox
-* {
-  scrollbar-width: 1.3rem;
-  scrollbar-color: var(--main-color) var(--main-background);
-}
-
-// chrome, edge, safari
-*::-webkit-scrollbar {
-  width: 1.3rem;
-}
-
-*::-webkit-scrollbar-track {
-  background: var(--main-background);
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: var(--main-color);
-  border: 3px solid var(--middle-color);
-}
-
-/*--------------------------------------------------------------
-# Highlight Text Color
---------------------------------------------------------------*/
-::selection {
-  background: var(--main-background); // WebKit/Blink Browsers
-}
-::-moz-selection {
-  background: var(--main-background); // Gecko Browsers
-}
-
-/*--------------------------------------------------------------
 # Site Variables
 --------------------------------------------------------------*/
 @font-face {
   font-family: "Quicksand";
-  src: url("/fonts/quicksand/Quicksand-Bold.ttf");
+  src: url("/static/fonts/quicksand/Quicksand-Bold.ttf");
   font-style: bold;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Quicksand";
-  src: url("/fonts/quicksand/Quicksand-Regular.ttf");
+  src: url("/static/fonts/quicksand/Quicksand-Regular.ttf");
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: "QuicksandLight";
-  src: url("/fonts/quicksand/Quicksand-Light.ttf");
+  src: url("/static/fonts/quicksand/Quicksand-Light.ttf");
   font-display: swap;
 }
 
@@ -109,7 +76,7 @@ a {
 
 // tablet (5% smaller than Desktop)
 @media(max-width: $breakpoint--large) {
-  
+
   @each $font-type, $font-size in $font-sizing-map {
     #{$font-type} {
       font-size: $font-size * 0.95;
