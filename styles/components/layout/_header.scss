@@ -1,0 +1,11 @@
+.header-container {
+    width: 100%;
+    background-color: var(--secondary-color);
+    z-index: 9;
+
+    .header-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        padding: 1rem;
+    }
+}

@@ -1,14 +1,14 @@
 // pages
-import Home from './home';
+import Notes from './notes';
 
 // layout
-import DefaultLayout from '../layout/defaultLayout';
+import NotesLayout from '../layout/notesLayout';
 
 export default ({
 }) => {
   return (
-    <DefaultLayout>
-      <Home />  
-    </DefaultLayout>
+    <NotesLayout>
+      <Notes />  
+    </NotesLayout>
   );
 }

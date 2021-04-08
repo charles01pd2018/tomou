@@ -33,6 +33,20 @@ const Sidebar = ({
                 },
                 sidebarText: 'Tasks'
             },
+            {
+                sidebarIcon: {
+                    iconPath: '/static/icons/task.svg',
+                    iconAltText: 'task icon'
+                },
+                sidebarText: 'Tasks'
+            },
+            {
+                sidebarIcon: {
+                    iconPath: '/static/icons/task.svg',
+                    iconAltText: 'task icon'
+                },
+                sidebarText: 'Tasks'
+            },
         ]
     };
 

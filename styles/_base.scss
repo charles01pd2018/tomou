@@ -1,18 +1,8 @@
 /*--------------------------------------------------------------
 # Section Spacing
 --------------------------------------------------------------*/
-.container {
-  padding: 3rem 5rem;
-  
-  // tablet - 75% smaller
-  @media (max-width: $breakpoint--large) {
-    padding: 2.1rem 3.5rem;
-  }
-
-  // mobile - 50% smaller
-  @media (max-width: 800px) {
-    padding: 1.5rem 2.5rem;
-  }
+main.site-content {
+  max-height: 100vh;
 }
 
 /*--------------------------------------------------------------
