@@ -1,5 +1,6 @@
 {
-  "name": "nextjs-starting-template",
+  "name": "tomou",
+  "description": "Task Manager",
   "version": "0.1.0",
   "private": true,
   "scripts": {

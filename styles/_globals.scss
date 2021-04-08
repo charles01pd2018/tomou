@@ -55,10 +55,34 @@
 /*--------------------------------------------------------------
 # Site Variables
 --------------------------------------------------------------*/
+@font-face {
+  font-family: "Quicksand";
+  src: url("/fonts/quicksand/Quicksand-Bold.ttf");
+  font-style: bold;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("/fonts/quicksand/Quicksand-Regular.ttf");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "QuicksandLight";
+  src: url("/fonts/quicksand/Quicksand-Light.ttf");
+  font-display: swap;
+}
+
+.font-light {
+  font-family: QuicksandLight;
+}
+
 html,
 body {
   margin: 0 auto;
-  font-family: Verdana; 
+  font-family: Quicksand, Verdana;
   scroll-behavior: smooth;
 }
 
@@ -85,7 +109,7 @@ a {
 
 // tablet (5% smaller than Desktop)
 @media(max-width: $breakpoint--large) {
-
+  
   @each $font-type, $font-size in $font-sizing-map {
     #{$font-type} {
       font-size: $font-size * 0.95;
