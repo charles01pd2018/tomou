@@ -1,63 +1,63 @@
+// partials
+import Sticky from './sticky';
+
+const sidebarContent = {
+    sidebarItems: [
+        {
+            sidebarIcon: {
+                iconPath: '/static/icons/task.svg',
+                iconAltText: 'task icon'
+            },
+            sidebarText: 'Tasks'
+        },
+        {
+            sidebarIcon: {
+                iconPath: '/static/icons/task.svg',
+                iconAltText: 'task icon'
+            },
+            sidebarText: 'Tasks'
+        },
+        {
+            sidebarIcon: {
+                iconPath: '/static/icons/task.svg',
+                iconAltText: 'task icon'
+            },
+            sidebarText: 'Tasks'
+        },
+        {
+            sidebarIcon: {
+                iconPath: '/static/icons/task.svg',
+                iconAltText: 'task icon'
+            },
+            sidebarText: 'Tasks'
+        },
+        {
+            sidebarIcon: {
+                iconPath: '/static/icons/task.svg',
+                iconAltText: 'task icon'
+            },
+            sidebarText: 'Tasks'
+        },
+        {
+            sidebarIcon: {
+                iconPath: '/static/icons/task.svg',
+                iconAltText: 'task icon'
+            },
+            sidebarText: 'Tasks'
+        },
+    ]
+};
+
 const Sidebar = ({
     id,
     // content: { sidebarIcon, sidebarText }
 }) => {
     
-    const sidebarContent = {
-        sidebarItems: [
-            {
-                sidebarIcon: {
-                    iconPath: '/static/icons/task.svg',
-                    iconAltText: 'task icon'
-                },
-                sidebarText: 'Tasks'
-            },
-            {
-                sidebarIcon: {
-                    iconPath: '/static/icons/task.svg',
-                    iconAltText: 'task icon'
-                },
-                sidebarText: 'Tasks'
-            },
-            {
-                sidebarIcon: {
-                    iconPath: '/static/icons/task.svg',
-                    iconAltText: 'task icon'
-                },
-                sidebarText: 'Tasks'
-            },
-            {
-                sidebarIcon: {
-                    iconPath: '/static/icons/task.svg',
-                    iconAltText: 'task icon'
-                },
-                sidebarText: 'Tasks'
-            },
-            {
-                sidebarIcon: {
-                    iconPath: '/static/icons/task.svg',
-                    iconAltText: 'task icon'
-                },
-                sidebarText: 'Tasks'
-            },
-            {
-                sidebarIcon: {
-                    iconPath: '/static/icons/task.svg',
-                    iconAltText: 'task icon'
-                },
-                sidebarText: 'Tasks'
-            },
-        ]
-    };
-
     return (
         <section id={id} className='sidebar-container'>
                 {
-                    sidebarContent.sidebarItems.map( ({ sidebarIcon, sidebarText }) => (
-                        <div key={sidebarText} className='sidebar-item'>
-                            <img className='sidebar-icon' src={sidebarIcon.iconPath} alt={sidebarIcon.iconAltText} />
-                            <p>{sidebarText}</p>
-                        </div>
+                    sidebarContent.sidebarItems.map( ( sidebarItem ) => (
+                        <Sticky content={sidebarItem} />
                     ) )
                 }
         </section>
