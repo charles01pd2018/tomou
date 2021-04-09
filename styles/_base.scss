@@ -13,10 +13,13 @@ input,
 optgroup,
 select,
 textarea {
-  cursor: pointer;
   font-family: inherit;
   font-size: 100%; 
   border: none;
+}
+
+button {
+  cursor: pointer;
 }
 
 /*--------------------------------------------------------------
