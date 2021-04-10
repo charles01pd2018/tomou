@@ -21,7 +21,7 @@ const noteContent = {
   ]
 };
 
-export default ({
+const NotesDashboard = ({
   content
 }) => {
   return (
@@ -31,7 +31,9 @@ export default ({
   );
 }
 
-export async function getStaticProps() {
+export default NotesDashboard;
+
+export function getStaticProps() {
   return {
     props: {
       content: noteContent

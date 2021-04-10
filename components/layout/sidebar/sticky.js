@@ -19,7 +19,7 @@ const Sticky = ({
 
     return (
         <Link href={`#${convertTextToURLSlug(stickyLabel)}`}>
-            <div key={stickyLabel} className='sidebar-item'>
+            <div className='sidebar-item'>
                 <a>
                     <object className='sidebar-icon' type="image/svg+xml" data={stickyIcon.iconPath} alt={stickyIcon.iconAltText}  >
                         Sticky Tab Icon
@@ -27,8 +27,8 @@ const Sticky = ({
                     <p>{stickyLabel}</p>
                 </a>
             </div>
-
         </Link> 
+
     );
 }
 

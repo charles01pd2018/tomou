@@ -36,7 +36,7 @@ const Sidebar = ({
         <section id={id} className='sidebar-container'>
                 {
                     sidebarContent.sidebarItems.map( ( sidebarItem ) => (
-                        <Sticky content={sidebarItem} />
+                        <Sticky key={sidebarItem.stickyLabel} content={sidebarItem} />
                     ) )
                 }
         </section>

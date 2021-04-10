@@ -20,7 +20,7 @@ const NoteInput = ({
                     const noteItemClasses = classNames('note-text-area-container', activeNoteIndex === index ? 'note-active' : 'hide' );
                     return (
                         <div key={noteText} className={noteItemClasses}>
-                            <label for={noteID}><b>{noteLabel}</b></label>
+                            <label htmlFor={noteID}><b>{noteLabel}</b></label>
                             <div className='note-text-area-wrapper'>
                                 <textarea id={noteID} className='note-text-area' name={noteID}>
                                     {content.noteText}
