@@ -1,15 +1,17 @@
 .sidebar-container {
     display: grid;
     grid-template-rows: repeat(auto-fill, minmax(8rem, 1fr));
-    height: 100vh; // expand sidebar to entire screen
+    max-height: 100vh; // expand sidebar to entire screen
     width: 8%;
     top: 0;
+    left: 0;
     position: absolute;
     z-index: 10;
 
     .sidebar-item {
         text-align: center;
         padding: 1rem;
+        cursor: pointer;
 
         background-color: var(--main-background);
         border-bottom: 1px solid var(--contrast-color);

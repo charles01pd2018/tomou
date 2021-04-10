@@ -1,28 +1,34 @@
 // dependencies
 import { useState } from 'react';
+import Link from 'next/link';
 
 const Sticky = ({
-    content: {  sidebarIcon, sidebarText }
+    content: {  stickyIcon, stickyLabel }
 }) => {
 
-    const [ stickyActive, setStickyActive ] = useState(true);
-
-    const toggleSticky = () => {
-        setStickyActive(false);
+    const convertTextToURLSlug = ( text ) => {
+        const lowerCaseText = text.toLowerCase();
+        return lowerCaseText.replace(/\s/g, '-'); // replaces all occurences of spaces with dashes ( left argument = reg expression for spaces using global thingy, right is what is replacing the spaces )
     }
 
+    // const [ stickyActive, setStickyActive ] = useState(true);
+
+    // const toggleSticky = () => {
+    //     setStickyActive(false);
+    // }
+
     return (
-        <>
-        {
-            stickyActive === true ? (
-                <button key={sidebarText} className='sidebar-item' name='sticky-tab' onClick={toggleSticky}>
-                    <object className='sidebar-icon' type="image/svg+xml" data={sidebarIcon.iconPath} alt={sidebarIcon.iconAltText}  >
+        <Link href={`#${convertTextToURLSlug(stickyLabel)}`}>
+            <div key={stickyLabel} className='sidebar-item'>
+                <a>
+                    <object className='sidebar-icon' type="image/svg+xml" data={stickyIcon.iconPath} alt={stickyIcon.iconAltText}  >
                         Sticky Tab Icon
                     </object>
-                    <p>{sidebarText}</p>
-                </button> ) : ( null )
-        }
-        </>
+                    <p>{stickyLabel}</p>
+                </a>
+            </div>
+
+        </Link> 
     );
 }
 

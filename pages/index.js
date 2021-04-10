@@ -1,14 +1,40 @@
 // pages
-import Notes from './notes';
+import Notes from './[note]';
 
 // layout
 import NotesLayout from '../layout/notesLayout';
 
+const noteContent = {
+  noteItems: [
+      {
+          noteLabel: 'Note 1', // this should be the same as the note label
+          noteText: 'It be like that'
+      },
+      {
+          noteLabel: 'Note 2', // this should be the same as the note label
+          noteText: 'It be like that'
+      },
+      {
+          noteLabel: 'Note 3', // this should be the same as the note label
+          noteText: 'It be like that'
+      },
+  ]
+};
+
 export default ({
+  content
 }) => {
   return (
-    <NotesLayout>
-      <Notes />  
+    <NotesLayout content={content} >
+      <Notes content={content} />  
     </NotesLayout>
   );
+}
+
+export async function getStaticProps() {
+  return {
+    props: {
+      content: noteContent
+    }
+  }
 }

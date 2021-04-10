@@ -4,53 +4,32 @@ import Sticky from './sticky';
 const sidebarContent = {
     sidebarItems: [
         {
-            sidebarIcon: {
+            stickyIcon: {
                 iconPath: '/static/icons/task.svg',
-                iconAltText: 'task icon'
+                iconAltText: 'note icon'
             },
-            sidebarText: 'Tasks'
+            stickyLabel: 'Note 1',
         },
         {
-            sidebarIcon: {
+            stickyIcon: {
                 iconPath: '/static/icons/task.svg',
-                iconAltText: 'task icon'
+                iconAltText: 'note icon'
             },
-            sidebarText: 'Tasks'
+            stickyLabel: 'Note 2',
         },
         {
-            sidebarIcon: {
+            stickyIcon: {
                 iconPath: '/static/icons/task.svg',
-                iconAltText: 'task icon'
+                iconAltText: 'note icon'
             },
-            sidebarText: 'Tasks'
-        },
-        {
-            sidebarIcon: {
-                iconPath: '/static/icons/task.svg',
-                iconAltText: 'task icon'
-            },
-            sidebarText: 'Tasks'
-        },
-        {
-            sidebarIcon: {
-                iconPath: '/static/icons/task.svg',
-                iconAltText: 'task icon'
-            },
-            sidebarText: 'Tasks'
-        },
-        {
-            sidebarIcon: {
-                iconPath: '/static/icons/task.svg',
-                iconAltText: 'task icon'
-            },
-            sidebarText: 'Tasks'
+            stickyLabel: 'Note 3',
         },
     ]
 };
 
 const Sidebar = ({
     id,
-    // content: { sidebarIcon, sidebarText }
+    content
 }) => {
     
     return (

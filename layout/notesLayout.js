@@ -5,7 +5,8 @@ import { Header, Sidebar } from '../components/layout';
 
 
 const NotesLayout = ({
-    children
+    children,
+    content
 }) => {
 
     var SITE_NAME = 'JAWNZ';
@@ -19,7 +20,7 @@ const NotesLayout = ({
             </Head>
 
             <Header id='header-nav' />
-            <Sidebar id='side-nav' />
+            <Sidebar id='side-nav' content={content} />
             <main className='site-content'>{children}</main>
         </>
     );

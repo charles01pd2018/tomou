@@ -1,25 +1,35 @@
+// dependencies
+import { useState } from 'react';
+import classNames from 'classnames';
+
 const NoteInput = ({
     id,
     content
 }) => {
 
-    const noteContent = {
-        noteLabel: 'Notes Jawnz',
-        noteText: 'It be like that'
-    };
+    const [ activeNoteIndex, setActiveNoteIndex ] = useState(0);
 
     return (
         <section id={id} className='note-input-container'>
             <div className='note-toggle'>
                 Edit Note
             </div>
-
-            <label for="note"><b>{noteContent.noteLabel}</b></label>
-            <div className='note-text-area-wrapper'>
-                <textarea id='note' className='note-text-area' name="note">
-                    {noteContent.noteText}
-                </textarea>
-            </div>
+            {
+                content.noteItems.map( ( { noteLabel, noteText }, index ) => {
+                    const noteID = `note-${index}`;
+                    const noteItemClasses = classNames('note-text-area-container', activeNoteIndex === index ? 'note-active' : 'hide' );
+                    return (
+                        <div key={noteText} className={noteItemClasses}>
+                            <label for={noteID}><b>{noteLabel}</b></label>
+                            <div className='note-text-area-wrapper'>
+                                <textarea id={noteID} className='note-text-area' name={noteID}>
+                                    {content.noteText}
+                                </textarea>
+                            </div>
+                        </div>
+                    );
+                })
+            }
         </section>
     );
 }

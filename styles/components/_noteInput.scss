@@ -4,22 +4,25 @@
 
     .note-toggle {
         position: absolute;
-        right: 5%;
+        right: 3%;
     }
 
-    .note-text-area-wrapper {
-        padding-top: 2rem;
+    .note-text-area-container {
 
-        .note-text-area {
-            width: 100%;
-            height: 50vh;
-            padding: 0.5rem;
-            
-            border: 5px solid var(--secondary-color);
-            border-radius: 10px;
+        .note-text-area-wrapper {
+            padding-top: 1rem;
 
-            &:focus {
-                border: none;
+            .note-text-area {
+                width: 100%;
+                height: 50vh;
+                padding: 0.5rem;
+                
+                border: 5px solid var(--secondary-color);
+                border-radius: 10px;
+    
+                &:focus {
+                    border: none;
+                }
             }
         }
     }
