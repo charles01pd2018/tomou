@@ -5,7 +5,9 @@ const CenterPanel = ({
 
     return (
         <section id={id} className='center-panel-container'>
-            {children}
+            <div className='center-panel-wrapper'>
+                
+            </div>
         </section>
     );
 }
