@@ -14,7 +14,7 @@ const LinkBlob = ({
         <div className={linkBlobClasses}>
             <Link href={linkDestination}>
                 <a>
-                    <span className='link-blob link-blob-color-background'>
+                    <span className='link-blob'>
                         {linkText}
                     </span>
                 </a>

@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { NoteInput } from '../../components';
 
 // layout
-import NotesLayout from '../../layout/notesLayout';
+import { NotesLayout } from '../../layout';
 
 const noteContent = {
   noteItems: [
@@ -27,16 +27,17 @@ const noteContent = {
 const NotesDashboard = ({
   content
 }) => {
-  return (
-    <NotesLayout content={content} >
-        <Head>
-            <title>tomou: Notes</title>
-            <link rel="icon" href="/favicon.ico" />
-        </Head>
 
-        <NoteInput content={content} />
-    </NotesLayout>
-  );
+    return (
+        <NotesLayout content={content} >
+            <Head>
+                <title>tomou: Notes</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+
+            <NoteInput content={content} />
+        </NotesLayout>
+    );
 }
 
 export default NotesDashboard;

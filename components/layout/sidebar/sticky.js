@@ -1,24 +1,22 @@
 // dependencies
-import { useState } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
+
+/* MIGHT NOT NEED THIS IF USING IDS FOR URL */
+const convertTextToURLSlug = ( text ) => {
+    const lowerCaseText = text.toLowerCase();
+    return lowerCaseText.replace(/\s/g, '-'); // replaces all occurences of spaces with dashes ( left argument = reg expression for spaces using global thingy, right is what is replacing the spaces )
+}
 
 const Sticky = ({
     content: {  stickyIcon, stickyLabel }
 }) => {
 
-    const convertTextToURLSlug = ( text ) => {
-        const lowerCaseText = text.toLowerCase();
-        return lowerCaseText.replace(/\s/g, '-'); // replaces all occurences of spaces with dashes ( left argument = reg expression for spaces using global thingy, right is what is replacing the spaces )
-    }
-
-    // const [ stickyActive, setStickyActive ] = useState(true);
-
-    // const toggleSticky = () => {
-    //     setStickyActive(false);
-    // }
+    const router = useRouter();
+    // add pathname to the new note by parsing the string
 
     return (
-        <Link href={`#${convertTextToURLSlug(stickyLabel)}`}>
+        <Link href='/'>
             <div className='sidebar-item'>
                 <a>
                     <object className='sidebar-icon' type="image/svg+xml" data={stickyIcon.iconPath} alt={stickyIcon.iconAltText}  >

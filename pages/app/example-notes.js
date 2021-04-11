@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { NoteInput } from '../../components';
 
 // layout
-import NotesLayout from '../../layout/notesLayout';
+import { NotesLayout } from '../../layout';
 
 const noteContent = {
   noteItems: [
