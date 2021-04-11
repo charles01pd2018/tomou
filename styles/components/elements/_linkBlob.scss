@@ -1,0 +1,16 @@
+.link-blob-wrapper {
+
+    .link-blob {
+        display: inline-flex;
+        margin: 1rem;
+        padding: 1rem;
+
+        border: 5px solid var(--main-color);
+        
+        transition: background-color 0.5s; // THIS IS NOT PERFORMANT - TRIGGERS A REPAINT
+
+        &:hover {
+            background-color: var(--contrast-color);
+        }
+    }
+}

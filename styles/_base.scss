@@ -5,6 +5,16 @@ main.site-content {
   max-height: 100vh;
 }
 
+.center {
+  text-align: center;
+  align-items: center;
+}
+
+.screen-container {
+  height: 100vh;
+  padding: 4rem 0;
+}
+
 /*--------------------------------------------------------------
 # Normalize
 --------------------------------------------------------------*/
@@ -16,10 +26,6 @@ textarea {
   font-family: inherit;
   font-size: 100%; 
   border: none;
-}
-
-button {
-  cursor: pointer;
 }
 
 /*--------------------------------------------------------------

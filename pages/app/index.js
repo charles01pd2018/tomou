@@ -2,49 +2,52 @@
 import Head from 'next/head';
 
 // components
-import { NoteInput } from '../../components';
+import { CenterPanel } from '../../components';
 
-// layout
-import NotesLayout from '../../layout/notesLayout';
-
-const noteContent = {
-  noteItems: [
-      {
-          noteLabel: 'Note 1', // this should be the same as the note label
-          noteText: 'It be like that'
-      },
-      {
-          noteLabel: 'Note 2', // this should be the same as the note label
-          noteText: 'It be like that'
-      },
-      {
-          noteLabel: 'Note 3', // this should be the same as the note label
-          noteText: 'It be like that'
-      },
-  ]
+const FolderDashboardContent = {
+    folderDashboardTitle: 'Sign In or Register',
+    folderDashboardDescription: 'This is where you will sign in, not sure if this is auto done thru next/auth but i want a placeholder for myself to keep track off yuhurd',
+    folderDashboardCenterPanel: {
+        navLinks: [
+          {
+            linkText: 'Show me an example notes dashboard, friend',
+            linkDestination: '/app/example-note'
+          },
+          {
+            linkText: 'Take me home, friend',
+            linkDestination: '/'
+          },
+        ]
+      }
 };
 
-const NotesDashboard = ({
-  content
+const FolderDashboard = ({
+    content
 }) => {
-  return (
-    <NotesLayout content={content} >
-        <Head>
-            <title>tomou: Notes</title>
-            <link rel="icon" href="/favicon.ico" />
-        </Head>
 
-        <NoteInput content={content} />
-    </NotesLayout>
-  );
+    const { folderDashboardTitle, folderDashboardDescription, folderDashboardCenterPanel } = content;
+
+    return (
+        <div className='screen-container center'>
+            <Head>
+                <title>tomou Folder Dashboard</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+
+            <h1>{folderDashboardTitle}</h1>
+            <p>{folderDashboardDescription}</p>
+            <CenterPanel id='folder-dashboard-nav' content={folderDashboardCenterPanel} />
+        </div>
+    );
 }
 
-export default NotesDashboard;
+export default FolderDashboard;
+
 
 export function getStaticProps() {
-  return {
-    props: {
-      content: noteContent
+    return {
+        props: {
+            content: FolderDashboardContent
+        }
     }
-  }
 }
