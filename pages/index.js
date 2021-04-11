@@ -1,9 +1,15 @@
+// components
+
+const homeContent = {
+  homeTitle: 'Home',
+  homeButtons: [
+    
+  ]
+}
 const Home = ({
 }) => {
   return (
-    <NotesLayout content={content} >
-      <Notes content={content} />  
-    </NotesLayout>
+    <div className=
   );
 }
 
