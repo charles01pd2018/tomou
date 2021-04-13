@@ -1,3 +1,4 @@
+// dependencies
 import { MongoClient } from 'mongodb';
 
 // cache db connection for serverless enviroment

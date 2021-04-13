@@ -9,7 +9,7 @@ const handler = nc({
     onError,
 });
 
-handler.use(middleware);
+handler.use( middleware );
 
 handler.put( async ( req, res ) => {
     const updatedNote = await note.updateNote( req.db, req.query.id, req.body );

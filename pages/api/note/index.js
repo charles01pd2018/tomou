@@ -10,7 +10,7 @@ const handler = nc({
   onError,
 });
 
-handler.use(middleware);
+handler.use( middleware );
 
 handler.post( async ( req, res ) => {
   const newNote = await note.createNote( req.db, {
