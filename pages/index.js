@@ -15,7 +15,7 @@ const HomeContent = {
       },
       {
         linkText: 'Take me to sign in page',
-        linkDestination: '/signin'
+        linkDestination: '/mysignin'
       },
     ]
   }

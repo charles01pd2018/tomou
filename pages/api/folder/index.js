@@ -1,10 +1,9 @@
 // dependencies
 import nc from 'next-connect'
-//database
-import { onError } from '../../../db/middleware/error';
+// database
 import middleware from '../../../db/middleware/all';
-import { note } from '../../../db/resources';
-
+import { folder } from '../../../db/resources';
+import { onError } from '../../../db/middleware/error';
 
 const handler = nc({
   onError,
@@ -13,13 +12,12 @@ const handler = nc({
 handler.use(middleware);
 
 handler.post( async ( req, res ) => {
-  const newNote = await note.createNote( req.db, {
+  const newFolder = await folder.createFolder( req.db, {
     createdBy: req.user.id,
-    folder: req.body.folder,
     name: req.body.name,
   } );
 
-  res.send( { data: newNote } );
-});
+  res.send( { data: newFolder } );
+})
 
 export default handler;
