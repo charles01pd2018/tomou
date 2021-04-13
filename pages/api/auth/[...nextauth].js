@@ -47,6 +47,6 @@ export default ( req, res ) => {
                 return tokenPayload;
             },
         },
-    } )
+    } );
 }
 
