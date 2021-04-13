@@ -1,8 +1,8 @@
 // dependencies
 import Head from 'next/head';
-
 // components
 import { CenterPanel } from '../../components';
+
 
 const SignInContent = {
     signInTitle: 'Sign In or Register',
@@ -43,7 +43,7 @@ export default SignIn;
 export function getStaticProps() {
     return {
         props: {
-            content: SignInContent
+            content: SignInContent,
         }
     }
 }

@@ -1,9 +1,8 @@
 // dependencies
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
-
 // database
-import { connectToMongoDb } from '../../../db';
+import connectToMongoDb from '../../../db/connectMongo';
 // import { folder, note } from '../../../db/resources';
 
 // external authorization providers

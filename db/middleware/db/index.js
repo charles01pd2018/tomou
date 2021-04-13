@@ -1,4 +1,5 @@
-import { connectToMongoDb } from '../db';
+// database
+import connectToMongoDb from '../../connectMongo';
 
 export const onMongoDbConnect = async ( req, res, next ) => {
     const { db, dbClient } = await connectToMongoDb();

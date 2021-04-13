@@ -1,4 +1,6 @@
+// dependencies
 import nc from 'next-connect';
+//middleware
 import onMongoDbConnect from './db';
 import onAuth from './auth';
 

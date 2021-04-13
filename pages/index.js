@@ -1,8 +1,8 @@
 // depenedencies
 import Head from 'next/head';
-
 // components
 import { CenterPanel } from '../components';
+
 
 const HomeContent = {
   homeTitle: 'Home',
@@ -46,7 +46,7 @@ export default Home;
 export function getStaticProps() {
   return {
     props: {
-      content: HomeContent
+      content: HomeContent,
     }
   }
 }

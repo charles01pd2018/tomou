@@ -1,8 +1,8 @@
 // dependencies
 import Head from 'next/head';
-
 // components
 import { CenterPanel } from '../../components';
+
 
 const FolderDashboardContent = {
     folderDashboardTitle: 'Sign In or Register',
@@ -47,7 +47,7 @@ export default FolderDashboard;
 export function getStaticProps() {
     return {
         props: {
-            content: FolderDashboardContent
+            content: FolderDashboardContent,
         }
     }
 }

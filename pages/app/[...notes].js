@@ -1,11 +1,10 @@
 // dependencies
 import Head from 'next/head';
-
 // components
 import { NoteInput } from '../../components';
-
 // layout
 import { NotesLayout } from '../../layout';
+
 
 const noteContent = {
   noteItems: [

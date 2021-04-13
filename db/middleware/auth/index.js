@@ -1,3 +1,4 @@
+// dependencies
 import jwt from 'next-auth/jwt';
 
 export const onAuth =  async ( req, res, next ) => {
@@ -5,6 +6,7 @@ export const onAuth =  async ( req, res, next ) => {
 
     if ( token ) { // user is already signed in, allow access
         req.user = token;
+
         next(); 
     } else { // user is not signed in, do not allow access
         res.status(401).end();

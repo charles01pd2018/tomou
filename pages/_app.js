@@ -6,9 +6,9 @@ import '../styles/styles.scss'
 
 const TomouApp = ({ Component, pageProps }) => {
   return (
-    <Provider session={pageProps.session}>
-      <Component {...pageProps} />
-    </Provider>
+      <Provider session={pageProps.session}>
+        <Component {...pageProps} />
+      </Provider>
     );
 }
 
