@@ -8,9 +8,9 @@ import { CenterPanel } from '../../components';
 
 
 const SignInContent = {
-    signInTitle: 'Sign In to tomou, yuhurd',
-    signInDescription: 'Get ready to have your mind blown with the greatest note taking experience you could ever fathom',
-    signInCenterPanel: {
+    title: 'Sign In to tomou, yuhurd',
+    description: 'Get ready to have your mind blown with the greatest note taking experience you could ever fathom',
+    centerPanelContent: {
         signInButtons: [
             'Github',
         ],
@@ -40,7 +40,7 @@ const SignIn = ({
     }, [ session, loading ] );
 
     /* CONTENT */
-    const { signInTitle, signInDescription, signInCenterPanel } = content;
+    const { title, description, centerPanelContent } = content;
 
     return (
         <div className='screen-container center'>
@@ -49,9 +49,9 @@ const SignIn = ({
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <h1>{signInTitle}</h1>
-            <p>{signInDescription}</p>
-            <CenterPanel id='sign-in-buttons' content={signInCenterPanel} />
+            <h1>{title}</h1>
+            <p>{description}</p>
+            <CenterPanel id='sign-in-buttons' content={centerPanelContent} />
         </div>
     );
 }

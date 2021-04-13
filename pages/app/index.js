@@ -5,9 +5,9 @@ import { CenterPanel } from '../../components';
 
 
 const FolderDashboardContent = {
-    folderDashboardTitle: 'Folder Dashboard',
-    folderDashboardDescription: 'This is where the user will see all the folder they have :-D',
-    folderDashboardCenterPanel: {
+    title: 'Folder Dashboard',
+    description: 'This is where the user will see all the folder they have :-D',
+    centerPanelContent: {
         navLinks: [
           {
             linkText: 'Show me an example notes dashboard, friend',
@@ -25,7 +25,7 @@ const FolderDashboard = ({
     content
 }) => {
 
-    const { folderDashboardTitle, folderDashboardDescription, folderDashboardCenterPanel } = content;
+    const { title, description, centerPanelContent } = content;
 
     return (
         <div className='screen-container center'>
@@ -34,9 +34,9 @@ const FolderDashboard = ({
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <h1>{folderDashboardTitle}</h1>
-            <p>{folderDashboardDescription}</p>
-            <CenterPanel id='folder-dashboard-nav' content={folderDashboardCenterPanel} />
+            <h1>{title}</h1>
+            <p>{description}</p>
+            <CenterPanel id='folder-dashboard-nav' content={centerPanelContent} />
         </div>
     );
 }

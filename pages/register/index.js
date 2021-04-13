@@ -5,9 +5,9 @@ import { CenterPanel } from '../../components';
 
 
 const RegisterContent = {
-    registerTitle: 'This is Where You Will Register !',
-    registerDescription: 'we will not have a data leak',
-    registerCenterPanel: {
+    title: 'This is Where You Will Register !',
+    description: 'we will not have a data leak',
+    centerPanelContent: {
         navLinks: [
           {
             linkText: 'Take Me Back =_=',
@@ -25,7 +25,7 @@ const FolderDashboard = ({
     content
 }) => {
 
-    const { registerTitle, registerDescription, registerCenterPanel } = content;
+    const { title, description, centerPanelContent } = content;
 
     return (
         <div className='screen-container center'>
@@ -34,9 +34,9 @@ const FolderDashboard = ({
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <h1>{registerTitle}</h1>
-            <p>{registerDescription}</p>
-            <CenterPanel id='folder-dashboard-nav' content={registerCenterPanel} />
+            <h1>{title}</h1>
+            <p>{description}</p>
+            <CenterPanel id='folder-dashboard-nav' content={centerPanelContent} />
         </div>
     );
 }

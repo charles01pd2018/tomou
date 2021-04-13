@@ -5,9 +5,9 @@ import { CenterPanel } from '../components';
 
 
 const HomeContent = {
-  homeTitle: 'Home',
-  homeDescription: 'tomou: the best note taking app you will ever see in your life time yuhurd',
-  homeCenterPanel: {
+  title: 'Home',
+  description: 'tomou: the best note taking app you will ever see in your life time yuhurd',
+  centerPanelContent: {
     navLinks: [
       {
         linkText: 'Take me to the amazing tomou App',
@@ -26,7 +26,7 @@ const Home = ({
 }) => {
   
   /* CONTENT */
-  const { homeTitle, homeDescription, homeCenterPanel } = content;
+  const { title, description, centerPanelContent } = content;
 
   return (
     <div className='screen-container center'>
@@ -35,9 +35,9 @@ const Home = ({
             <link rel="icon" href="/favicon.ico" />
         </Head>
 
-      <h1>{homeTitle}</h1>
-      <p>{homeDescription}</p>
-      <CenterPanel id='home-nav' content={homeCenterPanel} />
+      <h1>{title}</h1>
+      <p>{description}</p>
+      <CenterPanel id='home-nav' content={centerPanelContent} />
     </div>
   );
 }
