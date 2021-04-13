@@ -5,8 +5,8 @@ import Providers from 'next-auth/providers';
 import connectToMongoDb from '../../../db/connectMongo';
 // import { folder, note } from '../../../db/resources';
 
-// external authorization providers
-const AUTH_PROVIDERS = [
+
+const AUTH_PROVIDERS = [ // external authorization providers
     Providers.GitHub(
         {
             clientId: process.env.GITHUB_ID,

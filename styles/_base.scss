@@ -28,6 +28,14 @@ textarea {
   border: none;
 }
 
+button {
+  display: inline-flex;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 /*--------------------------------------------------------------
 # Misc
 --------------------------------------------------------------*/

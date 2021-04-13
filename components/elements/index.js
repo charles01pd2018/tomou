@@ -1,5 +1,7 @@
 import LinkBlob from './linkBlob';
+import SignInButton from './signInButton';
 
 export {
-    LinkBlob
+    LinkBlob,
+    SignInButton
 };

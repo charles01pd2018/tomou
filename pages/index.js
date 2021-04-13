@@ -15,7 +15,7 @@ const HomeContent = {
       },
       {
         linkText: 'Take me to sign in page',
-        linkDestination: '/mysignin'
+        linkDestination: '/signin'
       },
     ]
   }
@@ -24,7 +24,8 @@ const HomeContent = {
 const Home = ({
   content
 }) => {
-
+  
+  /* CONTENT */
   const { homeTitle, homeDescription, homeCenterPanel } = content;
 
   return (

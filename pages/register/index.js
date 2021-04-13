@@ -4,14 +4,14 @@ import Head from 'next/head';
 import { CenterPanel } from '../../components';
 
 
-const FolderDashboardContent = {
-    folderDashboardTitle: 'Folder Dashboard',
-    folderDashboardDescription: 'This is where the user will see all the folder they have :-D',
-    folderDashboardCenterPanel: {
+const RegisterContent = {
+    registerTitle: 'This is Where You Will Register !',
+    registerDescription: 'we will not have a data leak',
+    registerCenterPanel: {
         navLinks: [
           {
-            linkText: 'Show me an example notes dashboard, friend',
-            linkDestination: '/app/example-note'
+            linkText: 'Take Me Back =_=',
+            linkDestination: '/signin'
           },
           {
             linkText: 'Take me home, friend',
@@ -25,7 +25,7 @@ const FolderDashboard = ({
     content
 }) => {
 
-    const { folderDashboardTitle, folderDashboardDescription, folderDashboardCenterPanel } = content;
+    const { registerTitle, registerDescription, registerCenterPanel } = content;
 
     return (
         <div className='screen-container center'>
@@ -34,9 +34,9 @@ const FolderDashboard = ({
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <h1>{folderDashboardTitle}</h1>
-            <p>{folderDashboardDescription}</p>
-            <CenterPanel id='folder-dashboard-nav' content={folderDashboardCenterPanel} />
+            <h1>{registerTitle}</h1>
+            <p>{registerDescription}</p>
+            <CenterPanel id='folder-dashboard-nav' content={registerCenterPanel} />
         </div>
     );
 }
@@ -47,7 +47,7 @@ export default FolderDashboard;
 export function getStaticProps() {
     return {
         props: {
-            content: FolderDashboardContent,
+            content: RegisterContent,
         }
     }
 }
