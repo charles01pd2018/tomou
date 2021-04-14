@@ -40,6 +40,9 @@ const FolderDashboard = ({
 
 export default FolderDashboard;
 
+export async function getStaticPaths() {
+    
+}
 
 export function getStaticProps() {
     return {
