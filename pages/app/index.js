@@ -2,6 +2,9 @@
 import Head from 'next/head';
 // components
 import { GridLinks } from '../../components';
+// database
+import connectToMongoDb from '../../db/connectMongo';
+import { folder } from '../../db/resources';
 
 const FolderDashboardContent = {
     title: 'Folder Dashboard',
@@ -40,9 +43,7 @@ const FolderDashboard = ({
 
 export default FolderDashboard;
 
-export async function getStaticPaths() {
-    
-}
+
 
 export function getStaticProps() {
     return {

@@ -7,7 +7,6 @@ import { onAuth } from './auth';
 
 const middleware = nc();
 
-middleware.use( onMongoDbConnect )
-    .use( onAuth );
+middleware.use( onMongoDbConnect ).use( onAuth );
 
 export default middleware;
