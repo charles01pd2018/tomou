@@ -12,6 +12,7 @@ const handler = nc({
 
 handler.use( middleware );
 
+/* POST */
 handler.post( async ( req, res ) => {
   const newNote = await note.createNote( req.db, {
     createdBy: req.user.id,

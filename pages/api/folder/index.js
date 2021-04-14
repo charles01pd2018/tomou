@@ -12,6 +12,7 @@ const handler = nc({
 
 handler.use( middleware );
 
+/* POST */
 handler.post( async ( req, res ) => {
   const newFolder = await folder.createFolder( req.db, {
     createdBy: req.user.id,
@@ -19,6 +20,6 @@ handler.post( async ( req, res ) => {
   } );
 
   res.send( { data: newFolder } );
-})
+} );
 
 export default handler;

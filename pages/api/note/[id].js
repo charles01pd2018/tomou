@@ -11,10 +11,11 @@ const handler = nc({
 
 handler.use( middleware );
 
+/* UPDATE */
 handler.put( async ( req, res ) => {
     const updatedNote = await note.updateNote( req.db, req.query.id, req.body );
 
     res.send( { data: updatedNote } );
-});
+} );
 
 export default handler;

@@ -1,4 +1,5 @@
 // dependencies
+import { getSession } from 'next-auth/client';
 import Head from 'next/head';
 // components
 import { GridLinks } from '../../components';
@@ -22,7 +23,8 @@ const FolderDashboardContent = {
 };
 
 const FolderDashboard = ({
-    content
+    content,
+    folders
 }) => {
 
     const { title, description, gridLinksContent } = content;
@@ -37,6 +39,7 @@ const FolderDashboard = ({
             <h1>{title}</h1>
             <p>{description}</p>
             <GridLinks id='folder-links' content={gridLinksContent} />
+            <GridLinks id='mongo-folder-links' content={ { folders } } />
         </div>
     );
 }
@@ -44,11 +47,18 @@ const FolderDashboard = ({
 export default FolderDashboard;
 
 
+export async function getServerSideProps( context ) {
+    const session = await getSession( context );
 
-export function getStaticProps() {
-    return {
-        props: {
-            content: FolderDashboardContent,
-        }
-    }
+    // this should return empty props and redirect the user to signin page
+    if ( !session || !session.user ) return { props: { content: FolderDashboardContent } }; 
+
+    const { db } = await connectToMongoDb();
+    const folders = await folder.getFolders( db, session.user.id );
+
+    const props = { session };
+    props.content = FolderDashboardContent;
+    props.folders = folders;
+
+    return { props };
 }
