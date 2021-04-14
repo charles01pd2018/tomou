@@ -7,19 +7,19 @@ $breakpoint--medium:                800px;      // anything under is a mobile sc
 /*--------------------------------------------------------------
 # Global
 --------------------------------------------------------------*/
-@import "base", "globals";
+@import 'base', 'globals';
 
 /*--------------------------------------------------------------
 # Layout
 --------------------------------------------------------------*/
-@import "components/layout/sidebar", "components/layout/header";
+@import 'components/layout/sidebar', 'components/layout/header';
 
 /*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
-@import "components/noteInput", "components/centerPanel";
+@import 'components/noteInput', 'components/centerPanel', 'components/gridLinks';
 
 /*--------------------------------------------------------------
 # Elements
 --------------------------------------------------------------*/
-@import "components/elements/linkBlob", "components/elements/signInButton";
+@import 'components/elements/linkBlob', 'components/elements/signInButton';

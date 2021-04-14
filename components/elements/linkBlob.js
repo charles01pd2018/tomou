@@ -4,19 +4,22 @@ import classNames from 'classnames';
 
 const LinkBlob = ({
     className,
+    blobClassName,
     linkDestination,
     linkText
 }) => {
 
-    const linkBlobClasses = classNames('link-blob-wrapper', className );
+    /* CLASSNAMES */
+    const linkBlobWrapperClasses = classNames( 'link-blob-wrapper', className );
+    const linkBlobClasses = classNames( 'link-blob', blobClassName );
 
     return (
-        <div className={linkBlobClasses}>
+        <div className={linkBlobWrapperClasses}>
             <Link href={linkDestination}>
                 <a>
-                    <span className='link-blob'>
+                    <div className={linkBlobClasses}>
                         {linkText}
-                    </span>
+                    </div>
                 </a>
             </Link>   
         </div>

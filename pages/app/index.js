@@ -1,31 +1,28 @@
 // dependencies
 import Head from 'next/head';
 // components
-import { CenterPanel } from '../../components';
-
+import { GridLinks } from '../../components';
 
 const FolderDashboardContent = {
     title: 'Folder Dashboard',
     description: 'This is where the user will see all the folder they have :-D',
-    centerPanelContent: {
-        navLinks: [
-          {
-            linkText: 'Show me an example notes dashboard, friend',
-            linkDestination: '/app/example-note'
-          },
-          {
-            linkText: 'Take me home, friend',
-            linkDestination: '/'
-          },
-        ]
-      }
+    gridLinksContent: {
+        folderNames: [
+            'folder 1',
+            'folder 2',
+            'folder 3',
+            'folder 4',
+            'folder 5',
+            'folder 6'
+        ],
+    },
 };
 
 const FolderDashboard = ({
     content
 }) => {
 
-    const { title, description, centerPanelContent } = content;
+    const { title, description, gridLinksContent } = content;
 
     return (
         <div className='screen-container center'>
@@ -36,7 +33,7 @@ const FolderDashboard = ({
 
             <h1>{title}</h1>
             <p>{description}</p>
-            <CenterPanel id='folder-dashboard-nav' content={centerPanelContent} />
+            <GridLinks id='folder-links' content={gridLinksContent} />
         </div>
     );
 }

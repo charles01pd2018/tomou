@@ -36,7 +36,7 @@ const SignIn = ({
     const router = useRouter();
 
     useEffect( () => {
-        if ( session ) router.push('/app/example-notes');
+        if ( session ) router.push('/app');
     }, [ session, loading ] );
 
     /* CONTENT */

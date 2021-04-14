@@ -17,7 +17,7 @@ const CenterPanel = ({
                 }
                 {
                     navLinks.map( ( { linkText, linkDestination } ) => (
-                        <LinkBlob key={linkText} linkText={linkText} linkDestination={linkDestination} />
+                        <LinkBlob key={linkText} blobClassName='wrap-break' linkText={linkText} linkDestination={linkDestination} />
                     ) )
                 }
             </div>
