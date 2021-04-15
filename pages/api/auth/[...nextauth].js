@@ -34,7 +34,7 @@ export default ( req, res ) => {
                 return session;
             },
             async jwt ( tokenPayload, user, account, profile, isNewUser ) {
-                const { db } = await connectToMongoDb();
+                // const { db } = await connectToMongoDb();
 
                 if ( isNewUser ) { // new user signs up
                     // put custom content to fill up user's folders and notes

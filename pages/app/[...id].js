@@ -26,7 +26,7 @@ const noteContent = {
 const NotesDashboard = ({
   content
 }) => {
-
+        
     return (
         <NotesLayout content={content} >
             <Head>

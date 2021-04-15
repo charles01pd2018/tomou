@@ -11,7 +11,7 @@ const GridLinks = ({
     return (
         <section id={id} className='grid-links-container'>
             {
-                folderNames.map( ( name, index ) => (
+                folderNames.map( ( { name }, index ) => (
                     <LinkBlob key={`${name}-${index}`} 
                     linkText={name} 
                     linkDestination={linkDestination} />
