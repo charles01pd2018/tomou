@@ -4,6 +4,7 @@ import { getSession, useSession } from 'next-auth/client';
 import Head from 'next/head';
 // components
 import { GridLinks } from '../../components';
+import { Modal } from '../../components';
 // layout
 import { FoldersLayout } from '../../layout';
 // database
@@ -77,7 +78,10 @@ const FolderDashboard = ({
                 </Head>
                 <h1>{title}</h1>
                 <p>{description}</p>
-                <button onClick={handleNewFolder}>Add Folder</button>
+                <button>
+                    <a href='#add-folder'>Add Folder</a>
+                </button>
+                <Modal id='add-folder' onSubmit={handleNewFolder} content={ { label: 'Folder Name' } } />
                 <GridLinks id='folder-links' content={gridLinksContent} />
                 <GridLinks id='mongo-folder-links' content={ { folderNames: shownFolders } } />
             </div>
@@ -92,7 +96,7 @@ export async function getServerSideProps( context ) {
     const session = await getSession( context );
 
     // this should return empty props and redirect the user to signin page
-    if ( !session || !session.user ) return { props: {  } }; 
+    if ( !session || !session.user ) return { props: {} }; 
 
     const { db } = await connectToMongoDb();
     const folders = await folder.getFolders( db, session.user.id );

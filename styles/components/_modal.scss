@@ -1,0 +1,55 @@
+.modal-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-top: 7rem;
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+
+    .modal-wrapper {
+        position: relative;
+        margin: 0 auto;
+        padding: 2rem;
+        width: 40%;
+
+        border: 5px solid var(--contrast-color);
+        background: #fff;
+        border-radius: 5px;
+        
+        transition: opacity 3s ease;
+
+        .x-close {
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: #333;
+        }
+    }
+
+    .modal-form {
+        border: 5px solid var(--secondary-color);
+        border-radius: 3px;
+
+        &:focus {
+            border: none;
+        }
+    }
+
+    .modal-submit {
+        position: absolute;
+        padding: 0.5rem;
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    &:target {
+        visibility: visible;
+        opacity: 1;
+    }
+}

@@ -17,7 +17,8 @@ $breakpoint--medium:                800px;      // anything under is a mobile sc
 /*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
-@import 'components/noteInput', 'components/centerPanel', 'components/gridLinks';
+@import 'components/noteInput', 'components/centerPanel', 'components/gridLinks',
+    'components/modal';
 
 /*--------------------------------------------------------------
 # Elements
