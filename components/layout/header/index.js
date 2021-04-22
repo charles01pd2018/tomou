@@ -1,6 +1,7 @@
 // dependencies
 import { useSession } from 'next-auth/client';
 
+
 const Header = ({
     id,
     user

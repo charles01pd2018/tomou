@@ -11,6 +11,7 @@ import { FoldersLayout } from '../../layout';
 import connectToMongoDb from '../../db/connectMongo';
 import { folder } from '../../db/resources';
 
+
 const FolderDashboardContent = {
     title: 'Folder Dashboard',
     description: 'This is where the user will see all the folder they have :-D',
@@ -49,12 +50,11 @@ const FolderDashboard = ({
 
     /* DATA STOOFS */
     const [ shownFolders, setShownFolders ] = useState( folders || [] );
-    console.log( shownFolders );
 
-    const handleNewFolder = async () => {
+    const handleNewFolder = async ( { folderName } ) => {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/folder`, {
             method: 'POST',
-            body: JSON.stringify( { name: 'a folder' } ),
+            body: JSON.stringify( { name: folderName } ),
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -66,21 +66,19 @@ const FolderDashboard = ({
     
     /* CONTENT */
     const { title, description, gridLinksContent } = content;
-    console.log( gridLinksContent );
-
 
     return (
         <FoldersLayout user={session.user}>
             <div className='screen-container center'>
                 <Head>
                     <title>tomou Folder Dashboard</title>
-                    <link rel="icon" href="/favicon.ico" />
                 </Head>
+
                 <h1>{title}</h1>
                 <p>{description}</p>
-                <button>
-                    <a href='#add-folder'>Add Folder</a>
-                </button>
+                <a href='#add-folder'>
+                    <button>Add Folder</button>
+                </a>
                 <Modal id='add-folder' onSubmit={handleNewFolder} content={ { label: 'Folder Name' } } />
                 <GridLinks id='folder-links' content={gridLinksContent} />
                 <GridLinks id='mongo-folder-links' content={ { folderNames: shownFolders } } />

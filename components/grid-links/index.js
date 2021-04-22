@@ -1,6 +1,7 @@
 // elements
 import { LinkBlob } from '../elements';
 
+
 const GridLinks = ({
     id,
     content: { folderNames=[] }

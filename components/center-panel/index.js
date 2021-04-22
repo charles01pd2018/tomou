@@ -1,6 +1,7 @@
-// partials
+// elements
 import { LinkBlob } from '../elements';
 import { SignInButton } from '../elements';
+
 
 const CenterPanel = ({
     id,

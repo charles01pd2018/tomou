@@ -30,8 +30,7 @@ const FolderDashboard = ({
     return (
         <div className='screen-container center'>
             <Head>
-                <title>tomou Folder Dashboard</title>
-                <link rel="icon" href="/favicon.ico" />
+                <title>Register for tomou</title>
             </Head>
 
             <h1>{title}</h1>

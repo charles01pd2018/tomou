@@ -30,7 +30,6 @@ const NotesDashboard = ({
     <NotesLayout content={content} >
         <Head>
             <title>tomou: Notes</title>
-            <link rel="icon" href="/favicon.ico" />
         </Head>
 
         <NoteInput content={content} />

@@ -1,5 +1,6 @@
-// partials
+// elements
 import Sticky from './sticky';
+
 
 const sidebarContent = {
     sidebarItems: [

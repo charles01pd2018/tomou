@@ -16,6 +16,7 @@ class MyDocument extends Document {
             <link rel="preload" href="/fonts/quicksand/Quicksand-Bold.ttf" as="font"crossOrigin=""/>       
             <link rel="preload" href="/fonts/quicksand/Quicksand-Light.ttf" as="font" crossOrigin="" />
             <link rel="preload" href="/fonts/quicksand/Quicksand-Regular.ttf" as="font" crossOrigin="" />     
+            <link rel="icon" href="/favicon.ico" />
         </Head>
         <body>
           <Main />

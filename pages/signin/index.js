@@ -46,7 +46,6 @@ const SignIn = ({
         <div className='screen-container center'>
             <Head>
                 <title>Sign into tomou, friend</title>
-                <link rel="icon" href="/favicon.ico" />
             </Head>
 
             <h1>{title}</h1>

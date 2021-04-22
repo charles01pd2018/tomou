@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import classNames from 'classnames';
 
+
 const NoteInput = ({
     id,
     content
