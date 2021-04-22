@@ -13,6 +13,19 @@ export const createFolder = async ( db, folder ) => {
     ).then( ({ ops }) => ops[0] );
 }
 
+export const deleteFolder = async ( db, id ) => {
+    try {
+        const deletedFolder = await db.collection.findOneAndDelete( 
+            { _id: id, },
+            { maxTimeMS: 5, }, 
+        );
+        
+        return deleteFolder;
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 export const getFolders = async ( db, userId ) => {
     return db.collection(RESOURCE_NAME).find( { createdBy: userId } ).toArray();
 }

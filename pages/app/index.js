@@ -15,19 +15,6 @@ import { folder } from '../../db/resources';
 const FolderDashboardContent = {
     title: 'Folder Dashboard',
     description: 'This is where the user will see all the folder they have :-D',
-    gridLinksContent: {
-        folderNames: [
-            {
-                name: 'folder 1 ',
-            },
-            {
-                name: 'folder 2 ',
-            },
-            {
-                name: 'folder 3 ',
-            },
-        ],
-    },
 };
 
 const FolderDashboard = ({
@@ -64,8 +51,12 @@ const FolderDashboard = ({
         setShownFolders( state => [ ...state, data ] );
     }
     
+    const handleDeleteFolder = ( { id } ) => {
+
+    }
+    
     /* CONTENT */
-    const { title, description, gridLinksContent } = content;
+    const { title, description } = content;
 
     return (
         <FoldersLayout user={session.user}>
@@ -80,7 +71,6 @@ const FolderDashboard = ({
                     <button>Add Folder</button>
                 </a>
                 <Modal id='add-folder' onSubmit={handleNewFolder} content={ { label: 'Folder Name' } } />
-                <GridLinks id='folder-links' content={gridLinksContent} />
                 <GridLinks id='mongo-folder-links' content={ { folderNames: shownFolders } } />
             </div>
         </FoldersLayout>

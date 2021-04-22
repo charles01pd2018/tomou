@@ -10,9 +10,9 @@ const Modal = ({
 
     const [ folderName, setFolderName ] = useState('');
 
-    const submit = event => {
+    const submit = async ( event )  => {
         event.preventDefault();
-        onSubmit( { folderName } );
+        await onSubmit( { folderName } );
     }
 
     return (
