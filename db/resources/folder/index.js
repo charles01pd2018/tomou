@@ -10,7 +10,10 @@ export const createFolder = async ( db, folder ) => {
             ...folder,
             creationDate: new Date().toDateString(),
         },
-    ).then( ({ ops }) => ops[0] );
+    ).then( ({ ops }) => {
+        console.log( ops[0] )
+        return ops[0];
+    } );
 }
 
 export const deleteFolder = async ( db, id ) => {
