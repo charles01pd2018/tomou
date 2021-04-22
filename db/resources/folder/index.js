@@ -10,23 +10,14 @@ export const createFolder = async ( db, folder ) => {
             ...folder,
             creationDate: new Date().toDateString(),
         },
-    ).then( ({ ops }) => {
-        console.log( ops[0] )
-        return ops[0];
-    } );
+    ).then( ({ ops }) => ops[0] );
 }
 
 export const deleteFolder = async ( db, id ) => {
-    try {
-        const deletedFolder = await db.collection.findOneAndDelete( 
-            { _id: id, },
-            { maxTimeMS: 5, }, 
-        );
-        
-        return deleteFolder;
-    } catch (e) {
-        console.log(e);
-    }
+    return db.collection.findOneAndDelete( 
+        { _id: id, },
+        { maxTimeMS: 5, }, 
+    );
 }
 
 export const getFolders = async ( db, userId ) => {
