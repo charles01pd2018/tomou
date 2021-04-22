@@ -1,5 +1,6 @@
 // dependencies
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 
 const Modal = ({
@@ -8,10 +9,12 @@ const Modal = ({
     content: { label='' }
 }) => {
 
+    const router = useRouter();
     const [ folderName, setFolderName ] = useState('');
 
     const submit = ( event )  => {
         event.preventDefault();
+        router.push('/app/storage#'); // this is not working the way i thought it would :-3
         onSubmit( { folderName } );
     }
 

@@ -1,5 +1,0 @@
-type Folder {
-    name: String!
-    notes: [Note]!
-    subFolders: [Folder]!
-}
