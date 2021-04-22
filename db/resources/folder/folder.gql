@@ -1,5 +1,5 @@
 type Folder {
     name: String!
-    subFolder: Folder
-    subDocument: Note
+    notes: [Note]!
+    subFolders: [Folder]!
 }

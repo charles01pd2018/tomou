@@ -1,9 +1,9 @@
 // dependencies
 import Head from 'next/head';
 // components
-import { NoteInput } from '../../components';
+import { NoteInput } from '../../../components';
 // layout
-import { NotesLayout } from '../../layout';
+import { NotesLayout } from '../../../layout';
 
 
 const noteContent = {
@@ -26,17 +26,15 @@ const noteContent = {
 const NotesDashboard = ({
   content
 }) => {
-        
-    return (
-        <NotesLayout content={content} >
-            <Head>
-                <title>tomou: Notes</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+  return (
+    <NotesLayout content={content} >
+        <Head>
+            <title>tomou: Notes</title>
+        </Head>
 
-            <NoteInput content={content} />
-        </NotesLayout>
-    );
+        <NoteInput content={content} />
+    </NotesLayout>
+  );
 }
 
 export default NotesDashboard;
@@ -45,7 +43,7 @@ export default NotesDashboard;
 export function getServerSideProps() {
   return {
     props: {
-      content: noteContent
+      content: noteContent,
     }
   }
 }

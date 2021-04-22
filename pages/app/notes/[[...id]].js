@@ -1,9 +1,10 @@
 // dependencies
 import Head from 'next/head';
+import { useSession } from 'next-auth/client';
 // components
-import { NoteInput } from '../../components';
+import { NoteInput } from '../../../components';
 // layout
-import { NotesLayout } from '../../layout';
+import { NotesLayout } from '../../../layout';
 
 
 const noteContent = {
@@ -24,26 +25,32 @@ const noteContent = {
 };
 
 const NotesDashboard = ({
-  content
+  content,
 }) => {
-  return (
-    <NotesLayout content={content} >
-        <Head>
-            <title>tomou: Notes</title>
-        </Head>
 
-        <NoteInput content={content} />
-    </NotesLayout>
-  );
+    const [ session, loading ] = useSession(); 
+      
+    if ( loading ) return null;
+
+    return (
+        <NotesLayout content={content} user={session.user}>
+            <Head>
+                <title>tomou: Notes</title>
+            </Head>
+
+            <NoteInput content={content} />
+        </NotesLayout>
+    );
 }
 
 export default NotesDashboard;
+
 
 /* CHANGE THIS HACKY JAWNZ */
 export function getServerSideProps() {
   return {
     props: {
-      content: noteContent,
+      content: noteContent
     }
   }
 }

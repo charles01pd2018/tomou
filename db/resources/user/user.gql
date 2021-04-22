@@ -1,0 +1,11 @@
+type Account {
+    user: User!
+}
+
+type User {
+    username: String!
+    password: String!
+    image: String!
+    createdAt: String!
+    updatedAt: String!
+}
