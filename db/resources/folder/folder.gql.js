@@ -6,4 +6,4 @@ export const FOLDER_SCHEMA = gql`
         notes: [Note]!
         subFolders: [Folder]!
     }
-`
+`;
