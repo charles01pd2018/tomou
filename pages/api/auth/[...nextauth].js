@@ -2,7 +2,7 @@
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
 // database
-import connectToMongoDb from '../../../db/connectMongo';
+// import connectToMongoDb from '../../../db/connectMongo';
 // import { folder, note } from '../../../db/resources';
 
 /* I MIGHT BE ABLE TO JUST PING THE GRAPHQL SERVER TO GENERATE DEFAULT DATA */

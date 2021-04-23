@@ -88,8 +88,8 @@ export async function getServerSideProps( context ) {
     // this should return empty props and redirect the user to signin page
     if ( !session || !session.user ) return { props: {} }; 
 
-    const { db } = await connectToMongoDb();
-    const folders = await folder.getFolders( db, session.user.id );
+    const { mongoDB } = await connectToMongoDb();
+    const folders = await folder.getFolders( mongoDB, session.user.id );
 
     const props = { session };
     props.content = FolderDashboardContent;

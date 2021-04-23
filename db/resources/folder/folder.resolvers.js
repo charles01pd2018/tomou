@@ -1,14 +1,27 @@
+// dependencies
+import { nanoid } from 'nanoid';
 
-const foldersList = ( _, args, ctx ) => {
+var RESOURCE_NAME = 'folders';
 
+const foldersList = ( _, __, { mongoDB, user } ) => {
+    return mongoDB.collection( RESOURCE_NAME ).find( {
+        createdBy: user.id,
+    } ).toArray();
 }
 
-const newFolder = ( _, args, ctx ) => {
-
+const newFolder = ( _, { data }, { mongoDB } ) => {
+    return mongoDB.collection( RESOURCE_NAME ).insertOne( {
+        _id: nanoid( 12 ),
+        ...data,
+        creationDate: new Date().toDateString(),
+    } );
 }
 
-const deleteFolder = ( _, args, ctx ) => {
-
+const deleteFolder = ( _, { id }, { mongoDB } ) => {
+    return mongoDB.collection.findOneandDelete(
+        { _id: id, },
+        { maxTimeMS: 5 },
+    );
 }
 
 export default {

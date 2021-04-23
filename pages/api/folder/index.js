@@ -14,7 +14,7 @@ handler.use( middleware );
 
 /* POST */
 handler.post( async ( req, res ) => {
-  const newFolder = await folder.createFolder( req.db, {
+  const newFolder = await folder.createFolder( req.mongoDB, {
     createdBy: req.user.id,
     name: req.body.name,
   } );
