@@ -1,5 +1,5 @@
 // dependencies
-import { Db, MongoClient } from 'mongodb';
+import { MongoClient } from 'mongodb';
 
 // cache db connection for serverless enviroment
 global.mongo = global.mongo || {};
@@ -19,9 +19,9 @@ const connectToMongoDb = async ( dbName='learning' ) => {
         console.log('!!!Connection to MongoDB Established!!!');
     }
 
-    const db = global.mongo.client.db( dbName );
+    const mongoDB = global.mongo.client.db( dbName );
 
-    return { db, dbClient: global.mongo.client };
+    return { mongoDB, mongoDBClient: global.mongo.client };
 }
 
 export default connectToMongoDb;

@@ -11,7 +11,6 @@ import { FoldersLayout } from '../../../layout';
 // database
 import connectToMongoDb from '../../../db/connectMongo';
 import { folder } from '../../../db/resources';
-import { FOLDER_SCHEMA } from '../../../db/resources/folder/folder.gql'
 
 
 const FolderDashboardContent = {
