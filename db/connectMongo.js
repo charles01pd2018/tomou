@@ -1,5 +1,5 @@
 // dependencies
-import { Db, MongoClient } from 'mongodb';
+import { MongoClient } from 'mongodb';
 
 // cache db connection for serverless enviroment
 global.mongo = global.mongo || {};

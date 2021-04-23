@@ -1,3 +1,0 @@
-type Task {
-    name: String!
-}
