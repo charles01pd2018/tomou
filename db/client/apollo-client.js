@@ -7,7 +7,7 @@ import { HttpLink } from 'apollo-link-http';
 // import { getSession } from 'next-auth/client';
 
 
-const cache = InMemoryCache();
+const cache = new InMemoryCache();
 const http = new HttpLink( {
     uri: process.env.NEXT_PUBLIC_URI,
 } );
