@@ -4,10 +4,10 @@ import path from 'path';
 
 
 export const loadGQLTypeSchema = ( type ) => {
-    new Promise( ( resolve, reject ) => {
-        const schemaPath = path.join( process.cwd(), `db/resources/${type}/${type}.gql` );
+    return new Promise( ( resolve, reject ) => {
+        const pathToSchema = path.join( process.cwd(), `db/resources/${type}/${type}.gql` );
 
-        fs.readFile ( schemaPath, { encoding: 'utf-8' }, ( error, schema ) => {
+        fs.readFile ( pathToSchema, { encoding: 'utf-8' }, ( error, schema ) => {
             if ( error ) return reject( error );
             resolve( schema );
         } );
