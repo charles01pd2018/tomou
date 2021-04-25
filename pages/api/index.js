@@ -10,10 +10,10 @@ import connectToMongoDb from '../../db/connectMongo';
 /* CONSTANTS */
 const types = [ 'folder', ]; // resource types
 const rootSchema = `
-schema {
-    query: Query
-    mutation: Mutation
-}
+    schema {
+        query: Query
+        mutation: Mutation
+    }
 `
 
 /* SERVER */
@@ -22,6 +22,7 @@ const createApolloServer = async () => {
     console.log ( ...schemaTypes );
     console.log( rootSchema );
     console.log( merge( {}, folder ) );
+
     return new ApolloServer( {
         typeDefs: [ rootSchema, ...schemaTypes ], /* LOOK INTO WHAT THIS DOES */
         resolvers: merge( {}, folder ), // merges all the queries and muatation into one obejct
@@ -39,6 +40,12 @@ const createApolloServer = async () => {
             }
         }
     } );
+}
+
+export const config = {
+    api: {
+        bodyParser: false,
+    },
 }
 
 const apolloServer = createApolloServer(); // idk how the hell to resolve this promise

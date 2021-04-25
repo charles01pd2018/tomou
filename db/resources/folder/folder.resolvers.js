@@ -26,9 +26,9 @@ const deleteFolder = ( _, { id }, { db: { mongo } } ) => {
 
 export default {
     Query: {
-        folderList,
+        folderList
     },
     Mutation: {
-        newFolder,
+        newFolder
     }
 }
