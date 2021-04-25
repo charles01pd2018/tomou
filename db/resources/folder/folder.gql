@@ -1,5 +1,15 @@
 type Folder {
     name: String!
-    notes:: [Note]!
-    subFolders: [Folder]!
+}
+
+input NewFolderInput {
+    name: String!
+}
+
+extend type Query {
+    folderList: [Folder]!
+}
+
+extend type Mutation {
+    newFolder(input: NewFolderInput!): Folder!
 }

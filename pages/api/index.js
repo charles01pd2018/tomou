@@ -10,20 +10,22 @@ import connectToMongoDb from '../../db/connectMongo';
 /* CONSTANTS */
 const types = [ 'folder', ]; // resource types
 const rootSchema = `
-    schema {
-        query: Query
-        mutation: Mutation
-    }
+schema {
+    query: Query
+    mutation: Mutation
+}
 `
 
 /* SERVER */
 const createApolloServer = async () => {
     const schemaTypes = await Promise.all( types.map( loadGQLTypeSchema ) ); // loading all the schema types like a boss
-
-    const apolloServer = new ApolloServer( {
+    console.log ( ...schemaTypes );
+    console.log( rootSchema );
+    console.log( merge( {}, folder ) );
+    return new ApolloServer( {
         typeDefs: [ rootSchema, ...schemaTypes ], /* LOOK INTO WHAT THIS DOES */
         resolvers: merge( {}, folder ), // merges all the queries and muatation into one obejct
-        context: async ( { req } )  => {
+        context: async ( { req } ) => {
             const session = await getSesion( { req } );
             const { mongoDB, mongoDBClient } = await connectToMongoDb();
     
@@ -31,20 +33,16 @@ const createApolloServer = async () => {
                 mongo: { mongoDB, mongoDBClient } 
             } };
         },
-        // playground: {
-        //     settings: {
-        //         'request.credentials': 'include',
-        //     }
-        // }
+        playground: {
+            settings: {
+                'request.credentials': 'include',
+            }
+        }
     } );
-
-    return apolloServer;
 }
 
-const apolloServer = await createApolloServer(); // idk how the hell to resolve this promise
-
+const apolloServer = createApolloServer(); // idk how the hell to resolve this promise
 console.log( apolloServer );
-
 export default apolloServer.createHandler( {
     'path': '/api'
 } );
