@@ -3,22 +3,47 @@ import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 import { HttpLink } from 'apollo-link-http';
+import { useMemo } from 'react';
+// utils
+import { isSSR } from '../../utils'
 // import { setContext } from 'apollo-link-context';
 // import { getSession } from 'next-auth/client';
 
+/* HELPERS */
+const createApolloClient = () => {
+    const cache = new InMemoryCache();
+    const http = new HttpLink( {
+        uri: process.env.NEXT_PUBLIC_URI,
+    } );
+    const link = ApolloLink.from( [ 
+        http
+    ] );
 
-const cache = new InMemoryCache();
-const http = new HttpLink( {
-    uri: process.env.NEXT_PUBLIC_URI,
-} );
+    return new ApolloClient( {
+        ssrMode: isSSR(),
+        link: link,
+        cache: cache,
+    } );
+}
 
-const link = ApolloLink.from( [ 
-    http
-] );
+let apolloClient;
+const initializeApollo = ( initialState=null ) => {
+    const _apolloClient = apolloClient ?? createApolloClient(); // nullish logical operator - only creates apollo client if initial let is null
 
-const apolloClient = new ApolloClient( { 
-    cache,
-    link
-} );
+    if ( initialState ) {
+        const existingCache = _apolloClient.extract();
+        _apolloClient.cache.restore( { ...existingCache, ...initialState } ); // merge existing cache with initial state
+    }
+    if ( !apolloClient ) apolloClient = _apolloClient; // create apolloClient once in the client
 
-export default apolloClient;
+    return _apolloClient;
+}
+
+/* RETURN */
+const useApollo = ( initialState ) => {
+    const store = useMemo( () => initializeApollo( initialState ), [ initialState ] ); // reinitialize apolloClient only when initialState changes
+    
+    return store;
+}
+
+export default useApollo;

@@ -38,7 +38,9 @@ const AppDashboard = ({
 
     const [ session, loading ] = useSession(); // this is going to break if the user is not logged in
 
-    if ( loading ) return null;
+    if ( !session ) return (
+        <h1>Big Sad</h1>
+    );
 
     return (
         <FoldersLayout user={session.user}>
