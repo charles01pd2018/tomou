@@ -1,10 +1,33 @@
 .header-container {
-    width: 100%;
     background-color: var(--secondary-color);
-    z-index: 9;
+    z-index: 99;
 
     .header-wrapper {
-        display: flex;
-        padding: 1rem 2rem;
+        width: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+
+        .header-account-wrapper {
+            border: 5px solid blue;
+        }
+
+        .header-nav-wrapper {
+            display: inline-flex;
+
+            .header-nav-item {
+                width: 10rem;
+                padding: 1rem;
+                text-align: center;
+
+                border: 5px solid green;
+
+                .header-nav-icon {
+                    width: 3rem;
+                    height: 3rem;
+                }
+            }
+        }
     }
 }

@@ -12,18 +12,6 @@ const AppDashboardContent = {
     centerPanelContent: {
         navLinks: [
             {
-                linkText: 'storage',
-                linkDestination: '/app/storage'
-              },
-              {
-                linkText: 'Tasks',
-                linkDestination: '/app/tasks'
-              },
-              {
-                linkText: 'Notes',
-                linkDestination: '/app/notes'
-              },
-            {
               linkText: 'Take me home, friend',
               linkDestination: '/'
             },

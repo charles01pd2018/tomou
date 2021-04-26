@@ -1,20 +1,18 @@
 .right-menu-container {
     --right-menu--width:            15%;
     --right-menu-toggle--width:     1rem;
-    --right-menu--offscreen:        calc( var(--right-menu-toggle--width) - var(--right-menu--width) );
     
     position: fixed;
-    right: var(--right-menu--offscreen); // CORRECT
-    width: var(--right-menu--width); // CORRECT
+    right: calc( var(--right-menu--width) * -1 );
+    width: var( --right-menu--width );
 
-    border: 5px solid green;
     background-color: lightblue;
 
     .right-menu-toggle {
         position: absolute;
-        left: calc( var(--right-menu-toggle--width) * -1 ); // idk
+        left: calc( var( --right-menu-toggle--width ) * -1 ); 
         bottom: 50%;
-        width: var(--right-menu-toggle--width); // CORRECT 
+        width: var( --right-menu-toggle--width) ; 
         padding: 1rem;
 
         border: 5px solid blue;
@@ -27,8 +25,6 @@
         align-items: center;
         min-height: 100vh;
 
-        border: 5px solid red;
-
         .right-menu-nav-item {
             border: 5px solid yellow;
         }
@@ -36,5 +32,13 @@
 
     &.right-menu-open {
         right: 0;
+    }
+
+    &.right-menu-closed {
+        .right-menu-toggle {
+            &:hover {
+                left: calc( var( --right-menu-toggle--width ) * -2 );
+            }
+        }
     }
 }

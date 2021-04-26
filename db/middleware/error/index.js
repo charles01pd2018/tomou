@@ -1,4 +1,4 @@
 export const onError = async ( error, req, res, next ) => {
-    console.log( errror );
+    console.log( error );
     res.status(500).end();
 }

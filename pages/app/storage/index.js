@@ -6,7 +6,7 @@ import Head from 'next/head';
 import { GridLinks } from '../../../components';
 import { Modal } from '../../../components';
 // layout
-import { FoldersLayout } from '../../../layout';
+import { AppLayout } from '../../../layout';
 // database
 import connectToMongoDb from '../../../db/connectMongo';
 import { folder } from '../../../db/resources';
@@ -48,7 +48,6 @@ const FolderDashboard = ({
         } );
 
         const { data } = await res.json();
-        console.log( data );
         setShownFolders( state => [ ...state, data ] );
     }
     
@@ -60,7 +59,7 @@ const FolderDashboard = ({
     const { title, description } = content;
 
     return (
-        <FoldersLayout user={session.user}>
+        <AppLayout user={session.user}>
             <div className='screen-container center'>
                 <Head>
                     <title>tomou Folder Dashboard</title>
@@ -74,7 +73,7 @@ const FolderDashboard = ({
                 <Modal id='add-folder' onSubmit={handleNewFolder} content={ { label: 'Folder Name' } } />
                 <GridLinks id='mongo-folder-links' content={ { folderNames: shownFolders } } />
             </div>
-        </FoldersLayout>
+        </AppLayout>
     );
 }
 

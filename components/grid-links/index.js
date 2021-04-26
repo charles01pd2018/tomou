@@ -1,5 +1,3 @@
-// dependencies
-import { useState } from 'react';
 // elements
 import { LinkBlob } from '../elements';
 
@@ -8,9 +6,6 @@ const GridLinks = ({
     id,
     content: { folderNames=[] }
 }) => {
-    
-    /* HOOKS */
-    const [ saving, setSaving ] = useState( false );
 
     const linkDestination = '/';
 

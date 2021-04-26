@@ -12,14 +12,14 @@ $breakpoint--medium:                800px;      // anything under is a mobile sc
 /*--------------------------------------------------------------
 # Layout
 --------------------------------------------------------------*/
-@import 'components/layout/sidebar', 'components/layout/header',
-    'components/layout/rightMenu', 'components/layout/common';
+@import 'components/layout/header', 'components/layout/rightMenu', 
+    'components/layout/common';
 
 /*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
 @import 'components/noteInput', 'components/centerPanel', 'components/gridLinks',
-    'components/modal';
+    'components/modal', 'components/stickies';
 
 /*--------------------------------------------------------------
 # Elements

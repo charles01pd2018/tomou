@@ -4,7 +4,7 @@ import { MongoClient } from 'mongodb';
 // cache db connection for serverless enviroment
 global.mongo = global.mongo || {};
 
-const connectToMongoDb = async ( dbName='learning' ) => {
+const connectToMongoDb = async ( mongoDBName='learning' ) => {
     if ( !global.mongo.client ) { // dbName does not exist in Mongo
         global.mongo.client = new MongoClient( process.env.MONGODB_URL, { // create a new MongoDb
             useNewUrlParser: true,
@@ -19,7 +19,7 @@ const connectToMongoDb = async ( dbName='learning' ) => {
         console.log('!!!Connection to MongoDB Established!!!');
     }
 
-    const mongoDB = global.mongo.client.db( dbName );
+    const mongoDB = global.mongo.client.db( mongoDBName );
 
     return { mongoDB, mongoDBClient: global.mongo.client };
 }
