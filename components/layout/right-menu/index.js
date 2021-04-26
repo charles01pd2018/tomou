@@ -19,13 +19,18 @@ const RightMenu = ({
     
     /* CLASSNAMES */
     const rightMenuContainerClasses = classNames( 'right-menu-container', isMenuOpen ? 'right-menu-open' : 'right-menu-closed' );
+    const chevronClasses = classNames( 'chevron', isMenuOpen ? 'right' : 'left' );
+
+    /* ACCESIBILITY */
+    const menuToggleLabel = `${menuStatus} right menu`;
 
     console.log( isMenuOpen );
 
     return ( 
         <aside id={id} className={rightMenuContainerClasses}>
-            <button className='right-menu-toggle' onClick={handleMenuToggle} aria-label={`${menuStatus} right menu`}>
-                right menu toggle
+            <button className='right-menu-toggle' onClick={handleMenuToggle} aria-label={menuToggleLabel}>
+                <span className='screen-reader'>{menuToggleLabel}</span>
+                <span className={chevronClasses}></span>
             </button>
             <nav id='right-menu' className='right-menu-wrapper' aria-label='right-menu'>
                 <div className='right-menu-nav-item'>

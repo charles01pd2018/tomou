@@ -13,7 +13,7 @@ $breakpoint--medium:                800px;      // anything under is a mobile sc
 # Layout
 --------------------------------------------------------------*/
 @import 'components/layout/sidebar', 'components/layout/header',
-    'components/layout/rightCurtain';
+    'components/layout/rightMenu', 'components/layout/common';
 
 /*--------------------------------------------------------------
 # Components
@@ -25,3 +25,8 @@ $breakpoint--medium:                800px;      // anything under is a mobile sc
 # Elements
 --------------------------------------------------------------*/
 @import 'components/elements/linkBlob', 'components/elements/signInButton';
+
+/*--------------------------------------------------------------
+# Shapes
+--------------------------------------------------------------*/
+@import 'shapes/chevron';

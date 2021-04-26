@@ -30,13 +30,10 @@ fieldset {
   font-family: inherit;
   font-size: 100%; 
   border: none;
+  background: none;
 }
 
 button {
-  display: inline-flex;
-  margin: 1rem;
-  padding: 1rem;
-  border-radius: 5px;
   cursor: pointer;
 }
 

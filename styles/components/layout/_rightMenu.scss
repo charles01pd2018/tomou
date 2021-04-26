@@ -1,0 +1,40 @@
+.right-menu-container {
+    --right-menu--width:            15%;
+    --right-menu-toggle--width:     1rem;
+    --right-menu--offscreen:        calc( var(--right-menu-toggle--width) - var(--right-menu--width) );
+    
+    position: fixed;
+    right: var(--right-menu--offscreen); // CORRECT
+    width: var(--right-menu--width); // CORRECT
+
+    border: 5px solid green;
+    background-color: lightblue;
+
+    .right-menu-toggle {
+        position: absolute;
+        left: calc( var(--right-menu-toggle--width) * -1 ); // idk
+        bottom: 50%;
+        width: var(--right-menu-toggle--width); // CORRECT 
+        padding: 1rem;
+
+        border: 5px solid blue;
+    }
+
+    .right-menu-wrapper {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: space-around;
+        align-items: center;
+        min-height: 100vh;
+
+        border: 5px solid red;
+
+        .right-menu-nav-item {
+            border: 5px solid yellow;
+        }
+    }
+
+    &.right-menu-open {
+        right: 0;
+    }
+}
