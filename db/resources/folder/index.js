@@ -21,5 +21,5 @@ export const deleteFolder = async ( mongoDB, id ) => {
 }
 
 export const getFolders = async ( mongoDB, userId ) => {
-    return mongoDB.collection( RESOURCE_NAME ).find( { createmongoDBy: userId } ).toArray();
+    return mongoDB.collection( RESOURCE_NAME ).find( { createdBy: userId } ).toArray();
 }
