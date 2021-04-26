@@ -1,0 +1,33 @@
+/*--------------------------------------------------------------
+# Variables
+--------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+# Styling
+--------------------------------------------------------------*/
+.right-menu-container {
+    position: fixed;
+    right: -10%;
+    width: 20%;
+
+    .right-menu-toggle {
+        position: absolute;
+        bottom: 50%;
+    }
+
+    .right-menu-wrapper {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: space-around;
+        align-items: center;
+        min-height: 100vh;
+        padding: 1rem;
+
+        border: 5px solid red;
+    }
+
+    &.right-menu-open {
+        right: 0;
+    }
+}

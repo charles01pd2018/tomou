@@ -2,7 +2,7 @@
 import Head from 'next/head';
 import { useSession } from 'next-auth/client';
 // layout
-import { FoldersLayout } from '../../layout';
+import { AppLayout } from '../../layout';
 // components
 import { CenterPanel } from '../../components'
 
@@ -41,7 +41,7 @@ const AppDashboard = ({
     if ( loading ) return null;
 
     return (
-        <FoldersLayout user={session.user}>
+        <AppLayout user={session.user}>
             <div className='screen-container center'>
                 <Head>
                     <title>tomou App Dashboard</title>
@@ -51,7 +51,7 @@ const AppDashboard = ({
                 <p>{description}</p>
                 <CenterPanel id='app-navigation' content={centerPanelContent} />
             </div>
-        </FoldersLayout>
+        </AppLayout>
     );
 }
 
