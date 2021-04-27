@@ -29,7 +29,7 @@ const Header = ({
                                             <object className='header-nav-icon' type="image/svg+xml" data={iconPath} alt={iconAltText}>
                                                 {iconAltText}
                                             </object>
-                                            {navText}
+                                            <p className='text-sm'>{navText}</p>
                                         </div>
                                     </a>
                                 </Link>

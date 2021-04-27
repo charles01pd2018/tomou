@@ -9,23 +9,21 @@
         justify-content: space-between;
         padding: 1rem;
 
-        .header-account-wrapper {
-            border: 5px solid blue;
-        }
-
         .header-nav-wrapper {
             display: inline-flex;
 
             .header-nav-item {
                 width: 10rem;
+                max-height: 5rem;
                 padding: 1rem;
                 text-align: center;
+                overflow-y: hidden;
 
-                border: 5px solid green;
+                border: 5px solid var(--contrast-color);
 
                 .header-nav-icon {
-                    width: 3rem;
-                    height: 3rem;
+                    width: 2.5rem;
+                    height: 2.5rem;
                 }
             }
         }

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { signIn } from 'next-auth/client';
 
 
-const SignInButton = ({
+const SigninButton = ({
     className,
     buttonType
 }) => {
@@ -22,4 +22,4 @@ const SignInButton = ({
     );
 }
 
-export default SignInButton;
+export default SigninButton;

@@ -1,5 +1,6 @@
 // components
 import { Header } from '../components/layout';
+import { LinkPoof } from '../components/poof';
 
 const HeaderContent = {
     navItems: [
@@ -19,7 +20,14 @@ const HeaderContent = {
             navDestination: '/app/storage'
         },
     ]
-}
+};
+
+const LinkPoofContent = {
+    linkItem: {
+        linkText: 'App',
+        linkDestination: '/app',
+    },
+};
 
 const AppLayout = ({
     children,
@@ -31,6 +39,7 @@ const AppLayout = ({
             <Header id='account-nav' content={HeaderContent} user={user} />
             {/*THIS MIGHT BE REDUNDANT - CHECK THE NEXTJS DOCS*/}
             <main className='site-content'>{children}</main>
+            <LinkPoof id='app-redirect-poof' content={LinkPoofContent} />
         </>
     );
 }

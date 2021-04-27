@@ -9,5 +9,5 @@ export {
     CenterPanel,
     GridLinks,
     Modal,
-    NoteStickies
+    NoteStickies,
 };
