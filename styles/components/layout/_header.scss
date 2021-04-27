@@ -13,7 +13,7 @@
             display: inline-flex;
 
             .header-nav-item {
-                width: 10rem;
+                width: 11rem;
                 max-height: 5rem;
                 padding: 1rem;
                 text-align: center;
@@ -24,6 +24,25 @@
                 .header-nav-icon {
                     width: 2.5rem;
                     height: 2.5rem;
+
+                    transition: transform 0.5s ease;
+                }
+
+                .header-nav-text {
+                    text-align: right;
+                    padding-right: 1rem;
+
+                    transition: transform 0.5s ease;
+                }
+
+                &:hover {
+                    .header-nav-icon {
+                        transform: translateX(-2.5rem);
+                    }
+
+                    .header-nav-text {
+                        transform: translateY(-3.28rem);
+                    }
                 }
             }
         }
