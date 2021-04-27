@@ -1,5 +1,7 @@
 // dependencies
 import Link from 'next/link';
+import { useState } from 'react';
+import classNames from 'classnames';
 
 const Header = ({
     id,
@@ -7,8 +9,18 @@ const Header = ({
     user
 }) => {
 
+    /* HOOKS */
+    const [ isHeaderOpen, setIsHeaderOpen ] = useState( true );
+
+    const handleHeaderToggle = () => {
+        setIsHeaderOpen( state => !state );
+    }
+
+    /* CLASSNAMES */
+    const headerContainerClasses = classNames( 'header-container', isHeaderOpen ? 'header-open' : 'header-closed' );
+
     return (
-        <section id={id} className='header-container'>
+        <section id={id} className={headerContainerClasses}>
             <div className='header-wrapper'>
 
                 <div className='header-account-wrapper'>
@@ -37,6 +49,10 @@ const Header = ({
                         } )
                     }
                 </nav>
+
+                <button className='header-toggle' onClick={handleHeaderToggle}>
+                    hello
+                </button>
 
             </div>
         </section>

@@ -1,9 +1,22 @@
 .header-container {
     background-color: var(--secondary-color);
     z-index: 99;
+    width: 100%;
+    position: fixed;
+    
+    transition: transform 3s ease;
+
+    &.header-open {
+        position: static;
+    }
+
+    &.header-closed {
+        position: fixed;
+        transform: translateY(-15rem);
+    }
 
     .header-wrapper {
-        width: 100%;
+        width: inherit;
         display: inline-flex;
         align-items: center;
         justify-content: space-between;
@@ -45,6 +58,11 @@
                     }
                 }
             }
+        }
+
+        .header-toggle {
+            position: absolute;
+            bottom: 0;
         }
     }
 }

@@ -71,7 +71,7 @@ const FolderDashboard = ({
                     <button>Add Folder</button>
                 </a>
                 <Modal id='add-folder' onSubmit={handleNewFolder} content={ { label: 'Folder Name' } } />
-                <GridLinks id='mongo-folder-links' content={ { folderNames: shownFolders } } />
+                <GridLinks id='mongo-folder-links' content={ { folderNames: shownFolders } } setShownFolders={setShownFolders} />
             </div>
         </AppLayout>
     );
