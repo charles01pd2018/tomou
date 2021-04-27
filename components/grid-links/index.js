@@ -7,8 +7,8 @@ import { LinkBlob } from '../elements';
 
 const GridLinks = ({
     id,
-    content: { folderNames=[] },
-    setShownFolders,
+    content: { items=[] },
+    setState,
 }) => {
 
     /* CONSTANTS */
@@ -19,10 +19,10 @@ const GridLinks = ({
         <LinkBlob linkText={name} linkDestination={linkDestination} />
     ) );
 
-    const SortableGrid = SortableContainer( ( { folderNames } ) => (
+    const SortableGrid = SortableContainer( ( { items } ) => (
         <section id={id} className='grid-links-container'>
         {
-            folderNames.map( ( { name }, index ) => (
+            items.map( ( { name }, index ) => (
                 <DraggableLink key={`${name}-${index}`} index={index} name={name} />
             ) )
         }
@@ -30,11 +30,11 @@ const GridLinks = ({
     ) );
 
     const onSortEnd = ( { oldIndex, newIndex } ) => {
-        setShownFolders( state => arrayMove( state, oldIndex, newIndex ) );
+        setState( state => arrayMove( state, oldIndex, newIndex ) );
     }
     
     return (
-        <SortableGrid folderNames={folderNames} distance={2} axis='xy' onSortEnd={onSortEnd} />
+        <SortableGrid items={items} distance={2} axis='xy' onSortEnd={onSortEnd} />
     );
 }
 
