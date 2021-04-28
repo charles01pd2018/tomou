@@ -2,7 +2,7 @@
 import Head from 'next/head';
 import { useSession } from 'next-auth/client';
 // layout
-import { FoldersLayout } from '../../../layout';
+import { AppLayout } from '../../../layout';
 
 const TasksDashboardContent = {
     title: 'Tasks Dashboard',
@@ -19,7 +19,7 @@ const TasksDashboard = ({
     if ( loading ) return null;
 
     return (
-        <FoldersLayout user={session.user}>
+        <AppLayout user={session.user}>
             <div className='screen-container center'>
                 <Head>
                     <title>tomou App Dashboard</title>
@@ -28,7 +28,7 @@ const TasksDashboard = ({
                 <h1>{title}</h1>
                 <p>{description}</p>
             </div>
-        </FoldersLayout>
+        </AppLayout>
     );
 }
 

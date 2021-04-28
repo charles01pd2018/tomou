@@ -1,0 +1,40 @@
+/*--------------------------------------------------------------
+# Variables
+--------------------------------------------------------------*/
+$chevron--thickness:            0.25em;                 // thickness of chevron
+$chevron--length:               1em;                    // length of chevron
+$chevron--normalize:            $chevron--length / 3;   // normalize left and right chevron to look cleaner
+
+/*--------------------------------------------------------------
+# Styling
+--------------------------------------------------------------*/
+.chevron {
+    &::before {
+        display: inline-block;
+        border-style: solid;
+        content: '';
+        border-width: $chevron--thickness $chevron--thickness 0 0;
+        height: $chevron--length;
+        width: $chevron--length;
+    }
+
+    &.up {
+        &::before {
+            transform: rotate(-45deg);
+        }
+    }
+
+    &.right {
+        &::before {
+            right: $chevron--normalize;
+            transform: rotate(45deg);
+        }
+    }
+
+    &.left {
+        &::before {
+            left: $chevron--normalize;
+            transform: rotate(-135deg);
+        }
+    }
+}

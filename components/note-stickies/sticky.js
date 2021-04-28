@@ -17,9 +17,9 @@ const Sticky = ({
 
     return (
         <Link href='/'>
-            <div className='sidebar-item'>
+            <div className='sticky-item'>
                 <a>
-                    <object className='sidebar-icon' type="image/svg+xml" data={stickyIcon.iconPath} alt={stickyIcon.iconAltText}  >
+                    <object className='sticky-icon' type="image/svg+xml" data={stickyIcon.iconPath} alt={stickyIcon.iconAltText}>
                         Sticky Tab Icon
                     </object>
                     <p>{stickyLabel}</p>

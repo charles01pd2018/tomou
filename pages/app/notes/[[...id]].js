@@ -2,9 +2,9 @@
 import Head from 'next/head';
 import { useSession } from 'next-auth/client';
 // components
-import { NoteInput } from '../../../components';
+import { NoteInput, NoteStickies } from '../../../components';
 // layout
-import { NotesLayout } from '../../../layout';
+import { AppLayout } from '../../../layout';
 
 
 const noteContent = {
@@ -33,13 +33,14 @@ const NotesDashboard = ({
     if ( loading ) return null;
 
     return (
-        <NotesLayout content={content} user={session.user}>
+        <AppLayout content={content} user={session.user}>
             <Head>
                 <title>tomou: Notes</title>
             </Head>
 
+            <NoteStickies id='notes-NoteStickies' />
             <NoteInput content={content} />
-        </NotesLayout>
+        </AppLayout>
     );
 }
 

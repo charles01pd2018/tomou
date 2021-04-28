@@ -11,7 +11,7 @@ const SignInContent = {
     title: 'Sign In to tomou, yuhurd',
     description: 'Get ready to have your mind blown with the greatest note taking experience you could ever fathom',
     centerPanelContent: {
-        signInButtons: [
+        signinButtons: [
             'Github',
         ],
         navLinks: [

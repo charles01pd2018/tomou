@@ -1,19 +1,19 @@
 // elements
 import { LinkBlob } from '../elements';
-import { SignInButton } from '../elements';
+import { SigninButton } from '../elements';
 
 
 const CenterPanel = ({
     id,
-    content: { navLinks=[], signInButtons=[] }
+    content: { navLinks=[], SigninButtons=[] }
 }) => {
 
     return (
         <section id={id} className='center-panel-container'>
             <div className='center-panel-wrapper'>
                 {
-                    signInButtons.map( buttonType => (
-                        <SignInButton key={buttonType} buttonType={buttonType} />
+                    SigninButtons.map( buttonType => (
+                        <SigninButton key={buttonType} buttonType={buttonType} />
                     ) )
                 }
                 {

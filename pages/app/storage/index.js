@@ -1,13 +1,12 @@
 // dependencies
 import { useState } from 'react';
 import { getSession, useSession } from 'next-auth/client';
-import { useQuery, useMutation } from '@apollo/react-hooks';
 import Head from 'next/head';
 // components
 import { GridLinks } from '../../../components';
 import { Modal } from '../../../components';
 // layout
-import { FoldersLayout } from '../../../layout';
+import { AppLayout } from '../../../layout';
 // database
 import connectToMongoDb from '../../../db/connectMongo';
 import { folder } from '../../../db/resources';
@@ -49,7 +48,6 @@ const FolderDashboard = ({
         } );
 
         const { data } = await res.json();
-        console.log( data );
         setShownFolders( state => [ ...state, data ] );
     }
     
@@ -61,7 +59,7 @@ const FolderDashboard = ({
     const { title, description } = content;
 
     return (
-        <FoldersLayout user={session.user}>
+        <AppLayout user={session.user}>
             <div className='screen-container center'>
                 <Head>
                     <title>tomou Folder Dashboard</title>
@@ -73,9 +71,9 @@ const FolderDashboard = ({
                     <button>Add Folder</button>
                 </a>
                 <Modal id='add-folder' onSubmit={handleNewFolder} content={ { label: 'Folder Name' } } />
-                <GridLinks id='mongo-folder-links' content={ { folderNames: shownFolders } } />
+                <GridLinks id='mongo-folder-links' content={ { items: shownFolders } } setState={setShownFolders} />
             </div>
-        </FoldersLayout>
+        </AppLayout>
     );
 }
 

@@ -1,29 +1,40 @@
 // dependencies
-import { useState } from 'react';
+import { SortableContainer, SortableElement } from "react-sortable-hoc";
+import arrayMove from 'array-move';
 // elements
 import { LinkBlob } from '../elements';
 
 
 const GridLinks = ({
     id,
-    content: { folderNames=[] }
+    content: { items=[] },
+    setState,
 }) => {
-    
-    /* HOOKS */
-    const [ saving, setSaving ] = useState( false );
 
+    /* CONSTANTS */
     const linkDestination = '/';
 
-    return (
+    /* HIGHER ORDER COMPONENTS */
+    const DraggableLink = SortableElement( ( { name } ) => (
+        <LinkBlob linkText={name} linkDestination={linkDestination} />
+    ) );
+
+    const SortableGrid = SortableContainer( ( { items } ) => (
         <section id={id} className='grid-links-container'>
-            {
-                folderNames.map( ( { name }, index ) => (
-                    <LinkBlob key={`${name}-${index}`} 
-                    linkText={name} 
-                    linkDestination={linkDestination} />
-                    ) )
-            }
+        {
+            items.map( ( { name }, index ) => (
+                <DraggableLink key={`${name}-${index}`} index={index} name={name} />
+            ) )
+        }
         </section>
+    ) );
+
+    const onSortEnd = ( { oldIndex, newIndex } ) => {
+        setState( state => arrayMove( state, oldIndex, newIndex ) );
+    }
+    
+    return (
+        <SortableGrid items={items} distance={2} axis='xy' onSortEnd={onSortEnd} />
     );
 }
 
