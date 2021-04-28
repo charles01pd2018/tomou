@@ -12,7 +12,6 @@
     }
 
     &.header-closed {
-        position: fixed;
         transform: translateY(-15rem);
     }
 
@@ -59,11 +58,6 @@
                     }
                 }
             }
-        }
-
-        .header-toggle {
-            position: absolute;
-            bottom: 0;
         }
     }
 }

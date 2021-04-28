@@ -50,10 +50,6 @@ const Header = ({
                     }
                 </nav>
 
-                <button className='header-toggle' onClick={handleHeaderToggle}>
-                    hello
-                </button>
-
             </div>
         </section>
     );
