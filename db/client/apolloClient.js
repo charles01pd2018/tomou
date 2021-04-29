@@ -5,7 +5,7 @@ import { ApolloLink } from 'apollo-link';
 import { HttpLink } from 'apollo-link-http';
 import { useMemo } from 'react';
 // utils
-import { isSSR } from '../../utils'
+import { isSSR } from '../utils'
 
 
 /* HELPERS */
