@@ -18,16 +18,18 @@ const FolderDashboardContent = {
 
 /* SCHEMAS */
 const GET_FOLDERS = gql`
-    query folderList {
-        folderList {
+    query folders() {
+        folderList() {
+            _id
             name
+            creationDate
         }
     }
 `
 
-const FolderDashboard = ({
+const FolderDashboard = ( {
     content,
-}) => {
+} ) => {
     
     /* CHECK SESSION -> this should probably be its own component */ 
     const [ session, loading ] = useSession();
@@ -42,12 +44,11 @@ const FolderDashboard = ({
         )
     }
 
-    const { loading: dataLoading, error, data } = useQuery( GET_FOLDERS, {
-        variables: { name },
-    } );
+    const { loading: dataLoading, error, data } = useQuery( GET_FOLDERS, );
     
-    if (dataLoading) return 'loading'
+    if ( dataLoading ) return 'loading'
     if ( error ) return 'error'
+    if ( data ) return ( <h1> yay </h1> )
 
 
     /* CONTENT */
