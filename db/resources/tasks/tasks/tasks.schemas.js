@@ -1,12 +1,14 @@
 import gql from 'gql-tag';
 
-export default TasksSchemas = gql`
+const tasksSchemas = gql`
     type Task {
         name: String!
     }
 
     type Query {
-        taskList: [Task]!
         task: Task!
+        taskList: [Task]!
     }
 `
+
+export default tasksSchemas;

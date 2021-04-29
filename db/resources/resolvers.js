@@ -1,4 +1,4 @@
-import tasksResolvers from './tasks/tasks.resolvers';
+import tasksResolvers from './tasks/tasks/tasks.resolvers';
 
 export {
     tasksResolvers,

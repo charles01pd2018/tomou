@@ -1,4 +1,4 @@
-import tasksSchemas from './tasks/tasks.schemas';
+import tasksSchemas from './tasks/tasks/tasks.schemas';
 
 export {
     tasksSchemas,

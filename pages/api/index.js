@@ -1,6 +1,7 @@
 // dependencies
 import { ApolloServer } from 'apollo-server-micro';
 import { merge } from 'lodash';
+import { getSession } from 'next-auth/client';
 // resources
 import { tasksResolvers } from '../../db/resources/resolvers'
 import { tasksSchemas } from '../../db/resources/schemas';
@@ -9,8 +10,6 @@ import connectToMongoDb from '../../db/connectMongo';
 
 
 /* CONSTANTS */
-// const types = [ 'folder', ]; // resource types
-
 const typeDefs = [
     tasksSchemas,
 ];
@@ -19,18 +18,20 @@ const resolvers = merge(
     tasksResolvers,
 );
 
+const context = async ( { req } ) => {
+    const session = await getSession( { req } );
+    const { mongoDB, mongoDBClient } = await connectToMongoDb();
+
+    return { session, db: { 
+        mongo: { mongoDB, mongoDBClient } 
+    } };
+}
+
 /* SERVER */
 const apolloServer = new ApolloServer( {
-    typeDefs: typeDefs,
-    resolvers: resolvers,
-    context: async ( { req } ) => {
-        const session = await getSesion( { req } );
-        const { mongoDB, mongoDBClient } = await connectToMongoDb();
-
-        return { session, db: { 
-            mongo: { mongoDB, mongoDBClient } 
-        } };
-    },
+    typeDefs,
+    resolvers,
+    context,
 } );
 
 /* DO NOT REMOVE THIS THIS IS VITAL FOR THE GRAPHQL API TO WORK */
@@ -40,8 +41,6 @@ export const config = {
     },
 }
 
-console.log( apolloServer );
-
 export default apolloServer.createHandler( {
-    'path': '/api'
+    path: '/api'
 } );

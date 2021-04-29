@@ -6,6 +6,7 @@ import { AppLayout } from '../../layout';
 // components
 import { CenterPanel } from '../../components'
 
+
 const AppDashboardContent = {
     title: 'App Dashboard',
     description: 'Navigate to all app functionality, also see summary overview',
@@ -18,7 +19,6 @@ const AppDashboardContent = {
           ],
     }
 };
-
 
 const AppDashboard = ({
     content: { title='', description='', centerPanelContent={} }
@@ -49,7 +49,6 @@ export default AppDashboard;
 
 
 export async function getStaticProps() {
-
     return {
         props: {
             content: AppDashboardContent,
