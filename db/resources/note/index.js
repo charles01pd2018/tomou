@@ -9,11 +9,11 @@ export const getOneNote = async ( db, id ) => {
 }
 
 export const getNotesByFolder = async ( db, folderId ) => {
-    return db.collection (RESOURCE_NAME ).find( { folder: folderId } ).toArray();
+    return db.collection ( RESOURCE_NAME ).find( { folder: folderId } ).toArray();
 }
 
 export const createNote = async ( db, note ) => {
-    return db.collection (RESOURCE_NAME ).insertOne( 
+    return db.collection( RESOURCE_NAME ).insertOne( 
         {
             id: nanoid(12),
             ...note,
@@ -32,7 +32,6 @@ export const updateNote = async ( db, id, updates ) => {
          throw new Error( 'For some reason, we could not update the note :-(' );
      }
 
-     const updatedNote = await db.collection(RESOURCE_NAME).findOne( { _id: id } );
+     const updatedNote = await db.collection( RESOURCE_NAME ).findOne( { _id: id } );
      return updatedNote;
 }
-

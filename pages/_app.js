@@ -3,7 +3,7 @@ import 'reflect-metadata'; // FIXES A MONGODB BUG FOR NEXT-AUTH *DO NOT REMOVE*
 import { Provider } from 'next-auth/client';
 // client
 import { ApolloProvider } from '@apollo/react-hooks';
-import useApollo from '../db/client/apollo-client';
+import useApollo from '../db/client/apolloClient';
 // styles
 import '../styles/styles.scss'
 
@@ -11,12 +11,11 @@ const TomouApp = ({ Component, pageProps }) => {
   const apolloClient = useApollo( pageProps.initialApolloState );
   
   return (
-          <ApolloProvider client={apolloClient}>
-            <Provider session={pageProps.session}>
-              <Component {...pageProps} />
-            </Provider>
-          </ApolloProvider>
-
+        <ApolloProvider client={apolloClient}>
+          <Provider session={pageProps.session}>
+            <Component {...pageProps} />
+          </Provider>
+        </ApolloProvider>
     );
 }
 

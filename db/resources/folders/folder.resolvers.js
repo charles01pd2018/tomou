@@ -1,7 +1,7 @@
 // dependencies
 import { nanoid } from 'nanoid';
 
-var RESOURCE_NAME = 'folders';
+const RESOURCE_NAME = 'folders';
 
 const folderList = ( _, __, { db: { mongo }, user } ) => {
     return mongo.mongoDB.collection( RESOURCE_NAME ).find( {
@@ -29,6 +29,7 @@ export default {
         folderList
     },
     Mutation: {
-        newFolder
+        newFolder,
+        deleteFolder
     }
 }

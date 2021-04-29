@@ -1,4 +1,4 @@
-import * as folder from './folder';
+import * as folder from './folders';
 import * as note from './note';
 import * as user from './user';
 

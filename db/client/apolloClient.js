@@ -6,8 +6,7 @@ import { HttpLink } from 'apollo-link-http';
 import { useMemo } from 'react';
 // utils
 import { isSSR } from '../../utils'
-// import { setContext } from 'apollo-link-context';
-// import { getSession } from 'next-auth/client';
+
 
 /* HELPERS */
 const createApolloClient = () => {

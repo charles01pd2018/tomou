@@ -8,7 +8,7 @@ import { Modal } from '../../../components';
 // layout
 import { AppLayout } from '../../../layout';
 // database
-import connectToMongoDb from '../../../db/connectMongo';
+import connectToMongoDB from '../../../db/connectMongo';
 import { folder } from '../../../db/resources';
 
 
@@ -86,7 +86,7 @@ export async function getServerSideProps( context ) {
     // this should return empty props and redirect the user to signin page
     if ( !session || !session.user ) return { props: {} }; 
 
-    const { mongoDB } = await connectToMongoDb();
+    const { mongoDB } = await connectToMongoDB();
     const folders = await folder.getFolders( mongoDB, session.user.id );
 
     const props = { session };
