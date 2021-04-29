@@ -1,5 +1,3 @@
-// dependencies
-import { useSession } from 'next-auth/client';
 // components
 import { CenterPanel } from '../components';
 
@@ -14,8 +12,7 @@ const checkSessionContent = {
     },
 }
 
-const checkSession = () => {
-    const [ session, loading ] = useSession();
+const checkSession = async ( session, loading ) => {
 
     if ( loading ) return null; 
 
@@ -30,6 +27,4 @@ const checkSession = () => {
     }
 }
 
-export {
-    checkSession,
-}
+export default checkSession;

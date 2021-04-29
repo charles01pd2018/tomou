@@ -1,7 +1,7 @@
 // dependencies
 import Head from 'next/head';
 // components
-import { NoteInput, NoteStickies } from '../../../components';
+import { NotesInput, NotesStickies } from '../../../components';
 // layout
 import { AppLayout } from '../../../layout';
 
@@ -27,14 +27,15 @@ const NotesDashboard = ({
   content
 }) => {
   return (
-    <AppLayout content={content} >
+    <>
         <Head>
-            <title>tomou: Notes</title>
+          <title>tomou: Notes</title>
         </Head>
-
-        <NoteStickies id='notes-NoteStickies' />
-        <NoteInput content={content} />
-    </AppLayout>
+        <AppLayout content={content} >
+            <NotesStickies id='notes-stickies' />
+            <NotesInput id='notes-input' content={content} />
+        </AppLayout>
+    </>
   );
 }
 

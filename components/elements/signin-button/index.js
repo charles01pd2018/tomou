@@ -14,11 +14,9 @@ const SigninButton = ({
     const signInButtonClasses = classNames(`${lowerCaseButtonType}-button`, className );
 
     return (
-        <div>
-            <button className={signInButtonClasses} onClick={ () => { signIn( lowerCaseButtonType ) } }>
-                Sign in with {buttonType}
-            </button>
-        </div>
+        <button className={signInButtonClasses} onClick={ () => { signIn( lowerCaseButtonType ) } }>
+            Sign in with {buttonType}
+        </button>
     );
 }
 

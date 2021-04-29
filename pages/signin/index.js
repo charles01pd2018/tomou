@@ -43,15 +43,16 @@ const SignIn = ({
     const { title, description, centerPanelContent } = content;
 
     return (
-        <div className='screen-container center'>
+        <>
             <Head>
                 <title>Sign into tomou, friend</title>
             </Head>
-
-            <h1>{title}</h1>
-            <p>{description}</p>
-            <CenterPanel id='sign-in-buttons' content={centerPanelContent} />
-        </div>
+            <div className='screen-container text-center'>
+                <h1>{title}</h1>
+                <p>{description}</p>
+                <CenterPanel id='sign-in-buttons' content={centerPanelContent} />
+            </div>
+        </>
     );
 }
 

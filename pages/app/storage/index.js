@@ -18,14 +18,14 @@ const FolderDashboardContent = {
 
 /* SCHEMAS */
 const GET_FOLDERS = gql`
-    query folders() {
-        folderList() {
+    query folders {
+        folderList {
             _id
             name
             creationDate
         }
     }
-`
+`;
 
 const FolderDashboard = ( {
     content,
@@ -55,21 +55,22 @@ const FolderDashboard = ( {
     const { title, description } = content;
 
     return (
-        <AppLayout user={session.user}>
-            <div className='screen-container center'>
-                <Head>
-                    <title>tomou Folder Dashboard</title>
-                </Head>
-
-                <h1>{title}</h1>
-                <p>{description}</p>
-                <a href='#add-folder'>
-                    <button>Add Folder</button>
-                </a>
-                <Modal id='add-folder' onSubmit={handleNewFolder} content={ { label: 'Folder Name' } } />
-                <GridLinks id='mongo-folder-links' content={ { items: shownFolders } } setState={setShownFolders} />
-            </div>
-        </AppLayout>
+        <>
+            <Head>
+                <title>tomou Folder Dashboard</title>
+            </Head>
+            <AppLayout user={session.user}>
+                <div className='screen-container text-center'>
+                    <h1>{title}</h1>
+                    <p>{description}</p>
+                    <a href='#add-folder'>
+                        <button>Add Folder</button>
+                    </a>
+                    <Modal id='add-folder' onSubmit={handleNewFolder} content={ { label: 'Folder Name' } } />
+                    <GridLinks id='mongo-folder-links' content={ { items: shownFolders } } setState={setShownFolders} />
+                </div>
+            </AppLayout>
+        </>
     );
 }
 

@@ -1,16 +1,14 @@
-.link-blob-wrapper {
+.link-blob {
+    margin: 1rem;
+    padding: 1rem;
+    text-align: center;
+    width: max-content;
+
+    border: 5px solid var(--main-color);
     
-    .link-blob {
-        margin: 1rem;
-        padding: 1rem;
-        text-align: center;
+    transition: background-color 0.5s; // THIS IS NOT PERFORMANT - TRIGGERS A REPAINT
 
-        border: 5px solid var(--main-color);
-        
-        transition: background-color 0.5s; // THIS IS NOT PERFORMANT - TRIGGERS A REPAINT
-
-        &:hover {
-            background-color: var(--contrast-color);
-        }
+    &:hover {
+        background-color: var(--contrast-color);
     }
 }

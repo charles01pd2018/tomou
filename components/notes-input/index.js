@@ -3,7 +3,7 @@ import { useState } from 'react';
 import classNames from 'classnames';
 
 
-const NoteInput = ({
+const NotesInput = ({
     id,
     content
 }) => {
@@ -35,4 +35,4 @@ const NoteInput = ({
     );
 }
 
-export default NoteInput;
+export default NotesInput;

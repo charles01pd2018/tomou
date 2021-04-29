@@ -5,20 +5,22 @@ import { SigninButton } from '../elements';
 
 const CenterPanel = ({
     id,
-    content: { navLinks=[], SigninButtons=[] }
+    content: { navLinks=[], signinButtons=[] }
 }) => {
 
     return (
         <section id={id} className='center-panel-container'>
             <div className='center-panel-wrapper'>
                 {
-                    SigninButtons.map( buttonType => (
+                    signinButtons.map( buttonType => (
                         <SigninButton key={buttonType} buttonType={buttonType} />
                     ) )
                 }
                 {
                     navLinks.map( ( { linkText, linkDestination } ) => (
-                        <LinkBlob key={linkText} blobClassName='wrap-break' linkText={linkText} linkDestination={linkDestination} />
+                        <div className='flex-center'>
+                            <LinkBlob key={linkText} linkText={linkText} linkDestination={linkDestination} />
+                        </div>
                     ) )
                 }
             </div>

@@ -28,15 +28,16 @@ const FolderDashboard = ({
     const { title, description, centerPanelContent } = content;
 
     return (
-        <div className='screen-container center'>
+        <>
             <Head>
                 <title>Register for tomou</title>
             </Head>
-
-            <h1>{title}</h1>
-            <p>{description}</p>
-            <CenterPanel id='folder-dashboard-nav' content={centerPanelContent} />
-        </div>
+            <div className='screen-container text-center'>
+                <h1>{title}</h1>
+                <p>{description}</p>
+                <CenterPanel id='folder-dashboard-nav' content={centerPanelContent} />
+            </div>
+        </>
     );
 }
 

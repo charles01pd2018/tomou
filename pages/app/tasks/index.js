@@ -3,6 +3,9 @@ import Head from 'next/head';
 import { useSession } from 'next-auth/client';
 // layout
 import { AppLayout } from '../../../layout';
+// components
+import { TasksList } from '../../../components';
+
 
 const TasksDashboardContent = {
     title: 'Tasks Dashboard',
@@ -19,24 +22,25 @@ const TasksDashboard = ({
     if ( loading ) return null;
 
     return (
-        <AppLayout user={session.user}>
-            <div className='screen-container center'>
-                <Head>
-                    <title>tomou App Dashboard</title>
-                </Head>
-
-                <h1>{title}</h1>
-                <p>{description}</p>
-            </div>
-        </AppLayout>
+        <>
+            <Head>
+                <title>tomou App Dashboard</title>
+            </Head>
+            <AppLayout user={session.user}>
+                <div className='screen-container text-center'>
+                    <h1>{title}</h1>
+                    <p>{description}</p>
+                </div>
+                <TasksList id='tasks-list' />
+            </AppLayout>
+        </>
     );
 }
 
 export default TasksDashboard;
 
 
-export async function getStaticProps() {
-
+export function getStaticProps() {
     return {
         props: {
             content: TasksDashboardContent,

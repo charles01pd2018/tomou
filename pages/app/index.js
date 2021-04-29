@@ -31,17 +31,18 @@ const AppDashboard = ({
     );
 
     return (
-        <AppLayout user={session.user}>
-            <div className='screen-container center'>
-                <Head>
-                    <title>tomou App Dashboard</title>
-                </Head>
-
-                <h1>{title}</h1>
-                <p>{description}</p>
-                <CenterPanel id='app-navigation' content={centerPanelContent} />
-            </div>
-        </AppLayout>
+        <>
+            <Head>
+                <title>tomou App Dashboard</title>
+            </Head>
+            <AppLayout user={session.user}>
+                <div className='screen-container text-center'>
+                    <h1>{title}</h1>
+                    <p>{description}</p>
+                    <CenterPanel id='app-navigation' content={centerPanelContent} />
+                </div>
+            </AppLayout>
+        </>
     );
 }
 

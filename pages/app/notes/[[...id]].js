@@ -2,7 +2,7 @@
 import Head from 'next/head';
 import { useSession } from 'next-auth/client';
 // components
-import { NoteInput, NoteStickies } from '../../../components';
+import { NotesInput, NotesStickies } from '../../../components';
 // layout
 import { AppLayout } from '../../../layout';
 
@@ -33,14 +33,15 @@ const NotesDashboard = ({
     if ( loading ) return null;
 
     return (
-        <AppLayout content={content} user={session.user}>
-            <Head>
-                <title>tomou: Notes</title>
-            </Head>
-
-            <NoteStickies id='notes-NoteStickies' />
-            <NoteInput content={content} />
-        </AppLayout>
+      <>
+          <Head>
+            <title>tomou: Notes</title>
+          </Head>
+          <AppLayout content={content} user={session.user}>
+              <NotesStickies id='notes-stickies' />
+              <NotesInput id='notes-input' content={content} />
+          </AppLayout>
+      </>
     );
 }
 

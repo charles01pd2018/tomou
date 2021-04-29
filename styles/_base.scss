@@ -2,20 +2,10 @@
 # Section Spacing
 --------------------------------------------------------------*/
 main.site-content {
-  max-height: 100vh;
-}
-
-.center {
-  text-align: center;
-  align-items: center;
 }
 
 .screen-container {
   padding: 1rem 0;
-}
-
-.wrap-break {
-  display: inline-flex;
 }
 
 /*--------------------------------------------------------------
@@ -35,6 +25,7 @@ fieldset {
 
 button {
   cursor: pointer;
+  padding: 0.5rem;
 }
 
 object {
@@ -46,4 +37,14 @@ object {
 --------------------------------------------------------------*/
 .hide {
   display: none !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

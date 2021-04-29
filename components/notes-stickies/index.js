@@ -28,7 +28,7 @@ const stickiesContent = {
     ]
 };
 
-const NoteStickies = ({
+const NotesStickies = ({
     id,
     content
 }) => {
@@ -44,4 +44,4 @@ const NoteStickies = ({
     );
 }
 
-export default NoteStickies;
+export default NotesStickies;
