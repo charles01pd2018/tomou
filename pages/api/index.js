@@ -1,6 +1,5 @@
 // dependencies
 import { ApolloServer } from 'apollo-server-micro';
-import { merge } from 'lodash';
 import { getSession } from 'next-auth/client';
 // resources
 import allResolvers from '../../db/resources/resolvers'
@@ -17,7 +16,7 @@ const apolloServer = new ApolloServer( {
         const session = await getSession( { req } );
         const { mongoDB, mongoDBClient } = await connectToMongoDb();
     
-        return { session, db: { 
+        return { user: session.user, db: { 
             mongo: { mongoDB, mongoDBClient } 
         } };
     },
