@@ -1,28 +1,35 @@
 // dependencies
-import { useState } from 'react';
-import { getSession, useSession } from 'next-auth/client';
+import { useSession } from 'next-auth/client';
+import gql from 'gql-tag';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import Head from 'next/head';
 // components
 import { GridLinks } from '../../../components';
 import { Modal } from '../../../components';
 // layout
 import { AppLayout } from '../../../layout';
-// database
-import connectToMongoDB from '../../../db/connectMongo';
-import { folder } from '../../../db/resources';
 
 
+/* CONTENT */
 const FolderDashboardContent = {
     title: 'Folder Dashboard',
     description: 'This is where the user will see all the folder they have :-D',
 };
 
+/* SCHEMAS */
+const GET_FOLDERS = gql`
+    query folderList {
+        folderList {
+            name
+        }
+    }
+`
+
 const FolderDashboard = ({
     content,
-    folders
 }) => {
     
-    /* CHECK SESSION */ 
+    /* CHECK SESSION -> this should probably be its own component */ 
     const [ session, loading ] = useSession();
 
     if ( loading ) return null; // loading spinner? 
@@ -30,31 +37,19 @@ const FolderDashboard = ({
     if ( !session && !loading ) {
         return (
             <div className='screen-container center'>
-                <h1>Big Sad</h1>
+                <h1>You are not logged in</h1>
             </div>
         )
     }
 
-    /* DATA STOOFS */
-    const [ shownFolders, setShownFolders ] = useState( folders || [] );
-
-    const handleNewFolder = async ( { folderName } ) => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/folder`, {
-            method: 'POST',
-            body: JSON.stringify( { name: folderName } ),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        } );
-
-        const { data } = await res.json();
-        setShownFolders( state => [ ...state, data ] );
-    }
+    const { loading: dataLoading, error, data } = useQuery( GET_FOLDERS, {
+        variables: { name },
+    } );
     
-    const handleDeleteFolder = ( { id } ) => {
+    if (dataLoading) return 'loading'
+    if ( error ) return 'error'
 
-    }
-    
+
     /* CONTENT */
     const { title, description } = content;
 
@@ -80,18 +75,10 @@ const FolderDashboard = ({
 export default FolderDashboard;
 
 
-export async function getServerSideProps( context ) {
-    const session = await getSession( context );
-
-    // this should return empty props and redirect the user to signin page
-    if ( !session || !session.user ) return { props: {} }; 
-
-    const { mongoDB } = await connectToMongoDB();
-    const folders = await folder.getFolders( mongoDB, session.user.id );
-
-    const props = { session };
-    props.content = FolderDashboardContent;
-    props.folders = folders;
-
-    return { props };
+export function getStaticProps() {
+    return { 
+        props: {
+            content: FolderDashboardContent,
+        }
+     };
 }

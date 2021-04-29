@@ -5,6 +5,7 @@ import gql from 'gql-tag';
 const storageSchemas = gql`
     """Folder holds files for the user"""
     type Folder {
+        _id: ID!
         name: String!
         "Get the creation Date"
         creationDate: String!

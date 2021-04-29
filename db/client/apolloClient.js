@@ -12,7 +12,7 @@ import { isSSR } from '../utils'
 const createApolloClient = () => {
     const cache = new InMemoryCache();
     const http = new HttpLink( {
-        uri: process.env.NEXT_PUBLIC_URI,
+        uri: process.env.NEXT_PUBLIC_API_HOST,
     } );
     const link = ApolloLink.from( [ 
         http
