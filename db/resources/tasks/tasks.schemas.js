@@ -5,7 +5,7 @@ const tasksSchemas = gql`
         name: String!
     }
 
-    type Query {
+    extend type Query {
         task: Task!
         taskList: [Task]!
     }
