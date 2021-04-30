@@ -7,17 +7,31 @@ const task = (_, { id }, { db: { mongo } } ) => {
     };
 }
 
-const taskList = (_, __, { db: { mongo } } ) => {
+const miniTaskList = (_, __, { db: { mongo } } ) => {
     return [
         'task 1',
         'task 2',
     ];
 }
 
+const taskList = () => {
+    return [
+        'yuh',
+    ];
+}
+
+const allTasks = () => {
+    return [
+        'beep boop'
+    ];
+}
+
 const tasksResolvers = {
     Query: {
         task,
+        miniTaskList,
         taskList,
+        allTasks,
     }
 }
 

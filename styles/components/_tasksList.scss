@@ -1,0 +1,11 @@
+.tasks-list-container {
+    border: 1px solid black;
+
+    .tasks-list-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        padding: 1rem 5rem;
+
+    }
+}
