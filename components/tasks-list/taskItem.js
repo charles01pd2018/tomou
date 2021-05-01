@@ -1,24 +1,29 @@
 // dependencies
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
+// partials
+import TaskList from './taskList';
 
 const TaskItem = ({
-    content: { task },
+    content: { task, subTaskList },
     level,
-    onClick,
 }) => {
 
-    const [ currentLevel, setCurrentLevel ] = useState( level ); // level to be used for styling
-    const [ taskVisible, setTaskVisible ] = useState( currentLevel === 0 ); // this will make sure all subtasks are hidden on initial render
+    const [ itemLevel, setItemLevel ] = useState( level ); // level to be used for styling
+    const [ loadSubList, setLoadSubList ] = useState ( false ); // dont show sublists on initial render
 
-    const toggleVisibility = useCallback( () => {
-        setTaskVisible( state => !state );
-    }, [ currentLevel, setCurrentLevel] );
+    const toggleSubList = () => {
+        setLoadSubList( state => !state );
+    }
 
     return (
         <>
-            <button className='task-item-wrapper' onClick={onClick}>
+            <button className='task-item-wrapper' onClick={toggleSubList}>
                 <li className='task-item'>{task}</li>
             </button>
+            {
+                loadSubList &&
+                subTaskList && <TaskList content={ { taskList: subTaskList } } level={itemLevel + 1} />
+            }
         </>
     );
 }
