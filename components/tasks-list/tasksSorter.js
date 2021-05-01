@@ -1,6 +1,6 @@
 
 const TasksSorter = ({
-
+    content,
 }) => {
     
     return (

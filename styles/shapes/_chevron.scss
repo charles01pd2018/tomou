@@ -1,8 +1,8 @@
 /*--------------------------------------------------------------
 # Variables
 --------------------------------------------------------------*/
-$chevron--thickness:            0.25em;                 // thickness of chevron
-$chevron--length:               1em;                    // length of chevron
+$chevron--thickness:            0.1em;                 // thickness of chevron
+$chevron--length:               0.6em;                    // length of chevron
 $chevron--normalize:            $chevron--length / 3;   // normalize left and right chevron to look cleaner
 
 /*--------------------------------------------------------------
@@ -16,11 +16,20 @@ $chevron--normalize:            $chevron--length / 3;   // normalize left and ri
         border-width: $chevron--thickness $chevron--thickness 0 0;
         height: $chevron--length;
         width: $chevron--length;
+
+        transition: transform 0.2s ease;
     }
 
     &.up {
         &::before {
             transform: rotate(-45deg);
+        }
+    }
+
+    &.down {
+        &::before {
+            left: $chevron--normalize;
+            transform: rotate(-225deg);
         }
     }
 

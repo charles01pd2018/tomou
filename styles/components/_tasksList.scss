@@ -19,15 +19,24 @@
             transition: transform 0.35s ease;
             animation: rotate-in 0.35s ease;
 
+            .task-item-left {
+
+                .task-item-complete-toggle {
+                    padding-right: 1rem;
+                }
+            }
+
+            .task-item-right {
+
+                .task-item-sublist-toggle {
+                }
+            }
+
             &.sublist-active {
                 transform: rotateX(0deg);
             }
 
             &.sublist-removed {
-            }
-
-            .task-item-text {
-                padding-right: 2rem;
             }
         }
     }

@@ -5,12 +5,13 @@ import TaskList from './taskList';
 
 const TasksList = ({
     id,
-    content
+    content,
+    setTasks
 }) => {
 
     return (
         <section id={id} className='tasks-list-container'>
-            <TaskList content={content} />
+            <TaskList content={content} setTasks={setTasks} />
         </section>
     );
 }

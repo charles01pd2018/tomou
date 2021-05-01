@@ -1,10 +1,11 @@
 // dependencies
 import Head from 'next/head';
 import { useSession } from 'next-auth/client';
+import { useState } from 'react';
 // layout
 import { AppLayout } from '../../../layout';
 // components
-import { TasksList } from '../../../components';
+import { TasksList, TasksViewToggler } from '../../../components';
 
 
 const TasksDashboardContent = {
@@ -13,12 +14,15 @@ const TasksDashboardContent = {
     tasksListContent: {
         taskList: [
             {
+                _id: 'task-1',
                 task: 'Do homework',
                 subTaskList: [
                     {
+                        _id: 'task-1-1',
                         task: 'Math',
                         subTaskList: [
                             {
+                                _id: 'task-1-1-1',
                                 task: 'i am sad'
                             },
                         ]
@@ -26,12 +30,15 @@ const TasksDashboardContent = {
                 ]
             },
             {
+                _id: 'task-2',
                 task: 'workout',
             },
             {
+                _id: 'task-3',
                 task: 'Write a really long task to see how it would appear on the screen and see what it would look like so you know what it would look like. Write a really long task to see how it would appear on the screen and see what it would look like so you know what it would look like',
                 subTaskList: [
                     {
+                        _id: 'task-3-1',
                         task: 'Hahahahhahahh',
                     },
                 ]
@@ -49,6 +56,8 @@ const TasksDashboard = ({
 
     if ( loading ) return null;
 
+    const [ tasks, setTasks ] = useState( tasksListContent );
+
     return (
         <>
             <Head>
@@ -59,7 +68,8 @@ const TasksDashboard = ({
                     <h1>{title}</h1>
                     <p>{description}</p>
                 </div>
-                <TasksList id='tasks-list-main' content={tasksListContent} />
+                <TasksViewToggler />
+                <TasksList id='tasks-list-main' content={tasks} setTasks={setTasks} />
             </AppLayout>
         </>
     );

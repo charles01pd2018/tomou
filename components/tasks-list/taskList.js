@@ -7,6 +7,7 @@ import TaskItem from './taskItem';
 const TaskList = ( {
     content: { taskList=[] },
     level=0, // because this a recursive component, the level tracks how deep in the rerender cycle we are
+    setTasks,
 }) => {
 
     const [ listLevel, setListLevel ] = useState( level );
@@ -18,7 +19,8 @@ const TaskList = ( {
                     return (
                         <TaskItem key={`task-${index}-${level}`}
                         content={ { task, subTaskList } } 
-                        level={listLevel} />
+                        level={listLevel} 
+                        setTasks={setTasks} />
                     );
                 } )
             }

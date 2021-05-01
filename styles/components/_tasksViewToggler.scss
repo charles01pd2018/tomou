@@ -1,0 +1,31 @@
+.tasks-view-toggler-container {
+    display: flex;
+    justify-content: flex-end;
+
+    .tasks-view-toggler-wrapper {
+        margin-right: 3rem;
+        margin-bottom: 2rem;
+
+        .tasks-view-toggler-item-wrapper {
+            display: inline-flex;
+
+            border: 1px solid black;
+            border-radius: 3px;
+
+            .tasks-view-toggler-item {
+                transition: transform 0.1s ease;
+
+                &:hover {
+                    background-color: var(--contrast-color);
+                    
+                    transform: scale(1.08);
+                }
+
+                .tasks-view-toggler-icon {
+                    width: 1rem;
+                    height: 1rem;
+                }
+            }
+        }
+    }
+}
