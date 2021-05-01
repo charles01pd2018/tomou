@@ -4,8 +4,10 @@
     .tasks-list-wrapper {
         display: flex;
         flex-direction: column;
-
         padding: 1rem 5rem;
 
+        .task-item-wrapper {
+            border-bottom: 2px solid black;
+        }
     }
 }
