@@ -1,13 +1,32 @@
 .tasks-list-container {
-    border: 1px solid black;
+    margin: 0 5rem;
+    padding: 1rem;
+    border: 5px solid black;
+    border-radius: 10px;
 
     .tasks-list-wrapper {
         display: flex;
         flex-direction: column;
-        padding: 1rem 5rem;
+        list-style-type: none;
+        // padding: 0; UNCOMMENT TO REMOVE PADDING-RIGHT
 
         .task-item-wrapper {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem;
             border-bottom: 2px solid black;
+
+            animation: rotate-in 0.35s ease;
+
+            .task-item-text {
+                padding-right: 2rem;
+            }
         }
+    }
+}
+
+@keyframes rotate-in {
+    from {
+        transform: rotateX(-90deg)
     }
 }
