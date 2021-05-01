@@ -1,5 +1,5 @@
 // dependencies
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import classNames from 'classnames';
 // partials
 import TaskList from './taskList';
@@ -12,13 +12,26 @@ const TaskItem = ({
     /* HOOKS */
     const [ itemLevel, setItemLevel ] = useState( level ); // level to be used for styling
     const [ subListActive, setSubListActive ] = useState ( false );
+    const [ subListRemoved, setSubListRemoved ] = useState( false );
 
     const toggleSubList = () => {
-        setSubListActive( state => !state );
+        setSubListActive( subListActive => {
+            if ( subListActive === true ) {
+                setSubListRemoved( false );
+                return false;
+            }
+            return true;
+        } );
     }
 
     /* CLASSNAMES */
-    const taskItemWrapperClasses = classNames( 'task-item-wrapper', subListActive ? 'task-item-active' : 'task-item-not-active' );
+    const taskItemWrapperClasses = classNames( 'task-item-wrapper', subListRemoved ? 'sublist-active' : 'sublist-removed' );
+
+    useEffect( () => {
+        return () => {
+            setSubListRemoved( true );
+        }
+    } );
 
     return (
         <>

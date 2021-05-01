@@ -1,0 +1,28 @@
+/*--------------------------------------------------------------
+# Variables
+--------------------------------------------------------------*/
+$diamond--thickness:            0.25em;                 // thickness of diamond
+$diamond--size:                 0.6em;                 // height of diamond
+$diamond--normalize:            $diamond--size / 3;   // normalize left and right diamond to look cleaner
+
+/*--------------------------------------------------------------
+# Styling
+--------------------------------------------------------------*/
+.diamond::before {
+	position: relative;
+	border-style: solid;
+	content: '';
+	display: inline-block;
+	transform: rotate(-45deg);
+	border-width: $diamond--thickness $diamond--thickness 0 0;
+	height: $diamond--size;
+    width: $diamond--size;
+	left: 0.15em;
+	top: 0.15em;
+    border: 1px solid gray;
+
+
+    .diamond-active & {
+        background: gray;
+    }
+}

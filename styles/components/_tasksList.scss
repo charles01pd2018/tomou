@@ -15,8 +15,16 @@
             justify-content: space-between;
             margin: 1rem;
             border-bottom: 2px solid black;
-
+            
+            transition: transform 0.35s ease;
             animation: rotate-in 0.35s ease;
+
+            &.sublist-active {
+                transform: rotateX(0deg);
+            }
+
+            &.sublist-removed {
+            }
 
             .task-item-text {
                 padding-right: 2rem;
@@ -27,6 +35,6 @@
 
 @keyframes rotate-in {
     from {
-        transform: rotateX(-90deg)
+        transform: rotateX(-90deg);
     }
 }
