@@ -4,6 +4,7 @@ import classNames from 'classnames';
 // partials
 import TaskList from './taskList';
 
+
 const TaskItem = ({
     content: { _id, task, subTaskList },
     level,
@@ -22,8 +23,12 @@ const TaskItem = ({
 
     const handleRemoveTask = ( id ) => {
         setTasks( ( { taskList } ) => {
-            const newTaskList = taskList.filter( task => task._id === id );
-            return { newTaskList };
+            const newTaskList = taskList.filter( function filterTaskList( taskItem ) {
+                if ( taskItem.subTaskList ) taskItem.subTaskList = taskItem.subTaskList.filter( filterTaskList );
+                if ( taskItem._id !== id) return true;
+            } );
+
+            return { taskList: newTaskList };
         } );
     }
 
