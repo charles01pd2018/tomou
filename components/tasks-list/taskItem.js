@@ -8,12 +8,16 @@ import TaskList from './taskList';
 const TaskItem = ({
     content: { _id, task, subTaskList },
     level,
-    setTasks,
+    setSubList, // setHasSubList hook from parent task
+    setTasks, // setTasks hook to rerender all tasks
 }) => {
 
     /* HOOKS */
     const [ itemLevel, setItemLevel ] = useState( level ); // level to be used for styling
+    // null, [], [tasks]
+    // !( subTaskList == null || subTaskList.length === 0 ) 
     const [ subListActive, setSubListActive ] = useState ( false );
+    const [ hasSubList, setHasSubList ] = useState( true );
 
     const toggleSubList = () => {
         setSubListActive( subListActive => {
@@ -22,11 +26,15 @@ const TaskItem = ({
     }
 
     const handleRemoveTask = ( id ) => {
+        if ( setSubList ) setSubList( false );
+
         setTasks( ( { taskList } ) => {
             const newTaskList = taskList.filter( function filterTaskList( taskItem ) {
                 if ( taskItem.subTaskList ) taskItem.subTaskList = taskItem.subTaskList.filter( filterTaskList );
                 if ( taskItem._id !== id) return true;
             } );
+
+            console.log( newTaskList );
 
             return { taskList: newTaskList };
         } );
@@ -47,7 +55,7 @@ const TaskItem = ({
                 </div>
                 <div className='task-item-right'>
                     {
-                        subTaskList && (
+                        hasSubList && (
                             <button className='task-item-sublist-toggle' onClick={toggleSubList}>
                                 <span className={chevronClasses}></span>
                             </button>
@@ -56,10 +64,11 @@ const TaskItem = ({
                 </div>
             </li>
             {
-                subListActive && subTaskList && (
+                subTaskList && subListActive && (
                 <TaskList 
                 content={ { taskList: subTaskList } } 
                 level={itemLevel + 1} 
+                setSubList={setHasSubList}
                 setTasks={setTasks} /> )
             }
         </>
