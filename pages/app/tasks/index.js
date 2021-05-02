@@ -5,9 +5,39 @@ import { useState } from 'react';
 // layout
 import { AppLayout } from '../../../layout';
 // components
-import { TasksList, TasksViewToggler } from '../../../components';
+import { TasksList, TasksViewToggler, NotAuth } from '../../../components';
 
 
+const TasksDashboard = ({
+    content: { title='', description='', tasksListContent={} }
+}) => {
+
+    const [ session, loading ] = useSession();
+    if ( loading ) return null;
+    if ( !session && !loading ) return <NotAuth id='not-auth' />
+
+    const [ tasks, setTasks ] = useState( tasksListContent );
+
+    return (
+        <>
+            <Head>
+                <title>tomou App Dashboard</title>
+            </Head>
+            <AppLayout user={session.user}>
+                <div className='screen-container text-center'>
+                    <h1>{title}</h1>
+                    <p>{description}</p>
+                </div>
+                <TasksViewToggler />
+                <TasksList id='tasks-list-main' content={tasks} setTasks={setTasks} />
+            </AppLayout>
+        </>
+    );
+}
+
+export default TasksDashboard;
+
+/* CONTENT */
 const TasksDashboardContent = {
     title: 'Tasks Dashboard',
     description: 'Keep track of all your tasks :-D',
@@ -46,37 +76,6 @@ const TasksDashboardContent = {
         ]
     }
 };
-
-
-const TasksDashboard = ({
-    content: { title='', description='', tasksListContent={} }
-}) => {
-
-    const [ session, loading ] = useSession(); // this is going to break if the user is not logged in
-
-    if ( loading ) return null;
-
-    const [ tasks, setTasks ] = useState( tasksListContent );
-
-    return (
-        <>
-            <Head>
-                <title>tomou App Dashboard</title>
-            </Head>
-            <AppLayout user={session.user}>
-                <div className='screen-container text-center'>
-                    <h1>{title}</h1>
-                    <p>{description}</p>
-                </div>
-                <TasksViewToggler />
-                <TasksList id='tasks-list-main' content={tasks} setTasks={setTasks} />
-            </AppLayout>
-        </>
-    );
-}
-
-export default TasksDashboard;
-
 
 export function getStaticProps() {
     return {

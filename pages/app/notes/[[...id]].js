@@ -2,9 +2,33 @@
 import Head from 'next/head';
 import { useSession } from 'next-auth/client';
 // components
-import { NotesInput, NotesStickies } from '../../../components';
+import { NotesInput, NotesStickies, NotAuth } from '../../../components';
 // layout
 import { AppLayout } from '../../../layout';
+
+
+const NotesDashboard = ({
+  content,
+}) => {
+
+  const [ session, loading ] = useSession();
+  if ( loading ) return null;
+  if ( !session && !loading ) return <NotAuth id='not-auth' />
+
+  return (
+    <>
+        <Head>
+          <title>tomou: Notes</title>
+        </Head>
+        <AppLayout content={content} user={session.user}>
+            <NotesStickies id='notes-stickies' />
+            <NotesInput id='notes-input' content={content} />
+        </AppLayout>
+    </>
+  );
+}
+
+export default NotesDashboard;
 
 
 const noteContent = {
@@ -23,30 +47,6 @@ const noteContent = {
       },
   ]
 };
-
-const NotesDashboard = ({
-  content,
-}) => {
-
-    const [ session, loading ] = useSession(); 
-      
-    if ( loading ) return null;
-
-    return (
-      <>
-          <Head>
-            <title>tomou: Notes</title>
-          </Head>
-          <AppLayout content={content} user={session.user}>
-              <NotesStickies id='notes-stickies' />
-              <NotesInput id='notes-input' content={content} />
-          </AppLayout>
-      </>
-    );
-}
-
-export default NotesDashboard;
-
 
 /* CHANGE THIS HACKY JAWNZ */
 export function getServerSideProps() {

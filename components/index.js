@@ -5,6 +5,7 @@ import Modal from './modal';
 import NotesStickies from './notes-stickies';
 import TasksList from './tasks-list';
 import TasksViewToggler from './tasks-view-toggler';
+import NotAuth from './not-auth';
 
 export {
     NotesInput,
@@ -14,4 +15,5 @@ export {
     NotesStickies,
     TasksList,
     TasksViewToggler,
+    NotAuth
 };

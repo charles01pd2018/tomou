@@ -17,7 +17,7 @@ const TaskItem = ({
     // null, [], [tasks]
     // !( subTaskList == null || subTaskList.length === 0 ) 
     const [ subListActive, setSubListActive ] = useState ( false );
-    const [ hasSubList, setHasSubList ] = useState( true );
+    const [ hasSubList, setHasSubList ] = useState( !( subTaskList == null || subTaskList.length === 0 )  );
 
     const toggleSubList = () => {
         setSubListActive( subListActive => {

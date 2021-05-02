@@ -4,23 +4,6 @@ import Head from 'next/head';
 import { CenterPanel } from '../../components';
 
 
-const RegisterContent = {
-    title: 'This is Where You Will Register !',
-    description: 'we will not have a data leak',
-    centerPanelContent: {
-        navLinks: [
-          {
-            linkText: 'Take Me Back =_=',
-            linkDestination: '/signin'
-          },
-          {
-            linkText: 'Take me home, friend',
-            linkDestination: '/'
-          },
-        ]
-      }
-};
-
 const FolderDashboard = ({
     content
 }) => {
@@ -43,6 +26,23 @@ const FolderDashboard = ({
 
 export default FolderDashboard;
 
+
+const RegisterContent = {
+    title: 'This is Where You Will Register !',
+    description: 'we will not have a data leak',
+    centerPanelContent: {
+        navLinks: [
+          {
+            linkText: 'Take Me Back =_=',
+            linkDestination: '/signin'
+          },
+          {
+            linkText: 'Take me home, friend',
+            linkDestination: '/'
+          },
+        ]
+      }
+};
 
 export function getStaticProps() {
     return {

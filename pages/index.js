@@ -4,23 +4,6 @@ import Head from 'next/head';
 import { CenterPanel } from '../components';
 
 
-const HomeContent = {
-  title: 'Home',
-  description: 'tomou: the best note taking app you will ever see in your life time yuhurd',
-  centerPanelContent: {
-    navLinks: [
-      {
-        linkText: 'Take me to the amazing tomou App',
-        linkDestination: '/app'
-      },
-      {
-        linkText: 'Take me to sign in page',
-        linkDestination: '/signin'
-      },
-    ]
-  }
-};
-
 const Home = ({
   content
 }) => {
@@ -43,6 +26,24 @@ const Home = ({
 }
 
 export default Home;
+
+
+const HomeContent = {
+  title: 'Home',
+  description: 'tomou: the best note taking app you will ever see in your life time yuhurd',
+  centerPanelContent: {
+    navLinks: [
+      {
+        linkText: 'Take me to the amazing tomou App',
+        linkDestination: '/app'
+      },
+      {
+        linkText: 'Take me to sign in page',
+        linkDestination: '/signin'
+      },
+    ]
+  }
+};
 
 export function getStaticProps() {
   return {

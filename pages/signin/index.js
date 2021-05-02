@@ -7,34 +7,15 @@ import { useRouter } from 'next/router';
 import { CenterPanel } from '../../components';
 
 
-const SignInContent = {
-    title: 'Sign In to tomou, yuhurd',
-    description: 'Get ready to have your mind blown with the greatest note taking experience you could ever fathom',
-    centerPanelContent: {
-        signinButtons: [
-            'Github',
-        ],
-        navLinks: [
-            {
-                linkText: 'Register Directly with tomou, where your personal data will always be safe :-D',
-                linkDestination: '/register'
-              },
-            {
-              linkText: 'Take me home, friend',
-              linkDestination: '/'
-            },
-          ],
-    }
-};
-
 const SignIn = ({
     content
 }) => {
 
     /* HOOKS */
     const [ session, loading ] = useSession();
-    const router = useRouter();
+    if ( loading ) return null;
 
+    const router = useRouter();
     useEffect( () => {
         if ( session ) router.push('/app');
     }, [ session, loading ] );
@@ -58,6 +39,26 @@ const SignIn = ({
 
 export default SignIn;
 
+
+const SignInContent = {
+    title: 'Sign In to tomou, yuhurd',
+    description: 'Get ready to have your mind blown with the greatest note taking experience you could ever fathom',
+    centerPanelContent: {
+        signinButtons: [
+            'Github',
+        ],
+        navLinks: [
+            {
+                linkText: 'Register Directly with tomou, where your personal data will always be safe :-D',
+                linkDestination: '/register'
+              },
+            {
+              linkText: 'Take me home, friend',
+              linkDestination: '/'
+            },
+          ],
+    }
+};
 
 export function getStaticProps() {
     return {

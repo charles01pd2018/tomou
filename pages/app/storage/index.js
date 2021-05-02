@@ -1,24 +1,16 @@
 // dependencies
 import { useSession } from 'next-auth/client';
-import gql from 'gql-tag';
+import { gql } from '@apollo/client'
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import Head from 'next/head';
 // components
-import { GridLinks } from '../../../components';
-import { Modal } from '../../../components';
+import { GridLinks, Modal, NotAuth } from '../../../components';
 // layout
 import { AppLayout } from '../../../layout';
 
-
-/* CONTENT */
-const FolderDashboardContent = {
-    title: 'Folder Dashboard',
-    description: 'This is where the user will see all the folder they have :-D',
-};
-
 /* SCHEMAS */
 const GET_FOLDERS = gql`
-    query folders {
+    query GetFolders {
         folderList {
             _id
             name
@@ -27,28 +19,29 @@ const GET_FOLDERS = gql`
     }
 `;
 
+const ADD_FOLDER = gql`
+    mutation AddFolder($name: String!) {
+        newFolder(name: $name) {
+            name
+        }
+    }
+`;
+
 const FolderDashboard = ( {
     content,
 } ) => {
     
-    /* CHECK SESSION -> this should probably be its own component */ 
     const [ session, loading ] = useSession();
+    if ( loading ) return null; 
+    if ( !session && !loading ) return <NotAuth id='not-auth' />
 
-    if ( loading ) return null; // loading spinner? 
 
-    if ( !session && !loading ) {
-        return (
-            <div className='screen-container center'>
-                <h1>You are not logged in</h1>
-            </div>
-        )
-    }
-
-    const { loading: dataLoading, error, data } = useQuery( GET_FOLDERS, );
+    // i think that i am going to need to use refetch if i am writing this on multiple devices
+    const { loading: dataLoading, error: fetchError, data: folderListData, refetch: refetchFolderList } = useQuery( GET_FOLDERS );
+    const [ addFolder, { data: newFolderData } ] = useMutation( ADD_FOLDER );
     
-    if ( dataLoading ) return 'loading'
-    if ( error ) return 'error'
-    if ( data ) return ( <h1> yay </h1> )
+    if ( dataLoading ) return null;
+    if ( fetchError ) return 'error';
 
 
     /* CONTENT */
@@ -66,8 +59,8 @@ const FolderDashboard = ( {
                     <a href='#add-folder'>
                         <button>Add Folder</button>
                     </a>
-                    <Modal id='add-folder' onSubmit={handleNewFolder} content={ { label: 'Folder Name' } } />
-                    <GridLinks id='mongo-folder-links' content={ { items: shownFolders } } setState={setShownFolders} />
+                    <Modal id='add-folder' content={ { label: 'Folder Name' } } />
+                    <GridLinks id='mongo-folder-links' content={{ items: folderListData.folderList }} />
                 </div>
             </AppLayout>
         </>
@@ -77,7 +70,14 @@ const FolderDashboard = ( {
 export default FolderDashboard;
 
 
+/* CONTENT */
+const FolderDashboardContent = {
+    title: 'Folder Dashboard',
+    description: 'This is where the user will see all the folder they have :-D',
+};
+
 export function getStaticProps() {
+
     return { 
         props: {
             content: FolderDashboardContent,
