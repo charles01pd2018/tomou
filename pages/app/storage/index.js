@@ -46,7 +46,7 @@ const FolderDashboard = ( {
         error: folderListError, 
         data: folderListData, 
         refetch: refetchFolderList } = useQuery( GET_FOLDERS );
-        
+
     const [ addFolder ] = useMutation( ADD_FOLDER, {
           update( cache, { data: { newFolder } } ) {
               const { folderList } = cache.readQuery( { query: GET_FOLDERS } );
@@ -62,8 +62,12 @@ const FolderDashboard = ( {
 
     const handleAddFolder = ( input ) => {
           addFolder( { 
-            variables: { input: 
-                input 
+            variables: { input: {
+                    _id: nanoid(12),
+                    createdBy: session.user.id,
+                    ...input,
+                    creationDate: new Date().toDateString(),
+                }
              },
             // optimisticResponse: {
             //     _typeName: 'Mutation',

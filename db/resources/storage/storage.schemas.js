@@ -12,7 +12,10 @@ const storageSchemas = gql`
     }
 
     input NewFolderInput {
+        _id: ID!
+        createdBy: String!
         name: String!
+        creationDate: String!
     }
 
     input DeleteFolderInput {
