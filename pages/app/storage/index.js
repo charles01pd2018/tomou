@@ -12,8 +12,8 @@ import { AppLayout } from '../../../layout';
 
 /* SCHEMAS */
 const GET_FOLDERS = gql`
-    query GetFolders {
-        folderList {
+    query GetFolders($input: FolderListInput!) {
+        folderList(input: $input) {
             _id
             name
             creationDate
@@ -31,6 +31,7 @@ const ADD_FOLDER = gql`
     }
 `;
 
+
 const FolderDashboard = ( {
     content,
 } ) => {
@@ -45,7 +46,11 @@ const FolderDashboard = ( {
         loading: folderListLoading, 
         error: folderListError, 
         data: folderListData, 
-        refetch: refetchFolderList } = useQuery( GET_FOLDERS );
+        refetch: refetchFolderList } = useQuery( GET_FOLDERS, {
+            variables: { input: {
+                userID: session.user.id,
+            } },
+        } );
 
     const [ addFolder ] = useMutation( ADD_FOLDER, {
           update( cache, { data: { newFolder } } ) {
@@ -56,6 +61,14 @@ const FolderDashboard = ( {
               } );
           }
     } );
+
+    // const [ reorderFolders ] = useMutation( _, {
+    //     update( cache, __) {
+    //         cache.writeQuery( { 
+    //             data: { folderList: [ 'newFolderList' ] }
+    //         } )
+    //     }
+    // } );
     
     if ( folderListLoading ) return null;
     if ( folderListError ) return 'error';
@@ -64,7 +77,7 @@ const FolderDashboard = ( {
           addFolder( { 
             variables: { input: {
                     _id: nanoid(12),
-                    createdBy: session.user.id,
+                    userID: session.user.id,
                     ...input,
                     creationDate: new Date().toDateString(),
                 }
@@ -80,6 +93,10 @@ const FolderDashboard = ( {
             //     }
             // },
           } );
+    }
+
+    const handleFolderSort = ( newFolderList ) => {
+
     }
 
 
@@ -99,7 +116,7 @@ const FolderDashboard = ( {
                         <button>Add Folder</button>
                     </a>
                     <Modal id='add-folder' content={ { label: 'Folder Name' } } submitText='Create Folder' onSubmit={handleAddFolder} />
-                    <GridLinks id='mongo-folder-links' content={{ items: folderListData.folderList }} />
+                    <GridLinks id='mongo-folder-links' content={{ items: folderListData.folderList }} data={folderListData} setState={handleFolderSort} />
                 </div>
             </AppLayout>
         </>

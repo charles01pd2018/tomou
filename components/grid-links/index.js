@@ -8,6 +8,7 @@ import { LinkBlob } from '../elements';
 const GridLinks = ({
     id,
     content: { items=[] },
+    data,
     setState,
 }) => {
 
@@ -30,7 +31,7 @@ const GridLinks = ({
     ) );
 
     const onSortEnd = ( { oldIndex, newIndex } ) => {
-        setState( state => arrayMove( state, oldIndex, newIndex ) );
+        setState( arrayMove( data, oldIndex, newIndex ) );
     }
     
     return (

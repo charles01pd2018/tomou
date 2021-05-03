@@ -1,26 +1,27 @@
-// dependencies
-import { nanoid } from 'nanoid';
-
 /* FOLDERS RESOURCE */
 const FOLDERS_RESOURCE_NAME = 'folders';
 
-const folderList = async ( _, __, { db: { mongo }, user } ) => {
+const folderList = async ( _, { input }, { db: { mongo } } ) => {
     return mongo.mongoDB.collection( FOLDERS_RESOURCE_NAME ).find( {
-        createdBy: user.id,
+        ...input
     } ).toArray();
 }
 
-const newFolder = async ( _, { input }, { db: { mongo }, user } ) => {
+const newFolder = async ( _, { input }, { db: { mongo } } ) => {
     return mongo.mongoDB.collection( FOLDERS_RESOURCE_NAME ).insertOne( {
         ...input,
     } ).then( ( { ops } ) => ops[ 0 ] );
 }
 
-const deleteFolder = async ( _, { id }, { db: { mongo } } ) => {
+const deleteFolder = async ( _, { input }, { db: { mongo } } ) => {
     return mongo.mongoDB.collection.findOneandDelete(
-        { _id: id, },
+        { ...input },
         { maxTimeMS: 5 },
     );
+}
+
+const reorderFolderList = ( _,  { input }, { db: { mongo } } ) => {
+    return '';
 }
 
 const storageResolvers = {
@@ -29,7 +30,8 @@ const storageResolvers = {
     },
     Mutation: {
         newFolder,
-        deleteFolder
+        deleteFolder,
+        reorderFolderList
     }
 }
 
