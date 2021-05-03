@@ -12,10 +12,9 @@ import { AppLayout } from '../../../layout';
 
 /* SCHEMAS */
 const GET_FOLDERS = gql`
-    query GetFolders($input: FolderListInput!) {
-        folderList(input: $input) {
+    query GetFolders {
+        folderList {
             _id
-            userID
             name
             creationDate
         }
@@ -48,11 +47,7 @@ const FolderDashboard = ( {
         loading: folderListLoading, 
         error: folderListError, 
         data: folderListData, 
-        refetch: refetchFolderList } = useQuery( GET_FOLDERS, {
-            variables: { input: {
-                userID: session.user.id,
-            } },
-        } );
+        refetch: refetchFolderList } = useQuery( GET_FOLDERS );
 
     const [ addFolder ] = useMutation( ADD_FOLDER, {
           update( cache, { data: { newFolder } } ) {

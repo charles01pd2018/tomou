@@ -6,14 +6,9 @@ const storageSchemas = gql`
     """Folder holds files or subfolders for the user"""
     type Folder {
         _id: ID!
-        userID: ID!
         name: String!
         "Get the creation Date"
         creationDate: String!
-    }
-
-    input FolderListInput {
-        userID: ID!
     }
 
     input NewFolderInput {
@@ -33,13 +28,13 @@ const storageSchemas = gql`
     }
 
     extend type Query {
-        folderList(input: FolderListInput!): [Folder]!
+        folderList: [Folder]!
     }
 
     extend type Mutation {
         newFolder(input: NewFolderInput!): Folder!
         deleteFolder(input: DeleteFolderInput!): Folder!
-        reorderFolderList(input: ReorderFolderListInput!): [Folder]!
+        reorderFolderList(input: ReorderFolderListInput!): [Folder!]!
     }
 `
 

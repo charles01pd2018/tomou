@@ -1,9 +1,9 @@
 /* FOLDERS RESOURCE */
 const FOLDERS_RESOURCE_NAME = 'folders';
 
-const folderList = async ( _, { input }, { db: { mongo } } ) => {
+const folderList = async ( _, __, { db: { mongo }, user } ) => {
     return mongo.mongoDB.collection( FOLDERS_RESOURCE_NAME ).find( {
-        ...input
+        userID: user.id,
     } ).toArray();
 }
 
