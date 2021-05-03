@@ -1,6 +1,5 @@
 // dependencies
 import Head from 'next/head';
-import { useEffect } from 'react';
 import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 // components
@@ -16,9 +15,8 @@ const SignIn = ({
     if ( loading ) return null;
 
     const router = useRouter();
-    useEffect( () => {
-        if ( session ) router.push('/app');
-    }, [ session, loading ] );
+    if ( session ) router.push('/app');
+
 
     /* CONTENT */
     const { title, description, centerPanelContent } = content;

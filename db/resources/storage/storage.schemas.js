@@ -6,6 +6,7 @@ const storageSchemas = gql`
     """Folder holds files or subfolders for the user"""
     type Folder {
         _id: ID!
+        userID: ID!
         name: String!
         "Get the creation Date"
         creationDate: String!

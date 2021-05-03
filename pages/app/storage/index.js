@@ -15,6 +15,7 @@ const GET_FOLDERS = gql`
     query GetFolders($input: FolderListInput!) {
         folderList(input: $input) {
             _id
+            userID
             name
             creationDate
         }
@@ -25,6 +26,7 @@ const ADD_FOLDER = gql`
     mutation AddFolder($input: NewFolderInput!) {
         newFolder(input: $input) {
             _id
+            userID
             name
             creationDate
         }
@@ -74,24 +76,22 @@ const FolderDashboard = ( {
     if ( folderListError ) return 'error';
 
     const handleAddFolder = ( input ) => {
+        const inputFolder = {
+            _id: nanoid(12),
+            userID: session.user.id,
+            ...input,
+            creationDate: new Date().toDateString(),
+        };
+        
           addFolder( { 
-            variables: { input: {
-                    _id: nanoid(12),
-                    userID: session.user.id,
-                    ...input,
-                    creationDate: new Date().toDateString(),
+            variables: { input: inputFolder },
+            optimisticResponse: {
+                __typeName: 'Mutation',
+                newFolder: {
+                    __typename: 'Folder',
+                    ...inputFolder
                 }
-             },
-            // optimisticResponse: {
-            //     _typeName: 'Mutation',
-            //     newFolder: {
-            //         _typename: 'Folder',
-            //         _id: nanoid( 12 ),
-            //         createdBy: session.user.id,
-            //         name: input.type,
-            //         creationDate: 'Jan 1, 2020',
-            //     }
-            // },
+            },
           } );
     }
 
@@ -102,6 +102,8 @@ const FolderDashboard = ( {
 
     /* CONTENT */
     const { title, description } = content;
+
+    console.log( folderListData );
 
     return (
         <>
