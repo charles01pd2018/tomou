@@ -10,9 +10,10 @@ const folderList = async ( _, __, { db: { mongo }, user } ) => {
     } ).toArray();
 }
 
-const newFolder = async ( _, { input }, { db: { mongo } } ) => {
+const newFolder = async ( _, { input }, { db: { mongo }, user } ) => {
     return mongo.mongoDB.collection( FOLDERS_RESOURCE_NAME ).insertOne( {
         _id: nanoid( 12 ),
+        createdBy: user.id,
         ...input,
         creationDate: new Date().toDateString(),
     } ).then( ( { ops } ) => ops[ 0 ] );

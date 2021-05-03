@@ -2,11 +2,13 @@
 import { useSession } from 'next-auth/client';
 import { gql } from '@apollo/client'
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import { nanoid } from 'nanoid';
 import Head from 'next/head';
 // components
 import { GridLinks, Modal, NotAuth } from '../../../components';
 // layout
 import { AppLayout } from '../../../layout';
+
 
 /* SCHEMAS */
 const GET_FOLDERS = gql`
@@ -20,9 +22,11 @@ const GET_FOLDERS = gql`
 `;
 
 const ADD_FOLDER = gql`
-    mutation AddFolder($name: String!) {
-        newFolder(name: $name) {
+    mutation AddFolder($input: NewFolderInput!) {
+        newFolder(input: $input) {
+            _id
             name
+            creationDate
         }
     }
 `;
@@ -37,11 +41,42 @@ const FolderDashboard = ( {
 
 
     // i think that i am going to need to use refetch if i am writing this on multiple devices
-    const { loading: dataLoading, error: fetchError, data: folderListData, refetch: refetchFolderList } = useQuery( GET_FOLDERS );
-    const [ addFolder, { data: newFolderData } ] = useMutation( ADD_FOLDER );
+    const { 
+        loading: folderListLoading, 
+        error: folderListError, 
+        data: folderListData, 
+        refetch: refetchFolderList } = useQuery( GET_FOLDERS );
+        
+    const [ addFolder ] = useMutation( ADD_FOLDER, {
+          update( cache, { data: { newFolder } } ) {
+              const { folderList } = cache.readQuery( { query: GET_FOLDERS } );
+              cache.writeQuery( {
+                  query: GET_FOLDERS,
+                  data: { folderList: [ newFolder, ...folderList ] },
+              } );
+          }
+    } );
     
-    if ( dataLoading ) return null;
-    if ( fetchError ) return 'error';
+    if ( folderListLoading ) return null;
+    if ( folderListError ) return 'error';
+
+    const handleAddFolder = ( input ) => {
+          addFolder( { 
+            variables: { input: 
+                input 
+             },
+            // optimisticResponse: {
+            //     _typeName: 'Mutation',
+            //     newFolder: {
+            //         _typename: 'Folder',
+            //         _id: nanoid( 12 ),
+            //         createdBy: session.user.id,
+            //         name: input.type,
+            //         creationDate: 'Jan 1, 2020',
+            //     }
+            // },
+          } );
+    }
 
 
     /* CONTENT */
@@ -59,7 +94,7 @@ const FolderDashboard = ( {
                     <a href='#add-folder'>
                         <button>Add Folder</button>
                     </a>
-                    <Modal id='add-folder' content={ { label: 'Folder Name' } } />
+                    <Modal id='add-folder' content={ { label: 'Folder Name' } } submitText='Create Folder' onSubmit={handleAddFolder} />
                     <GridLinks id='mongo-folder-links' content={{ items: folderListData.folderList }} />
                 </div>
             </AppLayout>
