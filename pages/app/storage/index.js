@@ -101,7 +101,8 @@ const FolderDashboard = ( {
 
 
     /* CONTENT */
-    const { title, description } = content;
+    const { title, description, modalContent } = content;
+    const { folderList } = folderListData;
 
     return (
         <>
@@ -112,11 +113,8 @@ const FolderDashboard = ( {
                 <div className='screen-container text-center'>
                     <h1>{title}</h1>
                     <p>{description}</p>
-                    <a href='#add-folder'>
-                        <button>Add Folder</button>
-                    </a>
-                    <Modal id='add-folder' content={ { label: 'Folder Name' } } submitText='Create Folder' onSubmit={handleAddFolder} />
-                    <GridLinks id='mongo-folder-links' content={{ items: folderListData.folderList }} data={folderListData} setState={handleFolderSort} />
+                    <Modal id='add-folder' content={modalContent} onSubmit={handleAddFolder} />
+                    <GridLinks id='mongo-folder-links' content={{ items: folderList }} data={folderListData} setState={handleFolderSort} />
                 </div>
             </AppLayout>
         </>
@@ -130,6 +128,13 @@ export default FolderDashboard;
 const FolderDashboardContent = {
     title: 'Folder Dashboard',
     description: 'This is where the user will see all the folder they have :-D',
+    modalContent: {
+        label: 'Folder Name',
+        submitText: 'Create Folder',
+        buttonContent: {
+            text: 'Add Folder',
+        }
+    }
 };
 
 export function getStaticProps() {
