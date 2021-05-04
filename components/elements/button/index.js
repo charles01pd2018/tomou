@@ -13,7 +13,7 @@ const Button = ({
 
     return (
         <button className={buttonClasses} type={type}>
-            {text}
+           {text}
         </button>
     );
 }

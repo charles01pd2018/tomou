@@ -20,6 +20,7 @@ const Modal = ({
         event.preventDefault();
         closeModalRef.current.click();
         onSubmit( { name: inputName } );
+        setInputName( '' );
     }
 
     return (
