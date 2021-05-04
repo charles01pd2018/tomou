@@ -1,0 +1,9 @@
+.light-scale-in-animate {
+    @keyframes light-scale-in {
+        from {
+            transform: scale(0.6);
+        }
+    }
+
+    animation: light-scale-in 0.4s;
+}

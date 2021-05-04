@@ -103,8 +103,6 @@ const FolderDashboard = ( {
     /* CONTENT */
     const { title, description } = content;
 
-    console.log( folderListData );
-
     return (
         <>
             <Head>

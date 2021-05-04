@@ -17,7 +17,7 @@ const GridLinks = ({
 
     /* HIGHER ORDER COMPONENTS */
     const DraggableLink = SortableElement( ( { name } ) => (
-        <LinkBlob linkText={name} linkDestination={linkDestination} />
+        <LinkBlob className='light-scale-in-animate' linkText={name} linkDestination={linkDestination} />
     ) );
 
     const SortableGrid = SortableContainer( ( { items } ) => (
