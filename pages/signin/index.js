@@ -26,11 +26,14 @@ const SignIn = ({
             <Head>
                 <title>Sign into tomou, friend</title>
             </Head>
-            <div className='screen-container text-center'>
-                <h1>{title}</h1>
-                <p>{description}</p>
-                <CenterPanel id='sign-in-buttons' content={centerPanelContent} />
-            </div>
+            {
+                !session && ( 
+                    <div className='screen-container text-center'>
+                        <h1>{title}</h1>
+                        <p>{description}</p>
+                        <CenterPanel id='sign-in-buttons' content={centerPanelContent} />
+                    </div> )
+            }
         </>
     );
 }

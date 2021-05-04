@@ -135,7 +135,6 @@ const FolderDashboardContent = {
 };
 
 export function getStaticProps() {
-
     return { 
         props: {
             content: FolderDashboardContent,
