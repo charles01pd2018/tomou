@@ -11,25 +11,29 @@ import { AppLayout } from '../../../layout';
 
 
 /* SCHEMAS */
+/* FOLDER */
+const FOLDER_DETAILS = gql`
+    fragment FolderDetails on Folder {
+        _id
+        name
+        creationDate
+    }
+`;
 const GET_FOLDERS = gql`
     query GetFolders {
         folderList {
-            _id
-            name
-            creationDate
+            ...FolderDetails
         }
     }
+    ${FOLDER_DETAILS}
 `;
-
 const ADD_FOLDER = gql`
     mutation AddFolder($input: NewFolderInput!) {
         newFolder(input: $input) {
-            _id
-            userID
-            name
-            creationDate
+            ...FolderDetails
         }
     }
+    ${FOLDER_DETAILS}
 `;
 
 
@@ -37,18 +41,20 @@ const FolderDashboard = ( {
     content,
 } ) => {
     
+    /* CHECK USER SESSION */
     const [ session, loading ] = useSession();
     if ( loading ) return null; 
     if ( !session && !loading ) return <NotAuth id='not-auth' />
 
 
-    // i think that i am going to need to use refetch if i am writing this on multiple devices
+    /* QUERIES */
     const { 
         loading: folderListLoading, 
         error: folderListError, 
         data: folderListData, 
         refetch: refetchFolderList } = useQuery( GET_FOLDERS );
 
+    /* MUTATIONS */
     const [ addFolder ] = useMutation( ADD_FOLDER, {
           update( cache, { data: { newFolder } } ) {
               const { folderList } = cache.readQuery( { query: GET_FOLDERS } );
@@ -73,7 +79,6 @@ const FolderDashboard = ( {
     const handleAddFolder = ( input ) => {
         const inputFolder = {
             _id: nanoid(12),
-            userID: session.user.id,
             ...input,
             creationDate: new Date().toDateString(),
         };

@@ -7,8 +7,9 @@ const folderList = async ( _, __, { db: { mongo }, user } ) => {
     } ).toArray();
 }
 
-const newFolder = async ( _, { input }, { db: { mongo } } ) => {
+const newFolder = async ( _, { input }, { db: { mongo }, user } ) => {
     return mongo.mongoDB.collection( FOLDERS_RESOURCE_NAME ).insertOne( {
+        userID: user.id,
         ...input,
     } ).then( ( { ops } ) => ops[ 0 ] );
 }

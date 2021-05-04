@@ -13,8 +13,6 @@ const storageSchemas = gql`
 
     input NewFolderInput {
         _id: ID!
-        "User ID of the person who created the new folder. This field cannot be queried for security purposes and only supplied for mutations."
-        userID: ID!
         name: String!
         creationDate: String!
     }
