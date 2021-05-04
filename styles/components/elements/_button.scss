@@ -1,27 +1,33 @@
 /*--------------------------------------------------------------
 # Variables
 --------------------------------------------------------------*/
+$button-main-color:                 #8FD7E5;
 
 /*--------------------------------------------------------------
 # Styling
 --------------------------------------------------------------*/
 .button-wrapper {
-
     border-radius: 5px;
+
+    transition: background-color 0.3s;
 
     &.button-lg {
         padding: 1rem;
     }
     
     &.button-md {
-        padding: 0.5rem;
+        padding: 0.8rem;
     }
     
     &.button-sm {
-        padding: 0.3rem
+        padding: 0.6rem
     }
 
     &.button-main {
-        background: var(--contrast-color);
+        background: $button-main-color;
+    }
+
+    &:hover {
+        background-color: lighten( $button-main-color, 5% );
     }
 }

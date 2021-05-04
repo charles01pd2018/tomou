@@ -1,5 +1,5 @@
 // dependencies
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 // elements
 import { Button } from '../elements';
@@ -14,20 +14,18 @@ const Modal = ({
     /* HOOKS */
     const router = useRouter();
     const [ inputName, setInputName ] = useState('');
+    const closeModalRef = useRef( null );
 
     const submit = ( event )  => {
         event.preventDefault();
-        router.push('/app/storage#'); // this is not working the way i thought it would :-3
+        closeModalRef.current.click();
         onSubmit( { name: inputName } );
     }
-
-    /* CONTENT */
-    const { buttonText } = buttonContent;
 
     return (
         <>
             <a href={`#${id}`}>
-                <Button className='button-lg button-main' content={buttonContent} />
+                <Button className='button-md button-main' content={buttonContent} />
             </a>
             <div id={id} className='modal-container'>
                 <div className='modal-wrapper'>
@@ -39,9 +37,10 @@ const Modal = ({
                             value={inputName} 
                             onChange={ () => setInputName( event.target.value ) }
                             required />
-                        <button className='modal-submit' type='submit'>{submitText}</button>
+                        <Button className='button-sm button-main modal-submit' type='submit' content={ { text: submitText } } />
                     </form>
                 </div>
+                <a className='modal-backdrop' href='#' ref={closeModalRef} tabIndex='-1' hidden />
             </div>
         </>
     );

@@ -4,14 +4,15 @@ import classNames from 'classnames';
 
 const Button = ({
     className,
-    content: { text='' }
+    content: { text='' },
+    type='submit',
 }) => {
 
     /* CLASSNAMES */
     const buttonClasses = classNames( 'button-wrapper', className );
 
     return (
-        <button className={buttonClasses}>
+        <button className={buttonClasses} type={type}>
             {text}
         </button>
     );
