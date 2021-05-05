@@ -3,6 +3,8 @@ import { useState } from 'react';
 import classNames from 'classnames';
 // partials
 import TaskList from './taskList';
+// elements
+import { Button } from '../elements';
 
 
 const TaskItem = ({
@@ -48,9 +50,9 @@ const TaskItem = ({
         <>
             <li className={taskItemWrapperClasses}>
                 <div className='task-item-left'>
-                    <button className='task-item-complete-toggle' onClick={() => handleRemoveTask(_id)}>
+                    <Button className='task-item-complete-toggle' onClick={() => handleRemoveTask(_id)}>
                         <span className='diamond'></span>
-                    </button>
+                    </Button>
                     {task}
                 </div>
                 <div className='task-item-right'>
