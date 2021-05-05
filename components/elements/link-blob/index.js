@@ -5,7 +5,8 @@ import classNames from 'classnames';
 const LinkBlob = ({
     className,
     linkDestination,
-    linkText
+    linkText,
+    iconType
 }) => {
 
     /* CLASSNAMES */
@@ -15,7 +16,13 @@ const LinkBlob = ({
         <Link href={linkDestination}>
             <a>
                 <div className={linkBlobClasses}>
-                    {linkText}
+                    {
+                        iconType && (
+                            <object className='link-blob-icon' type="image/svg+xml" data={`/static/icons/${iconType}.svg`} alt={`${iconType} icon`} role='presentation'>
+                                {iconType} icon
+                            </object> )
+                    }
+                    <span className='link-blob-text'>{linkText}</span>
                 </div>
             </a>
         </Link>   

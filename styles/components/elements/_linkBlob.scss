@@ -1,12 +1,20 @@
 .link-blob {
+    display: flex;
+    align-items: center;
     margin: 1rem;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     text-align: center;
     width: max-content;
 
     border: 5px solid var(--main-color);
     
     transition: background-color 0.5s; // THIS IS NOT PERFORMANT - TRIGGERS A REPAINT
+
+    .link-blob-icon {
+        padding-right: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
 
     &:hover {
         background-color: var(--contrast-color);

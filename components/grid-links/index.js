@@ -5,6 +5,7 @@ import arrayMove from 'array-move';
 import { LinkBlob } from '../elements';
 
 
+
 const GridLinks = ({
     id,
     content: { items=[] },
@@ -17,15 +18,20 @@ const GridLinks = ({
     console.log( items );
 
     /* HIGHER ORDER COMPONENTS */
-    const DraggableLink = SortableElement( ( { name } ) => (
-        <LinkBlob className='light-scale-in-animate grid-link' linkText={name} linkDestination={linkDestination} />
+    const DraggableLink = SortableElement( ( { name, itemType } ) => (
+        <LinkBlob className='light-scale-in-animate grid-link' 
+        linkText={name} 
+        linkDestination={linkDestination}
+        iconType={itemType.toLowerCase()} />
     ) );
 
     const SortableGrid = SortableContainer( ( { items } ) => (
         <section id={id} className='grid-links-container'>
         {
-            items.map( ( { name }, index ) => (
-                <DraggableLink key={`${name}-${index}`} index={index} name={name} />
+            items.map( ( { name, __typename}, index ) => (
+                <DraggableLink key={`${name}-${index}`} index={index} 
+                name={name}
+                itemType={__typename} />
             ) )
         }
         </section>
