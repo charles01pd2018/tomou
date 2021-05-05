@@ -4,7 +4,9 @@ const FOLDERS_RESOURCE_NAME = 'folders';
 const folderList = async ( _, __, { db: { mongo }, user } ) => {
     return mongo.mongoDB.collection( FOLDERS_RESOURCE_NAME ).find( {
         userID: user.id,
-    } ).toArray();
+    } )
+    .sort( { updateDate: -1, interactionDate: -1, creationDate: -1 } )
+    .toArray();
 }
 
 const newFolder = async ( _, { input }, { db: { mongo }, user } ) => {
@@ -21,8 +23,11 @@ const deleteFolder = async ( _, { input }, { db: { mongo } } ) => {
     );
 }
 
-const reorderFolderList = ( _,  { input }, { db: { mongo } } ) => {
-    return '';
+const updateFolderInteract = ( _,  { input }, { db: { mongo } } ) => {
+    return mongo.mongoDB.collection( FOLDERS_RESOURCE_NAME ).findOneAndUpdate( 
+        { _id: input._id },
+        { interactionDate: input.interactionDate } 
+        ).then( ( { ops } ) => ops[ 0 ] );
 }
 
 const storageResolvers = {
@@ -32,7 +37,7 @@ const storageResolvers = {
     Mutation: {
         newFolder,
         deleteFolder,
-        reorderFolderList
+        updateFolderInteract,
     }
 }
 

@@ -8,12 +8,13 @@ import { LinkBlob } from '../elements';
 const GridLinks = ({
     id,
     content: { items=[] },
-    data,
     setState,
 }) => {
 
     /* CONSTANTS */
     const linkDestination = '/';
+
+    console.log( items );
 
     /* HIGHER ORDER COMPONENTS */
     const DraggableLink = SortableElement( ( { name } ) => (
@@ -31,7 +32,7 @@ const GridLinks = ({
     ) );
 
     const onSortEnd = ( { oldIndex, newIndex } ) => {
-        setState( arrayMove( data, oldIndex, newIndex ) );
+        setState( arrayMove( items, oldIndex, newIndex ) );
     }
     
     return (

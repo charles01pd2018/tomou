@@ -3,8 +3,6 @@ import { useState } from 'react';
 import classNames from 'classnames';
 // partials
 import TaskList from './taskList';
-// elements
-import { Button } from '../elements';
 
 
 const TaskItem = ({
@@ -50,15 +48,15 @@ const TaskItem = ({
         <>
             <li className={taskItemWrapperClasses}>
                 <div className='task-item-left'>
-                    <Button className='task-item-complete-toggle' onClick={() => handleRemoveTask(_id)}>
+                    <button className='task-item-complete-toggle' onClick={() => handleRemoveTask(_id)} type='button'>
                         <span className='diamond'></span>
-                    </Button>
+                    </button>
                     {task}
                 </div>
                 <div className='task-item-right'>
                     {
                         hasSubList && (
-                            <button className='task-item-sublist-toggle' onClick={toggleSubList}>
+                            <button className='task-item-sublist-toggle' onClick={toggleSubList} type='button'>
                                 <span className={chevronClasses}></span>
                             </button>
                         )

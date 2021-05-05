@@ -17,6 +17,8 @@ const FOLDER_DETAILS = gql`
         _id
         name
         creationDate
+        interactionDate
+        updateDate
     }
 `;
 const GET_FOLDERS = gql`
@@ -34,6 +36,15 @@ const ADD_FOLDER = gql`
         }
     }
     ${FOLDER_DETAILS}
+`;
+
+const INTERACT_FOLDER = gql`
+    mutation UpdateFolderInteract($input: UpdateFolderInteractinput!) {
+        updateFolderInteract(input: $input) {
+            _id
+            interactionDate
+        }
+    }
 `;
 
 
@@ -80,7 +91,7 @@ const FolderDashboard = ( {
         const inputFolder = {
             _id: nanoid(12),
             ...input,
-            creationDate: new Date().toDateString(),
+            creationDate: new Date(),
         };
         
           addFolder( { 
@@ -114,7 +125,7 @@ const FolderDashboard = ( {
                     <h1>{title}</h1>
                     <p>{description}</p>
                     <Modal id='add-folder' content={modalContent} onSubmit={handleAddFolder} />
-                    <GridLinks id='mongo-folder-links' content={{ items: folderList }} data={folderListData} setState={handleFolderSort} />
+                    <GridLinks id='mongo-folder-links' content={{ items: folderList }} setState={handleFolderSort} />
                 </div>
             </AppLayout>
         </>

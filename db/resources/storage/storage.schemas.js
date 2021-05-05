@@ -3,26 +3,51 @@ import gql from 'gql-tag';
 
 
 const storageSchemas = gql`
+    union SubStorageItem = Folder | File
+
+    type File {
+        _id: ID!
+        name: String!
+        creationDate: String!
+        interactionDate: String
+        updateDate: String
+        "idk what I am going to do with the data property yet"
+        data: String
+    }
+
     """Folder holds files or subfolders for the user"""
     type Folder {
         _id: ID!
         name: String!
-        "Get the creation Date"
+        "List of folders or files within the folder"
+        subItemList: [SubStorageItem]!
         creationDate: String!
+        interactionDate: String
+        updateDate: String
     }
 
     input NewFolderInput {
         _id: ID!
         name: String!
         creationDate: String!
+        interactionDate: String
+        updateDate: String
     }
 
     input DeleteFolderInput {
         _id: ID!
     }
 
-    input ReorderFolderListInput {
+    input UpdateFolderInteractInput {
         _id: ID!
+        interactionDate: String!
+    }
+
+    input UpdateFolder {
+        _id: ID!
+        name: String
+        interactionDate: String
+        updateDate: String
     }
 
     extend type Query {
@@ -32,7 +57,7 @@ const storageSchemas = gql`
     extend type Mutation {
         newFolder(input: NewFolderInput!): Folder!
         deleteFolder(input: DeleteFolderInput!): Folder!
-        reorderFolderList(input: ReorderFolderListInput!): [Folder!]!
+        updateFolderInteract(input: UpdateFolderInteractInput!): [Folder!]!
     }
 `
 
