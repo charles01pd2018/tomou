@@ -4,18 +4,19 @@ const tasksSchemas = gql`
     type Task {
         _id: ID!
         name: String!
-        subTaskList: [Task!]
+        subTaskList: [Task]
+    }
+
+    input DeleteTaskInput {
+        _id: ID!
     }
 
     extend type Query {
-        "Returns an individual task"
-        task: Task!
-        "Returns the task list only including the ids of the subtasks"
-        miniTaskList: [Task]!
-        "Returns the task and all subtasks content"
         taskList: [Task]!
-        "Returns all tasks associated with the user"
-        allTasks: [Task]!
+    }
+
+    extend type Mutation {
+        deleteTask(input: DeleteTaskInput): Task!
     }
 `
 

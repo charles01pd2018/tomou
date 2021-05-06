@@ -26,6 +26,8 @@ const TaskItem = ({
     }
 
     const handleRemoveTask = ( id ) => {
+        // this is setting everything that has a sublist to false
+        // this is right in theory, except that this state is keeping track on then entire list rather than each item
         if ( setSubList ) setSubList( false );
 
         setTasks( ( { taskList } ) => {
@@ -33,8 +35,6 @@ const TaskItem = ({
                 if ( taskItem.subTaskList ) taskItem.subTaskList = taskItem.subTaskList.filter( filterTaskList );
                 if ( taskItem._id !== id) return true;
             } );
-
-            console.log( newTaskList );
 
             return { taskList: newTaskList };
         } );
@@ -68,7 +68,7 @@ const TaskItem = ({
                 <TaskList 
                 content={ { taskList: subTaskList } } 
                 level={itemLevel + 1} 
-                setSubList={setHasSubList}
+                setSubList={itemLevel !==0 && setHasSubList}
                 setTasks={setTasks} /> )
             }
         </>

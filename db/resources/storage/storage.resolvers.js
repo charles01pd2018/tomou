@@ -20,7 +20,7 @@ const deleteFolder = async ( _, { input }, { db: { mongo } } ) => {
     return mongo.mongoDB.collection.findOneandDelete(
         { ...input },
         { maxTimeMS: 5 },
-    );
+    ).then( ( { ops } ) => ops[ 0 ] );
 }
 
 const updateFolderInteract = ( _,  { input }, { db: { mongo } } ) => {
