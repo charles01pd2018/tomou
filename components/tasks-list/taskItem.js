@@ -34,8 +34,8 @@ const TaskItem = ({
         // this is not the problem
         setTasks( ( taskList ) => {
             const newTaskList = taskList.map( copy ).filter( function filterTaskList( taskItem ) {
-                if ( taskItem.subTaskList ) taskItem.subTaskList = taskItem.subTaskList.map( copy ).filter( filterTaskList );
                 if ( taskItem._id !== id ) return true;
+                if ( taskItem.subTaskList ) taskItem.subTaskList = taskItem.subTaskList.map( copy ).filter( filterTaskList );
             } );
             
             // the error is only occuring when a top level array item is removed
