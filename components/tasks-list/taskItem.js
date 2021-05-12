@@ -4,6 +4,9 @@ import classNames from 'classnames';
 // partials
 import TaskList from './taskList';
 
+const copy = ( o ) => {
+    return Object.assign( {}, o );
+}
 
 const TaskItem = ({
     content: { _id, task, subTaskList },
@@ -17,7 +20,7 @@ const TaskItem = ({
     // null, [], [tasks]
     // !( subTaskList == null || subTaskList.length === 0 ) 
     const [ subListActive, setSubListActive ] = useState ( false );
-    const [ hasSubList, setHasSubList ] = useState( !( subTaskList == null || subTaskList.length === 0 )  );
+    const [ hasSubList, setHasSubList ] = useState( !( subTaskList == null || subTaskList.length === 0 ) );
 
     const toggleSubList = () => {
         setSubListActive( subListActive => {
@@ -26,17 +29,18 @@ const TaskItem = ({
     }
 
     const handleRemoveTask = ( id ) => {
-        // this is setting everything that has a sublist to false
-        // this is right in theory, except that this state is keeping track on then entire list rather than each item
         if ( setSubList ) setSubList( false );
 
-        setTasks( ( { taskList } ) => {
-            const newTaskList = taskList.filter( function filterTaskList( taskItem ) {
-                if ( taskItem.subTaskList ) taskItem.subTaskList = taskItem.subTaskList.filter( filterTaskList );
-                if ( taskItem._id !== id) return true;
+        // this is not the problem
+        setTasks( ( taskList ) => {
+            const newTaskList = taskList.map( copy ).filter( function filterTaskList( taskItem ) {
+                if ( taskItem.subTaskList ) taskItem.subTaskList = taskItem.subTaskList.map( copy ).filter( filterTaskList );
+                if ( taskItem._id !== id ) return true;
             } );
-
-            return { taskList: newTaskList };
+            
+            // the error is only occuring when a top level array item is removed
+            console.log( newTaskList );
+            return newTaskList;
         } );
     }
 
@@ -54,21 +58,27 @@ const TaskItem = ({
                     {task}
                 </div>
                 <div className='task-item-right'>
+                    <label htmlFor='cars' className='hide'>Something</label>
+                {/* <select name="cars" id="cars">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                </select> */}
                     {
                         hasSubList && (
                             <button className='task-item-sublist-toggle' onClick={toggleSubList} type='button'>
                                 <span className={chevronClasses}></span>
-                            </button>
-                        )
+                            </button> )
                     }
                 </div>
             </li>
             {
-                subTaskList && subListActive && (
-                <TaskList 
+                hasSubList && subListActive && (
+                <TaskList
                 content={ { taskList: subTaskList } } 
                 level={itemLevel + 1} 
-                setSubList={itemLevel !==0 && setHasSubList}
+                setSubList={setHasSubList}
                 setTasks={setTasks} /> )
             }
         </>

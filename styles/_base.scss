@@ -11,6 +11,17 @@ main.site-content {
 /*--------------------------------------------------------------
 # Normalize
 --------------------------------------------------------------*/
+html,
+body {
+  margin: 0 auto;
+  font-family: Quicksand, Verdana;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 button,
 input,
 optgroup,
@@ -26,6 +37,10 @@ fieldset {
 button {
   cursor: pointer;
   padding: 0.5rem;
+}
+
+select {
+  cursor: pointer;
 }
 
 object {

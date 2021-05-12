@@ -16,7 +16,7 @@ const TasksDashboard = ({
     if ( loading ) return null;
     if ( !session && !loading ) return <NotAuth id='not-auth' />
 
-    const [ tasks, setTasks ] = useState( tasksListContent );
+    const [ tasks, setTasks ] = useState( tasksListContent.taskList );
 
     return (
         <>
@@ -29,7 +29,7 @@ const TasksDashboard = ({
                     <p>{description}</p>
                 </div>
                 <TasksViewToggler />
-                <TasksList id='tasks-list-main' content={tasks} setTasks={setTasks} />
+                <TasksList id='tasks-list-main' content={{taskList: tasks}} setTasks={setTasks} />
             </AppLayout>
         </>
     );

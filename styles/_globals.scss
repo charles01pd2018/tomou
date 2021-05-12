@@ -20,7 +20,7 @@
 }
 
 /*--------------------------------------------------------------
-# Site Variables
+# Typography
 --------------------------------------------------------------*/
 @font-face {
   font-family: "Quicksand";
@@ -46,13 +46,9 @@
   font-family: QuicksandLight;
 }
 
-html,
-body {
-  margin: 0 auto;
-  font-family: Quicksand, Verdana;
-  scroll-behavior: smooth;
-}
-
+/*--------------------------------------------------------------
+# Font Sizing
+--------------------------------------------------------------*/
 $font-sizing-map: (
   "h1": 3em,
   "h2": 2.5em,
@@ -76,7 +72,6 @@ a {
 
 // tablet (5% smaller than Desktop)
 @media(max-width: $breakpoint--large) {
-
   @each $font-type, $font-size in $font-sizing-map {
     #{$font-type} {
       font-size: $font-size * 0.95;
@@ -86,17 +81,9 @@ a {
 
 // mobile (10% smaller than Desktop)
 @media(max-width: $breakpoint--medium) {
-
   @each $font-type, $font-size in $font-sizing-map {
     #{$font-type} {
       font-size: $font-size * 0.9;
     }
   }
-}
-
-/*--------------------------------------------------------------
-# Site Customization
---------------------------------------------------------------*/
-* {
-  box-sizing: border-box;
 }
