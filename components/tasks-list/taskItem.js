@@ -4,43 +4,22 @@ import classNames from 'classnames';
 // partials
 import TaskList from './taskList';
 
-const copy = ( o ) => {
-    return Object.assign( {}, o );
-}
 
-const TaskItem = ({
+const TaskItem = ( {
     content: { _id, task, subTaskList },
     level,
     setSubList, // setHasSubList hook from parent task
     setTasks, // setTasks hook to rerender all tasks
-}) => {
+} ) => {
 
     /* HOOKS */
     const [ itemLevel, setItemLevel ] = useState( level ); // level to be used for styling
-    // null, [], [tasks]
-    // !( subTaskList == null || subTaskList.length === 0 ) 
     const [ subListActive, setSubListActive ] = useState ( false );
     const [ hasSubList, setHasSubList ] = useState( !( subTaskList == null || subTaskList.length === 0 ) );
 
     const toggleSubList = () => {
         setSubListActive( subListActive => {
             return !subListActive;
-        } );
-    }
-
-    const handleRemoveTask = ( id ) => {
-        if ( setSubList ) setSubList( false );
-
-        // this is not the problem
-        setTasks( ( taskList ) => {
-            const newTaskList = taskList.map( copy ).filter( function filterTaskList( taskItem ) {
-                if ( taskItem._id !== id ) return true;
-                if ( taskItem.subTaskList ) taskItem.subTaskList = taskItem.subTaskList.map( copy ).filter( filterTaskList );
-            } );
-            
-            // the error is only occuring when a top level array item is removed
-            console.log( newTaskList );
-            return newTaskList;
         } );
     }
 
@@ -52,7 +31,7 @@ const TaskItem = ({
         <>
             <li className={taskItemWrapperClasses}>
                 <div className='task-item-left'>
-                    <button className='task-item-complete-toggle' onClick={() => handleRemoveTask(_id)} type='button'>
+                    <button className='task-item-complete-toggle' onClick={() => setTasks(_id, setSubList)} type='button'>
                         <span className='diamond'></span>
                     </button>
                     {task}
@@ -67,9 +46,9 @@ const TaskItem = ({
                 </select> */}
                     {
                         hasSubList && (
-                            <button className='task-item-sublist-toggle' onClick={toggleSubList} type='button'>
-                                <span className={chevronClasses}></span>
-                            </button> )
+                        <button className='task-item-sublist-toggle' onClick={toggleSubList} type='button'>
+                            <span className={chevronClasses}></span>
+                        </button> )
                     }
                 </div>
             </li>

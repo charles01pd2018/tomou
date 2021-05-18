@@ -20,8 +20,6 @@ const TasksViewToggler = ({
         setTasksView( viewType );
     }
 
-    console.log( tasksView );
-
     return (
         <section id={id} className='tasks-view-toggler-container'>
             <div className='tasks-view-toggler-wrapper'>

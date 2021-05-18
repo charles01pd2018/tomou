@@ -17,9 +17,9 @@ const TaskList = ( {
     return (
         <ul className='tasks-list-wrapper'>
             {
-                taskList.map( ( taskItem, index ) => {
+                taskList.map( ( taskItem ) => {
                     return (
-                        <TaskItem key={`task-${index}-${level}`}
+                        <TaskItem key={taskItem._id}
                         content={taskItem} 
                         level={listLevel} 
                         setSubList={setSubList}

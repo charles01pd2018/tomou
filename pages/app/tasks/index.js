@@ -16,7 +16,23 @@ const TasksDashboard = ({
     if ( loading ) return null;
     if ( !session && !loading ) return <NotAuth id='not-auth' />
 
-    const [ tasks, setTasks ] = useState( tasksListContent.taskList );
+    const [ tasks, setTasks ] = useState( tasksListContent );
+
+    const handleRemoveTask = ( id, setSubList ) => {
+        if ( setSubList ) setSubList( false );
+
+        setTasks( ( tasksListContent ) => {
+            const newTasksList = tasksListContent.taskList.filter( function filterTaskList( taskItem ) {
+                if ( taskItem.subTaskList ) taskItem.subTaskList = taskItem.subTaskList.filter( filterTaskList );
+                if ( taskItem._id !== id ) return true;
+            } );
+
+            return {
+                taskList: newTasksList,
+            }
+        } );
+    }
+
 
     return (
         <>
@@ -29,7 +45,7 @@ const TasksDashboard = ({
                     <p>{description}</p>
                 </div>
                 <TasksViewToggler />
-                <TasksList id='tasks-list-main' content={{taskList: tasks}} setTasks={setTasks} />
+                <TasksList id='tasks-list-main' content={tasks} setTasks={handleRemoveTask} />
             </AppLayout>
         </>
     );
