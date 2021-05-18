@@ -1,21 +1,21 @@
-.tasks-view-toggler-container {
+.icons-buttons-container {
     display: flex;
     justify-content: flex-end;
 
-    .tasks-view-toggler-wrapper {
+    .icons-buttons-wrapper {
         margin-right: 3rem;
         margin-bottom: 2rem;
 
-        .tasks-view-toggler-item-wrapper {
+        .icons-buttons-item-wrapper {
             display: inline-flex;
 
             border: 1px solid black;
             border-radius: 3px;
 
-            .tasks-view-toggler-item {
+            .icons-buttons-item {
                 transition: transform 0.1s ease;
 
-                &.task-view-active {
+                &.icon-button-active {
                     background-color: var(--contrast-color);
                 }
 
@@ -25,7 +25,7 @@
                     transform: scale(1.08);
                 }
 
-                .tasks-view-toggler-icon {
+                .icons-buttons-icon {
                     width: 1rem;
                     height: 1rem;
                 }

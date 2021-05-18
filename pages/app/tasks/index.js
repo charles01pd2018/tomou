@@ -5,19 +5,23 @@ import { useState } from 'react';
 // layout
 import { AppLayout } from '../../../layout';
 // components
-import { TasksList, TasksViewToggler, NotAuth } from '../../../components';
+import { TasksList, IconsButtons, NotAuth } from '../../../components';
 
 
 const TasksDashboard = ({
-    content: { title='', description='', tasksListContent={} }
+    content: { title='', description='', tasksListContent={}, iconsButtonsContent={} }
 }) => {
 
+    /* SESSION */
     const [ session, loading ] = useSession();
     if ( loading ) return null;
     if ( !session && !loading ) return <NotAuth id='not-auth' />
 
+    /* HOOKS */
     const [ tasks, setTasks ] = useState( tasksListContent );
-
+    const [ tasksView, setTasksView ] = useState( iconsButtonsContent.iconsButtonsTypes[ 0 ] );
+    
+    /* FUNCTIONS */
     const handleRemoveTask = ( id, setSubList ) => {
         if ( setSubList ) setSubList( false );
 
@@ -44,7 +48,7 @@ const TasksDashboard = ({
                     <h1>{title}</h1>
                     <p>{description}</p>
                 </div>
-                <TasksViewToggler />
+                <IconsButtons id='tasks-views-toggler' content={iconsButtonsContent} currentButton={tasksView} setState={setTasksView} />
                 <TasksList id='tasks-list-main' content={tasks} setTasks={handleRemoveTask} />
             </AppLayout>
         </>
@@ -90,7 +94,14 @@ const TasksDashboardContent = {
                 ]
             },
         ]
-    }
+    },
+    iconsButtonsContent: {
+        iconsButtonsTypes: [
+            'list',
+            'grid',
+            'calendar',
+        ],
+    },
 };
 
 export function getStaticProps() {

@@ -4,7 +4,7 @@ import GridLinks from './grid-links';
 import Modal from './modal';
 import NotesStickies from './notes-stickies';
 import TasksList from './tasks-list';
-import TasksViewToggler from './tasks-view-toggler';
+import IconsButtons from './icons-buttons';
 import NotAuth from './not-auth';
 
 export {
@@ -14,6 +14,6 @@ export {
     Modal,
     NotesStickies,
     TasksList,
-    TasksViewToggler,
+    IconsButtons,
     NotAuth
 };
