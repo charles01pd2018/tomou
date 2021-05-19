@@ -1,11 +1,13 @@
 // dependencies
 import Head from 'next/head';
 import { useSession } from 'next-auth/client';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 // layout
 import { AppLayout } from '../../../layout';
 // components
-import { TasksList, IconsButtons, NotAuth } from '../../../components';
+import { IconsButtons, NotAuth } from '../../../components';
+import { TasksList, TasksGrid, TasksCalendar } from '../../../components/tasks';
 
 
 const TasksDashboard = ({
@@ -37,6 +39,17 @@ const TasksDashboard = ({
         } );
     }
 
+    const routeDefaultTaskView = () => {
+        router.push(`#${tasksView}`);
+    }
+
+    const router = useRouter();
+    useEffect( () => {
+        router.events.on( 'routeChangeEnd', routeDefaultTaskView );
+        return () => {
+            router.events.off( 'routeChangeEnd', routeDefaultTaskView );
+        }
+    }, [] );
 
     return (
         <>
@@ -49,7 +62,9 @@ const TasksDashboard = ({
                     <p>{description}</p>
                 </div>
                 <IconsButtons id='tasks-views-toggler' content={iconsButtonsContent} currentButton={tasksView} setState={setTasksView} />
-                <TasksList id='tasks-list-main' content={tasks} setTasks={handleRemoveTask} />
+                <TasksList id='list' content={tasks} setTasks={handleRemoveTask} />
+                <TasksGrid id='grid' />
+                <TasksCalendar id='calendar' />
             </AppLayout>
         </>
     );

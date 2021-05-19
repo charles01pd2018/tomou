@@ -8,17 +8,17 @@ const NotesInput = ({
     content
 }) => {
 
-    const [ activeNoteIndex, setActiveNoteIndex ] = useState(0);
+    const [ activeNoteIndex, setActiveNoteIndex ] = useState( 0 );
 
     return (
-        <section id={id} className='note-input-container'>
-            <div className='note-toggle'>
+        <section id={id} className='notes-input-container'>
+            <div className='notes-toggle'>
                 Edit Note
             </div>
             {
                 content.noteItems.map( ( { noteLabel, noteText }, index ) => {
                     const noteID = `note-${index}`;
-                    const noteItemClasses = classNames('note-text-area-container', activeNoteIndex === index ? 'note-active' : 'hide' );
+                    const noteItemClasses = classNames('notes-text-area-container', activeNoteIndex === index ? 'note-active' : 'hide' );
                     return (
                         <div key={noteText} className={noteItemClasses}>
                             <label htmlFor={noteID}><b>{noteLabel}</b></label>

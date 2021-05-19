@@ -1,0 +1,7 @@
+.tasks-calendar-container {
+    display: none;
+
+    &:target {
+        display: block;
+    }
+}

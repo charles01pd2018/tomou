@@ -1,5 +1,4 @@
 // partials
-import TasksSorter from './tasksSorter';
 import TaskList from './taskList';
 
 

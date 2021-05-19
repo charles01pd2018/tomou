@@ -9,7 +9,7 @@ const TaskList = ( {
     level=0, // because this a recursive component, the level tracks how deep in the rerender cycle we are
     setSubList,
     setTasks,
-}) => {
+} ) => {
 
     /* HOOKS */
     const [ listLevel, setListLevel ] = useState( level );

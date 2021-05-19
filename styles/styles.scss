@@ -19,9 +19,15 @@ $breakpoint--small:                 600px;      // this is definetely a mobile d
 /*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
-@import 'components/noteInput', 'components/centerPanel', 'components/gridLinks',
+@import 'components/notesInput', 'components/centerPanel', 'components/gridLinks',
     'components/modal', 'components/stickies', 'components/poof',
-    'components/tasksList', 'components/iconsButtons';
+    'components/iconsButtons';
+
+/*--------------------------------------------------------------
+# Components / Tasks
+--------------------------------------------------------------*/
+@import 'components/tasks/tasksList', 'components/tasks/tasksGrid',
+    'components/tasks/tasksCalendar';
 
 /*--------------------------------------------------------------
 # Elements

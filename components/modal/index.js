@@ -1,6 +1,5 @@
 // dependencies
 import { useState, useRef } from 'react';
-import { useRouter } from 'next/router';
 // elements
 import { Button } from '../elements';
 
@@ -12,15 +11,14 @@ const Modal = ({
 }) => {
 
     /* HOOKS */
-    const router = useRouter();
     const [ inputName, setInputName ] = useState('');
     const closeModalRef = useRef( null );
 
     const submit = ( event )  => {
         event.preventDefault();
-        closeModalRef.current.click();
-        onSubmit( { name: inputName } );
-        setInputName( '' );
+        closeModalRef.current.click(); // close the modal
+        onSubmit( { name: inputName } ); // add new folder to database
+        setInputName( '' ); // reset the modal input
     }
 
     return (

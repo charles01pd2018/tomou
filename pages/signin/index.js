@@ -2,6 +2,7 @@
 import Head from 'next/head';
 import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 // components
 import { CenterPanel } from '../../components';
 
@@ -17,6 +18,9 @@ const SignIn = ({
     const router = useRouter();
     if ( session ) router.push('/app');
 
+    useEffect( () => {
+        router.prefetch('/app'); // enables faster loading experiences by prefetching users content
+    }, [] );
 
     /* CONTENT */
     const { title, description, centerPanelContent } = content;
