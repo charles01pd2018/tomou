@@ -1,6 +1,6 @@
 // dependencies
 import classNames from 'classnames';
-import { useRef, useLayoutEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
 
 const IconButtons = ({
@@ -18,8 +18,8 @@ const IconButtons = ({
         setState( viewType );
     }
 
-    useLayoutEffect( () => { 
-        // defaultIconButtonRef.current.click();
+    useEffect( () => { 
+        defaultIconButtonRef.current.click();
     }, [] );
 
     /* CONTENT */

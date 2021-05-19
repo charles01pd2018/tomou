@@ -1,8 +1,7 @@
 // dependencies
 import Head from 'next/head';
-import { options, useSession } from 'next-auth/client';
-import { useRouter } from 'next/router';
-import { useState, useEffect, useCallback } from 'react';
+import { useSession } from 'next-auth/client';
+import { useState } from 'react';
 // layout
 import { AppLayout } from '../../../layout';
 // components
@@ -21,7 +20,7 @@ const TasksDashboard = ({
 
     /* HOOKS */
     const [ tasks, setTasks ] = useState( tasksListContent );
-    const [ tasksView, setTasksView ] = useState( iconsButtonsContent.iconsButtonsTypes[ 0 ] );
+    const [ tasksView, setTasksView ] = useState( iconsButtonsContent.defaultIconButton );
     
     /* FUNCTIONS */
     const handleRemoveTask = ( id, setSubList ) => {
@@ -39,22 +38,6 @@ const TasksDashboard = ({
         } );
     }
 
-    const handleRouteChange = () => {
-        router.push(`#${tasksView}`, { shallow: true } );
-    }
-
-    const router = useRouter();
-    useEffect( () => {
-        if ( router.isReady ) handleRouteChange();
-    }, [] );
-
-    // useCallback( () => { 
-    //     /* CONTENT */
-    //     const { iconsButtonsTypes } = iconsButtonsContent;
-    //     const defaultIconButton = iconsButtonsTypes.shift();
-    // }, [] );
-
-
     return (
         <>
             <Head>
@@ -65,7 +48,7 @@ const TasksDashboard = ({
                     <h1>{title}</h1>
                     <p>{description}</p>
                 </div>
-                <IconsButtons id='tasks-views-toggler' content={ { defaultIconButton, iconsButtonsTypes } } currentButton={tasksView} setState={setTasksView} />
+                <IconsButtons id='tasks-views-toggler' content={iconsButtonsContent} currentButton={tasksView} setState={setTasksView} />
                 <TasksList id='list' content={tasks} setTasks={handleRemoveTask} />
                 <TasksGrid id='grid' />
                 <TasksCalendar id='calendar' />
@@ -115,8 +98,8 @@ const TasksDashboardContent = {
         ]
     },
     iconsButtonsContent: {
+        defaultIconButton: 'list',
         iconsButtonsTypes: [
-            'list',
             'grid',
             'calendar',
         ],
