@@ -1,8 +1,8 @@
 // dependencies
 import Head from 'next/head';
-import { useSession } from 'next-auth/client';
+import { options, useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 // layout
 import { AppLayout } from '../../../layout';
 // components
@@ -39,17 +39,21 @@ const TasksDashboard = ({
         } );
     }
 
-    const routeDefaultTaskView = () => {
-        router.push(`#${tasksView}`);
+    const handleRouteChange = () => {
+        router.push(`#${tasksView}`, { shallow: true } );
     }
 
     const router = useRouter();
     useEffect( () => {
-        router.events.on( 'routeChangeEnd', routeDefaultTaskView );
-        return () => {
-            router.events.off( 'routeChangeEnd', routeDefaultTaskView );
-        }
+        if ( router.isReady ) handleRouteChange();
     }, [] );
+
+    // useCallback( () => { 
+    //     /* CONTENT */
+    //     const { iconsButtonsTypes } = iconsButtonsContent;
+    //     const defaultIconButton = iconsButtonsTypes.shift();
+    // }, [] );
+
 
     return (
         <>
@@ -61,7 +65,7 @@ const TasksDashboard = ({
                     <h1>{title}</h1>
                     <p>{description}</p>
                 </div>
-                <IconsButtons id='tasks-views-toggler' content={iconsButtonsContent} currentButton={tasksView} setState={setTasksView} />
+                <IconsButtons id='tasks-views-toggler' content={ { defaultIconButton, iconsButtonsTypes } } currentButton={tasksView} setState={setTasksView} />
                 <TasksList id='list' content={tasks} setTasks={handleRemoveTask} />
                 <TasksGrid id='grid' />
                 <TasksCalendar id='calendar' />
