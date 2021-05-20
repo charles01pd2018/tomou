@@ -24,7 +24,7 @@ const TasksCalendar = ( {
             <div className='calendar-wrapper'>
                 <Calendar className='calendar' tileClassName='calendar-tile'
                     onChange={onChange}
-                    value={value} 
+                    value={value}
                     navigationAriaLabel='change date selection'
                     nextAriaLabel='next small date range'
                     next2AriaLabel='next large date range'
