@@ -1,3 +1,4 @@
+
 // dependencies
 import { useState } from 'react'; 
 // installed components
@@ -5,7 +6,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 
-const TasksCalendar = ( {
+const CalendarPopup = ( {
     id,
     content,
 } ) => {
@@ -40,4 +41,4 @@ const TasksCalendar = ( {
     );
 }
 
-export default TasksCalendar;
+export default CalendarPopup;

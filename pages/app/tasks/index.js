@@ -2,11 +2,43 @@
 import Head from 'next/head';
 import { useSession } from 'next-auth/client';
 import { useState } from 'react';
+import { gql } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/react-hooks';
+import { nanoid } from 'nanoid';
 // layout
 import { AppLayout } from '../../../layout';
 // components
 import { IconsButtons, NotAuth } from '../../../components';
 import { TasksList, TasksGrid, TasksCalendar } from '../../../components/tasks';
+
+/* SCHEMAS */
+const TASK_DETAILS = gql`
+    fragment TaskDetails on Task {
+        _id
+        name
+        subTaskList
+        dueDate
+        tags
+    }
+`
+
+const GET_TASKS = gql `
+    query GetTasks {
+        taskList {
+            ...TaskDetails
+        }
+    }
+    ${TASK_DETAILS}
+`
+
+const DELETE_TASK = gql`
+    mutation DeleteTask {
+        deleteTask {
+            ...TaskDetails
+        }
+    }
+    ${TASK_DETAILS}
+`
 
 
 const TasksDashboard = ({

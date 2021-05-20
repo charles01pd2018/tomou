@@ -1,6 +1,8 @@
 // dependencies
 import { useState } from 'react';
 import classNames from 'classnames';
+// components
+import CalendarPopup from '../../calendar-popup';
 // partials
 import TaskList from './taskList';
 

@@ -5,6 +5,7 @@ import Modal from './modal';
 import NotesStickies from './notes-stickies';
 import IconsButtons from './icons-buttons';
 import NotAuth from './not-auth';
+import CalendarPopup from './calendar-popup';
 
 export {
     NotesInput,
@@ -13,5 +14,6 @@ export {
     Modal,
     NotesStickies,
     IconsButtons,
-    NotAuth
+    NotAuth,
+    CalendarPopup,
 };
