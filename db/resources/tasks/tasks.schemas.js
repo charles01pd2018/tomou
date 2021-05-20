@@ -5,6 +5,8 @@ const tasksSchemas = gql`
         _id: ID!
         name: String!
         subTaskList: [Task]
+        dueDate: String
+        tags: [String]
     }
 
     input DeleteTaskInput {

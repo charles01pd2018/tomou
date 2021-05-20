@@ -1,7 +1,17 @@
 .tasks-calendar-container {
     display: none;
+    margin: 5rem;
 
     &:target {
         display: block;
+    }
+
+    .calendar-wrapper {
+        display: flex;
+        justify-content: center;
+
+        .calendar {
+            font-family: inherit;
+        }
     }
 }

@@ -6,6 +6,10 @@
 
     display: none; // only show when targetted
 
+    &:target {
+        display: block; // display when the view is targetted
+    }
+
     .tasks-list-wrapper {
         display: flex;
         flex-direction: column;
@@ -42,8 +46,8 @@
         }
     }
 
-    &:target {
-        display: block;
+    @media(max-width: $breakpoint--medium) {
+        margin: 0 1rem 5rem 1rem;
     }
 }
 
