@@ -8,7 +8,7 @@ import { nanoid } from 'nanoid';
 // layout
 import { AppLayout } from '../../../layout';
 // components
-import { IconsButtons, NotAuth } from '../../../components';
+import { IconsButtons, NotAuth, Modal } from '../../../components';
 import { TasksList, TasksGrid, TasksCalendar } from '../../../components/tasks';
 
 /* SCHEMAS */
@@ -41,9 +41,9 @@ const DELETE_TASK = gql`
 `
 
 
-const TasksDashboard = ({
-    content: { title='', description='', tasksListContent={}, iconsButtonsContent={} }
-}) => {
+const TasksDashboard = ( {
+    content: { title='', description='', modalContent={}, tasksListContent={}, iconsButtonsContent={} }
+} ) => {
 
     /* SESSION */
     const [ session, loading ] = useSession();
@@ -54,12 +54,29 @@ const TasksDashboard = ({
     const [ tasks, setTasks ] = useState( tasksListContent );
     const [ tasksView, setTasksView ] = useState( iconsButtonsContent.defaultIconButton );
     
+    /* QUERIES */
+    const { 
+        loading: taskListLoading,
+        error: taskListError,
+        data: taskListData, } = useQuery( GET_TASKS );
+
+    /* MUTATIONS */
+    const [ deleteTask ] = useMutation( DELETE_TASK, {
+        update( cache, { data: { newTaskList } } ) {
+            const { taskList } = cache.readQuery( { query: GET_TASKS } );
+            cache.writeQuery( { 
+                query: GET_TASKS,
+                data: { taskList: newTaskList },
+            } );
+        }
+    } )
+
     /* FUNCTIONS */
     const handleRemoveTask = ( id, setSubList ) => {
         if ( setSubList ) setSubList( false );
 
-        setTasks( ( tasksListContent ) => {
-            const newTasksList = tasksListContent.taskList.filter( function filterTaskList( taskItem ) {
+        setTasks( ( { taskList } ) => {
+            const newTasksList = taskList.filter( function filterTaskList( taskItem ) {
                 if ( taskItem.subTaskList ) taskItem.subTaskList = taskItem.subTaskList.filter( filterTaskList );
                 if ( taskItem._id !== id ) return true;
             } );
@@ -69,6 +86,21 @@ const TasksDashboard = ({
             }
         } );
     }
+
+    const handleAddTask = ( input ) => {
+        const newTask = {
+            _id: nanoid(12),
+            ...input,
+        }
+        
+        setTasks( ( { taskList } ) => {
+            return {
+                taskList: [ newTask, ...taskList ],
+            }
+        } )
+    }
+
+    console.log( taskListData );
 
     return (
         <>
@@ -81,6 +113,9 @@ const TasksDashboard = ({
                     <p>{description}</p>
                 </div>
                 <IconsButtons id='tasks-views-toggler' content={iconsButtonsContent} currentButton={tasksView} setState={setTasksView} />
+                <div className='screen-container text-center'>
+                    <Modal id='add-task' content={modalContent} onSubmit={handleAddTask} />
+                </div>
                 <TasksList id='list' content={tasks} setTasks={handleRemoveTask} />
                 <TasksGrid id='grid' />
                 <TasksCalendar id='calendar' />
@@ -95,19 +130,26 @@ export default TasksDashboard;
 const TasksDashboardContent = {
     title: 'Tasks Dashboard',
     description: 'Keep track of all your tasks :-D',
+    modalContent: {
+        label: 'Task Name',
+        submitText: 'Create Task',
+        buttonContent: {
+            text: 'Add Task',
+        }
+    },
     tasksListContent: {
         taskList: [
             {
                 _id: 'task-1',
-                task: 'Do homework',
+                name: 'Do homework',
                 subTaskList: [
                     {
                         _id: 'task-1-1',
-                        task: 'Math',
+                        name: 'Math',
                         subTaskList: [
                             {
                                 _id: 'task-1-1-1',
-                                task: 'i am sad'
+                                name: 'i am sad'
                             },
                         ]
                     },
@@ -115,15 +157,15 @@ const TasksDashboardContent = {
             },
             {
                 _id: 'task-2',
-                task: 'workout',
+                name: 'workout',
             },
             {
                 _id: 'task-3',
-                task: 'Write a really long task to see how it would appear on the screen and see what it would look like so you know what it would look like. Write a really long task to see how it would appear on the screen and see what it would look like so you know what it would look like',
+                name: 'Write a really long task to see how it would appear on the screen and see what it would look like so you know what it would look like. Write a really long task to see how it would appear on the screen and see what it would look like so you know what it would look like',
                 subTaskList: [
                     {
                         _id: 'task-3-1',
-                        task: 'Hahahahhahahh',
+                        name: 'Hahahahhahahh',
                     },
                 ]
             },

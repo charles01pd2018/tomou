@@ -31,7 +31,7 @@ const IconButtons = ({
             <div className='icons-buttons-wrapper'>
                 <div className='icons-buttons-item-wrapper'>
                     <a ref={defaultIconButtonRef} href={`#${defaultIconButton}`}>
-                        <button className={defaultIconButtonClasses} onClick={() => handleSetIconButton(defaultIconButton)}>
+                        <button className={defaultIconButtonClasses} onClick={() => handleSetIconButton(defaultIconButton)} type='button'>
                             <object className='icons-buttons-icon' type="image/svg+xml" data={`/static/icons/${defaultIconButton}.svg`} alt={defaultIconButtonAltText}>
                                 {defaultIconButtonAltText}
                             </object>
@@ -43,8 +43,8 @@ const IconButtons = ({
                             const iconAltText = `${viewType} icon`;
                             const taskIconButtonClasses = classNames( 'icons-buttons-item', currentButton === viewType && 'icon-button-active' );
                             return (
-                                <a href={`#${viewType}`}>
-                                    <button className={taskIconButtonClasses} onClick={() => handleSetIconButton(viewType)}>
+                                <a key={viewType} href={`#${viewType}`}>
+                                    <button className={taskIconButtonClasses} onClick={() => handleSetIconButton(viewType)} type='button'>
                                             <object className='icons-buttons-icon' type="image/svg+xml" data={`/static/icons/${viewType}.svg`} alt={iconAltText}>
                                                 {iconAltText}
                                             </object>

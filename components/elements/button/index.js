@@ -2,12 +2,13 @@
 import classNames from 'classnames';
 
 
-const Button = ({
+const Button = ( {
     children,
     className,
     content,
+    onClick,
     type='submit',
-}) => {
+} ) => {
 
     /* CLASSNAMES */
     const buttonClasses = classNames( 'button-wrapper', className );
@@ -16,7 +17,7 @@ const Button = ({
     const { text } = content || '';
 
     return (
-        <button className={buttonClasses} type={type}>
+        <button className={buttonClasses} onClick={onClick} type={type}>
            {text}
            {children}
         </button>

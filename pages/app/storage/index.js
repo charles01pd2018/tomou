@@ -124,7 +124,7 @@ const FolderDashboard = ( {
                 <div className='screen-container text-center'>
                     <h1>{title}</h1>
                     <p>{description}</p>
-                    <Modal id='add-folder' content={modalContent} onSubmit={handleAddFolder} />
+                    <Modal id='add-folder-modal' content={modalContent} onSubmit={handleAddFolder} />
                     <GridLinks id='mongo-folder-links' content={{ items: folderList }} setState={handleFolderSort} />
                 </div>
             </AppLayout>

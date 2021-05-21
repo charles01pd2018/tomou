@@ -1,5 +1,6 @@
 // dependencies
 import { useState, useRef } from 'react';
+import classNames from 'classnames';
 // elements
 import { Button } from '../elements';
 
@@ -11,25 +12,32 @@ const Modal = ({
 }) => {
 
     /* HOOKS */
-    const [ inputName, setInputName ] = useState('');
     const closeModalRef = useRef( null );
+    const [ inputName, setInputName ] = useState('');
+    const [ modalActive, setModalActive ] = useState( false );
 
-    const submit = ( event )  => {
+    /* FUNCTIONS */
+    const handleFormSubmit = ( event )  => {
         event.preventDefault();
         closeModalRef.current.click(); // close the modal
         onSubmit( { name: inputName } ); // add new folder to database
         setInputName( '' ); // reset the modal input
     }
 
+    const toggleModal = () => {
+        setModalActive( modalActive => !modalActive );
+    }
+
+    /* CLASSNAMES */
+    const modalContainerClasses = classNames( 'modal-container', modalActive && 'modal-active' );
+
     return (
         <>
-            <a href={`#${id}`}>
-                <Button className='button-md button-main' content={buttonContent} />
-            </a>
-            <div id={id} className='modal-container'>
+            <Button className='button-md button-main' content={buttonContent} onClick={toggleModal} type='button' />
+            <div id={id} className={modalContainerClasses}>
                 <div className='modal-wrapper'>
-                    <a className='x-close' href='#'>&times;</a>
-                    <form onSubmit={submit}>
+                    <button className='x-close' onClick={toggleModal} type='button'>&times;</button>
+                    <form onSubmit={handleFormSubmit}>
                         <label htmlFor='folder-name-input'><h3>{label}</h3></label>
                             <input id="folder-name-input" className='modal-form' 
                             type='text' 
@@ -39,7 +47,7 @@ const Modal = ({
                         <Button className='button-sm button-main modal-submit' type='submit' content={ { text: submitText } } />
                     </form>
                 </div>
-                <a className='modal-backdrop' href='#' ref={closeModalRef} tabIndex='-1' hidden />
+                <button ref={closeModalRef} className='modal-backdrop' onClick={toggleModal} type='button' tabIndex='-1' hidden />
             </div>
         </>
     );

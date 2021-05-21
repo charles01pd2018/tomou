@@ -8,7 +8,7 @@ import TaskList from './taskList';
 
 
 const TaskItem = ( {
-    content: { _id, task, subTaskList },
+    content: { _id, name, subTaskList },
     level,
     setSubList, // setHasSubList hook from parent task
     setTasks, // setTasks hook to rerender all tasks
@@ -36,7 +36,7 @@ const TaskItem = ( {
                     <button className='task-item-complete-toggle' onClick={() => setTasks(_id, setSubList)} type='button'>
                         <span className='diamond'></span>
                     </button>
-                    {task}
+                    {name}
                 </div>
                 <div className='task-item-right'>
                     <label htmlFor='cars' className='hide'>Something</label>
