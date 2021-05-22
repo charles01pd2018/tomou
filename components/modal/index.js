@@ -28,6 +28,10 @@ const Modal = ({
         setModalActive( modalActive => !modalActive );
     }
 
+    const handleInputNameChange = ( event ) => {
+        setInputName( event.target.value );
+    }
+
     /* CLASSNAMES */
     const modalContainerClasses = classNames( 'modal-container', modalActive && 'modal-active' );
 
@@ -42,7 +46,7 @@ const Modal = ({
                             <input id="folder-name-input" className='modal-form' 
                             type='text' 
                             value={inputName} 
-                            onChange={ () => setInputName( event.target.value ) }
+                            onChange={(event) => handleInputNameChange( event )}
                             required />
                         <Button className='button-sm button-main modal-submit' type='submit' content={ { text: submitText } } />
                     </form>

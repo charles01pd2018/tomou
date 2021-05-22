@@ -1,0 +1,33 @@
+/*--------------------------------------------------------------
+# Variables
+--------------------------------------------------------------*/
+$plus--size:                 1.3em;                    // size of chevron
+$plus--normalize:            $plus--size  / 3;        // normalize left and right plus to look cleaner
+
+/*--------------------------------------------------------------
+# Styling
+--------------------------------------------------------------*/
+.plus {
+    display: inline-block;
+    width: $plus--size;
+    height: $plus--size;
+    
+    background: black;
+    background-position: center;
+    background-size: 50% 2px,2px 50%; /*thickness = 2px, length = 50% (25px)*/
+    background-repeat:no-repeat;
+
+    &.alt {
+      background:
+        linear-gradient(#000,#000),
+        linear-gradient(#000,#000);
+      background-position:center;
+      background-size: 50% 2px,2px 50%; /*thickness = 2px, length = 50% (25px)*/
+      background-repeat:no-repeat;
+    }
+
+    &.radius {
+      border-radius:50%;
+
+    }
+  }

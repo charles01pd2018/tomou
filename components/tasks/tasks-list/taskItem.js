@@ -15,19 +15,31 @@ const TaskItem = ( {
 } ) => {
 
     /* HOOKS */
+    const [ taskName, setTaskName ] = useState( name );
     const [ itemLevel, setItemLevel ] = useState( level ); // level to be used for styling
     const [ subListActive, setSubListActive ] = useState ( false );
     const [ hasSubList, setHasSubList ] = useState( !( subTaskList == null || subTaskList.length === 0 ) );
 
+    /* FUNCTIONS */
     const toggleSubList = () => {
         setSubListActive( subListActive => {
             return !subListActive;
         } );
     }
 
+    const handleTaskNameChange = ( event ) => {
+        setTaskName( event.target.value );
+    }
+
     /* CLASSNAMES */
     const taskItemWrapperClasses = classNames( 'task-item-wrapper', );
-    const chevronClasses = classNames( 'chevron ', subListActive ? 'up' : 'down' );
+    const chevronClasses = classNames( 'chevron shape', subListActive ? 'up' : 'down' );
+
+    // <input id="folder-name-input" className='modal-form' 
+    //                         type='text' 
+    //                         value={inputName} 
+    //                         onChange={(event) => handleInputNameChange( event )}
+    //                         required />
 
     return (
         <>
@@ -36,7 +48,10 @@ const TaskItem = ( {
                     <button className='task-item-complete-toggle' onClick={() => setTasks(_id, setSubList)} type='button'>
                         <span className='diamond'></span>
                     </button>
-                    {name}
+                    <input className='task-name'
+                        type='text'
+                        value={taskName}
+                        onChange={(event) => handleTaskNameChange( event )} />
                 </div>
                 <div className='task-item-right'>
                     <label htmlFor='cars' className='hide'>Something</label>
@@ -47,10 +62,13 @@ const TaskItem = ( {
                     <option value="audi">Audi</option>
                 </select> */}
                     {
-                        hasSubList && (
+                        hasSubList ? (
                         <button className='task-item-sublist-toggle' onClick={toggleSubList} type='button'>
                             <span className={chevronClasses}></span>
-                        </button> )
+                        </button> ) : (
+                        <button className='task-item-sublist-add' onClick={() => {}} type='button'>
+                            <span className='plus alt shape'></span>
+                        </button>)
                     }
                 </div>
             </li>

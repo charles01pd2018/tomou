@@ -1,0 +1,6 @@
+.shape {
+    border: 1px solid green;
+    &:hover {
+        background-color: blue;
+    }
+}

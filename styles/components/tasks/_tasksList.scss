@@ -17,7 +17,7 @@
         // padding: 0; UNCOMMENT TO REMOVE PADDING-RIGHT
 
         .task-item-wrapper {
-            display: flex;
+            display: inline-flex;
             justify-content: space-between;
             margin: 1rem;
             border-bottom: 2px solid black;
@@ -25,10 +25,18 @@
             animation: rotate-in 0.35s ease;
 
             .task-item-left {
-
+                display: inline-flex;
+                width: 100%;
+                
                 .task-item-complete-toggle {
                     padding-right: 1rem;
                 }
+
+                .task-name {
+                    width: 100%;
+                    overflow: auto;
+                }
+
             }
 
             .task-item-right {
