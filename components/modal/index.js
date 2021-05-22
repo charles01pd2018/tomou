@@ -46,7 +46,8 @@ const Modal = ({
                             <input id="folder-name-input" className='modal-form' 
                             type='text' 
                             value={inputName} 
-                            onChange={(event) => handleInputNameChange( event )}
+                            onInput={(event) => handleInputNameChange( event )}
+                            autoFocus
                             required />
                         <Button className='button-sm button-main modal-submit' type='submit' content={ { text: submitText } } />
                     </form>

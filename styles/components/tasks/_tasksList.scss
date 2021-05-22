@@ -34,7 +34,10 @@
 
                 .task-name {
                     width: 100%;
-                    overflow: auto;
+                    resize: none;
+                    align-self: center;
+                    height: max-content;
+                    padding-bottom: 0.2rem;
                 }
 
             }

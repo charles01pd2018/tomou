@@ -29,17 +29,13 @@ const TaskItem = ( {
 
     const handleTaskNameChange = ( event ) => {
         setTaskName( event.target.value );
+        console.log( taskName );
     }
 
     /* CLASSNAMES */
     const taskItemWrapperClasses = classNames( 'task-item-wrapper', );
     const chevronClasses = classNames( 'chevron shape', subListActive ? 'up' : 'down' );
 
-    // <input id="folder-name-input" className='modal-form' 
-    //                         type='text' 
-    //                         value={inputName} 
-    //                         onChange={(event) => handleInputNameChange( event )}
-    //                         required />
 
     return (
         <>
@@ -51,7 +47,7 @@ const TaskItem = ( {
                     <input className='task-name'
                         type='text'
                         value={taskName}
-                        onChange={(event) => handleTaskNameChange( event )} />
+                        onInput={(event) => handleTaskNameChange( event )} />
                 </div>
                 <div className='task-item-right'>
                     <label htmlFor='cars' className='hide'>Something</label>
