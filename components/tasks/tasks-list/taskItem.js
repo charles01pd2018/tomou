@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import CalendarPopup from '../../calendar-popup';
 // partials
 import TaskList from './taskList';
+// elements
+import { Textarea } from '../../elements';
 
 
 const TaskItem = ( {
@@ -22,14 +24,11 @@ const TaskItem = ( {
 
     /* FUNCTIONS */
     const toggleSubList = () => {
-        setSubListActive( subListActive => {
-            return !subListActive;
-        } );
+        setSubListActive( subListActive => !subListActive );
     }
 
     const handleTaskNameChange = ( event ) => {
         setTaskName( event.target.value );
-        console.log( taskName );
     }
 
     /* CLASSNAMES */
@@ -44,10 +43,7 @@ const TaskItem = ( {
                     <button className='task-item-complete-toggle' onClick={() => setTasks(_id, setSubList)} type='button'>
                         <span className='diamond'></span>
                     </button>
-                    <input className='task-name'
-                        type='text'
-                        value={taskName}
-                        onInput={(event) => handleTaskNameChange( event )} />
+                    <Textarea className='task-name' value={taskName} onChange={handleTaskNameChange} />
                 </div>
                 <div className='task-item-right'>
                     <label htmlFor='cars' className='hide'>Something</label>
@@ -64,7 +60,7 @@ const TaskItem = ( {
                         </button> ) : (
                         <button className='task-item-sublist-add' onClick={() => {}} type='button'>
                             <span className='plus alt shape'></span>
-                        </button>)
+                        </button> )
                     }
                 </div>
             </li>

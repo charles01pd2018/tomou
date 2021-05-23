@@ -26,6 +26,7 @@
 
             .task-item-left {
                 display: inline-flex;
+                align-items: center;
                 width: 100%;
                 
                 .task-item-complete-toggle {
@@ -35,7 +36,7 @@
                 .task-name {
                     width: 100%;
                     resize: none;
-                    align-self: center;
+                    overflow: hidden;
                     height: max-content;
                     padding-bottom: 0.2rem;
                 }
