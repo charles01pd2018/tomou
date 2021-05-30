@@ -58,8 +58,10 @@ const TaskItem = ( {
                         <button className='task-item-sublist-toggle' onClick={toggleSubList} type='button'>
                             <span className={chevronClasses}></span>
                         </button> ) : (
-                        <button className='task-item-sublist-add' onClick={() => {}} type='button'>
-                            <span className='plus alt shape'></span>
+                        <button type='button'>
+                            <object className='task-item-add' type="image/svg+xml" data='/static/icons/plus.svg' alt='plus-icon'>
+                                Plus Icon
+                            </object>
                         </button> )
                     }
                 </div>

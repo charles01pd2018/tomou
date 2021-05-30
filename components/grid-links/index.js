@@ -5,7 +5,6 @@ import arrayMove from 'array-move';
 import { LinkBlob } from '../elements';
 
 
-
 const GridLinks = ({
     id,
     content: { items=[] },
@@ -14,8 +13,6 @@ const GridLinks = ({
 
     /* CONSTANTS */
     const linkDestination = '/';
-
-    console.log( items );
 
     /* HIGHER ORDER COMPONENTS */
     const DraggableLink = SortableElement( ( { name, itemType } ) => (
