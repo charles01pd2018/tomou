@@ -11,7 +11,7 @@ const AUTH_PROVIDERS = [ // external authorization providers
     Providers.GitHub(
         {
             clientId: process.env.GITHUB_ID,
-            clientSecret: process.env.GITHUB_SECRET
+            clientSecret: process.env.GITHUB_SECRET,
         },
     )
 ];
@@ -42,7 +42,7 @@ export default ( req, res ) => {
                 }
 
                 if ( tokenPayload && user ) { // successful sign in
-                    return { ...tokenPayload, id: user.id }
+                    return { ...tokenPayload, id: user.id };
                 }
 
                 return tokenPayload;
