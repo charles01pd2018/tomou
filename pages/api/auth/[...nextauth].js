@@ -6,7 +6,6 @@ import Providers from 'next-auth/providers';
 // import { folder, note } from '../../../db/resources';
 
 /* I MIGHT BE ABLE TO JUST PING THE GRAPHQL SERVER TO GENERATE DEFAULT DATA */
-
 const AUTH_PROVIDERS = [ // external authorization providers
     Providers.GitHub(
         {
