@@ -1,6 +1,6 @@
 import LinkBlob from './link-blob'
 import SigninButton from './signin-button';
-import Button from './Button';
+import Button from './button';
 import Textarea from './textarea';
 
 export {
