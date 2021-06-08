@@ -46,6 +46,9 @@ export default ( req, res ) => {
 
                 return tokenPayload;
             },
+            async redirect ( url, baseUrl ) {
+                return Promise.resolve( url )
+            }
         },
     } );
 }
