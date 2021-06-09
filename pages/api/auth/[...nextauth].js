@@ -47,9 +47,8 @@ export default ( req, res ) => {
                 return tokenPayload;
             },
             async redirect ( url, baseUrl ) {
-                return baseUrl;
+                return url.startsWith( baseUrl ) ? url : baseUrl;
             }
         },
     } );
 }
-
