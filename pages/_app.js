@@ -8,11 +8,12 @@ import useApollo from '../db/client/apolloClient';
 import '../styles/styles.scss'
 
 const TomouApp = ({ Component, pageProps }) => {
-  const apolloClient = useApollo( pageProps.initialApolloState );
+  const { initialApolloState, session } = pageProps;
+  const apolloClient = useApollo( initialApolloState );
   
   return (
         <ApolloProvider client={apolloClient}>
-          <Provider session={pageProps.session}>
+          <Provider session={session}>
             <Component {...pageProps} />
           </Provider>
         </ApolloProvider>

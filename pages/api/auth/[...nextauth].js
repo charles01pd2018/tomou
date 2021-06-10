@@ -25,6 +25,9 @@ export default ( req, res ) => {
         },
         providers: AUTH_PROVIDERS,
         database: process.env.MONGODB_URL,
+        pages: {
+            signIn: '/signin',
+        },
         callbacks: {
             async session( session, user ) {
                 session.user.id = user.id;
@@ -43,9 +46,6 @@ export default ( req, res ) => {
 
                 return tokenPayload;
             },
-            async redirect ( url, baseUrl ) {
-                return url.startsWith( baseUrl ) ? url : baseUrl;
-            }
         },
     } );
 }
