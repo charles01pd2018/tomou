@@ -25,9 +25,6 @@ export default ( req, res ) => {
         },
         providers: AUTH_PROVIDERS,
         database: process.env.MONGODB_URL,
-        pages: {
-            signIn: '/signin',
-        },
         callbacks: {
             async session( session, user ) {
                 session.user.id = user.id;
