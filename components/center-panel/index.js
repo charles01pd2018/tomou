@@ -1,6 +1,7 @@
 // elements
 import { LinkBlob } from '../elements';
 import { SigninButton } from '../elements';
+import { nanoid } from 'nanoid';
 
 
 const CenterPanel = ({
@@ -18,7 +19,7 @@ const CenterPanel = ({
                 }
                 {
                     navLinks.map( ( { linkText, linkDestination } ) => (
-                        <div className='flex-center'>
+                        <div key={nanoid()} className='flex-center'>
                             <LinkBlob key={linkText} linkText={linkText} linkDestination={linkDestination} />
                         </div>
                     ) )
